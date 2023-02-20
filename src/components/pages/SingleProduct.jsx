@@ -12,7 +12,7 @@ import fire from '../../assets/icons/fire.svg'
 import RecentlyViewd from '../individual-components/RecentlyViewd'
 import axios from 'axios'
 import { VITE_BASE_LINK, VITE_BASE_LINK_2 } from '../../../baseLink'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import allProducts from '../../mockApi/allProductsView'
 import arrow_down from '../../assets/icons/arrow_icon.svg'
@@ -24,6 +24,8 @@ const SingleProduct = () => {
     const params = useParams();
 
     const [sidebarCategory, setSidebarCategory] = useState();
+
+    const location = useLocation();
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -73,6 +75,19 @@ const SingleProduct = () => {
         })
     }, [])
 
+    useEffect(() => {
+        let formdata = new FormData()
+        formdata.append('prod_id', params?.product_id);
+        formdata.append('token', localStorage.getItem('token'));
+        formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+        axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
+            console.log(response?.data)
+            // console.log(response?.data?.product_details?.pack_sizes)
+            setProductData(response?.data)
+            setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+        })
+    }, [location])
+
     // useEffect(() => {
     //     let formdata = new FormData()
     //     formdata.append('prod_id', params?.product_id);
@@ -85,14 +100,14 @@ const SingleProduct = () => {
 
     useEffect(() => {
         axios.get(VITE_BASE_LINK_2 + 'NavbarCategoryView').then((response) => {
-            // console.log(response?.data)
+            console.log(response?.data)
             setSidebarCategory(response?.data)
         })
     }, [])
 
     useEffect(() => {
         // console.log(productData)
-        console.log("upfated cart", cartData)
+        // console.log("upfated cart", cartData)
         // console.log(packSizeSelect)
         // console.log(sidebarCategory)
         // console.log(productData?.product_details?.pack_size[selectedWeightIndex])
