@@ -222,17 +222,18 @@ const Navbar = () => {
                                             <>
                                                 {
                                                     cartData?.cartItems?.map((data, i) => (
-                                                        <div key={i} className='w-full flex justify-between shadow-md bg-[#f5f5f5] mb-4 px-2 py-1'>
+                                                        <div key={i} className='w-full flex justify-between shadow-md bg-[#f5f5f5] mb-4 px-2 py-2'>
                                                             <div className='w-full flex justify-start items-center gap-2'>
                                                                 <div className='w-fit'>
-                                                                    <img src={VITE_BASE_LINK_2 + data?.image} className='w-full max-w-[40px]' alt="" />
+                                                                    <img src={VITE_BASE_LINK_2 + data?.image} className='w-full max-w-[45px]' alt="" />
                                                                 </div>
-                                                                <div className='w-full flex flex-col'>
+                                                                <div className='w-full flex flex-col leading-none gap-1'>
                                                                     <div className='w-full'>
                                                                         <h1 className='text-[13px] font-[500]'>{data?.name}</h1>
                                                                     </div>
-                                                                    <div className=''>
-                                                                        <h1 className='text-[12px]'>qty: x{data?.quantity}</h1>
+                                                                    <div className='flex flex-col gap-[3px]'>
+                                                                        <h1 className='text-[11px]'>{data?.size}</h1>
+                                                                        <h1 className='text-[11px]'>qty: {data?.quantity}</h1>
                                                                     </div>
                                                                 </div>
                                                             </div>
