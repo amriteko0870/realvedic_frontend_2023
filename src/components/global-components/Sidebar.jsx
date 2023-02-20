@@ -55,7 +55,7 @@ const Sidebar = () => {
             <h1 className='text-[14px] poppins py-3 pb-2 border-b px-5 flex justify-between items-center' onClick={() => setShowCat(!showCat)}>Categories
               <span><img src={down} className='w-[12px] opacity-70' alt="" /></span>
             </h1>
-            <div className={`overflow-y-scroll transition-all max-h-[50vh] duration-300 ${showCat ? 'max-h-[50vh]   ease-in' : 'h-0 ease-out'}`}>
+            <div className={`overflow-y-scroll transition-all max-h-[50vh] duration-300 ${showCat ? 'max-h-[50vh] ease-in' : 'h-0 ease-out'}`}>
               {
                 sidebarCategory?.map((data, i) => {
                   return (
@@ -113,14 +113,14 @@ const Sidebar = () => {
 
 
           {/* logout */}
-          <div className='w-full py-4 absolute bottom-0 left-0 right-0'>
-            <div className='w-full poppins flex justify-center gap-3 items-center px-5'>
-              <p className='text-[15px] poppins'>Logout</p>
-              <img src={logout} className='w-[26px]' onClick={() => {
+          <div className='w-full py-4 absolute bottom-0 left-0 right-0 mb-10'>
+            <div className='w-full poppins flex justify-center gap-3 items-center px-5' onClick={() => {
                 setSidebarToggle(false)
                 localStorage.clear();
                 navigate('/login');
-              }} alt="" />
+              }}>
+              <p className='text-[15px] poppins'>Logout</p>
+              <img src={logout} className='w-[26px]'  alt="" />
             </div>
           </div>
         </div>

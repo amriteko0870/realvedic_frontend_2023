@@ -143,10 +143,10 @@ const SingleProduct = () => {
                 </div>
             </div>
 
-            <div className='w-full mb-4 relative pr-3 pt-5'>
+            <div className='w-full mb-4 relative pr-3 md:pt-5'>
 
                 {/* header */}
-                <div className=' w-full flex justify-between items-center px-4 xl:px-16 mt-10 mb-10'>
+                <div className=' w-full flex justify-between items-center px-4 xl:px-16 mt-3 md:mt-10 mb-10'>
                     <div className='w-full max-w-[20px]'>
                         <img src={back} className='w-[10px] md:w-[13px] xl:w-[15px] cursor-pointer' alt="" onClick={() => navigate(-1)} />
                     </div>
@@ -172,6 +172,7 @@ const SingleProduct = () => {
                 {/* product details desktop */}
                 <div className='hidden w-full md:flex md:flex-col lg:flex-row px-5 xl:px-16 pb-10'>
 
+                    
                     {/* product images */}
                     <div className='flex-1 min-h-[400px] lg:w-[60%] flex flex-col-reverse xl:flex-row md:justify-center xl:justify-end items-end xl:items-center'>
 
@@ -197,7 +198,7 @@ const SingleProduct = () => {
                     {/* product description */}
                     <div className='flex-1 lg:w-[40%] flex justify-center items-center '>
                         <div className='w-full max-w-[620px]'>
-                            <h1 className='poppins text-[25px] py-2 font-[600]'>{productData?.product_details?.title}</h1>
+                            <h1 className='poppins hidden md:block text-[25px] py-2 font-[600]'>{productData?.product_details?.title}</h1>
                             <div className='w-full py-2 mt-2'>
                                 <p className='poppins text-[14px]'>{productData?.product_details?.description}</p>
                             </div>
@@ -406,7 +407,9 @@ const SingleProduct = () => {
                 </div>
 
                 {/* product details mobile */}
-                <div className='block md:hidden w-full px-4 '>
+                <div className='block md:hidden w-full px-4'>
+                    {/* mobile title */}
+                    {/* <h1 className='poppins block md:hidden text-[25px] py-2 font-[600]  '>{productData?.product_details?.title}</h1> */}
 
                     {/* slider */}
                     <div className='w-full min-h-[200px]'>
@@ -443,7 +446,7 @@ const SingleProduct = () => {
                         <div className='w-full flex justify-between'>
                             <div className='w-full flex gap-3'>
                                 <p className='text-[23px] font-[500] popins opacity-60'>Offer Price :-</p>
-                                <p className='text-[23px] font-[500] popins'>₹ {packSizeSelect?.Offer_price}</p>
+                                <p className='text-[23px] font-[500] popins'>₹ {packSizeSelect?.offer_price}</p>
                             </div>
                         </div>
                     </div>

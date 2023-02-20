@@ -24,7 +24,7 @@ const LandingPageBanners = () => {
 
   // useEffect(() => {
   //   console.log(landingApiData)
-  // }, [landingApiData])
+  // }, [])
 
 
   return (
@@ -39,7 +39,7 @@ const LandingPageBanners = () => {
       } */}
       {
         <Slider
-          className="w-full overflow-hidden z-[90]"
+          className="hidden md:block w-full overflow-hidden z-[90]"
           {...settings}
         >
           {
@@ -55,6 +55,23 @@ const LandingPageBanners = () => {
           }
         </Slider >
       }
+
+      <Slider
+        className="block md:hidden w-full overflow-hidden z-[90]"
+        {...settings}
+      >
+        {
+          landingApiData?.mobile_banner?.map((data, i) => (
+            <div key={i} className='w-full overflow-hidden'>
+              <Link to={`/single-product/` + data?.product_id}>
+                <div>
+                  <img src={VITE_BASE_LINK_2 + data?.image} className='w-full min-h-[20vh] md:h-auto object-cover md:object-contain' alt="" />
+                </div>
+              </Link>
+            </div>
+          ))
+        }
+      </Slider >
     </div>
   )
 }

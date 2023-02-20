@@ -13,6 +13,7 @@ import cartProductIDs from '../../recoil/atoms/cartProductsIDs'
 import down from '../../assets/icons/down_arrow.svg'
 import tabData from '../../mockApi/categoryTabs'
 import CategoryTabs from '../landing-page-components/CategoryTabs'
+import MobileCategories from '../global-components/MobileCategories'
 
 const AllProductsView = () => {
 
@@ -58,8 +59,17 @@ const AllProductsView = () => {
             <CategoryTabs />
 
             {/* banner */}
-            <div className='w-full flex justify-center items-center relative bg-[color:var(--primary-color)] mb-4'>
+            <div className='w-full hidden md:flex justify-center items-center relative bg-[color:var(--primary-color)] mb-4'>
                 <img src={VITE_BASE_LINK_2 + allproductsApiData?.category_banner} className='w-full object-cover bg-bottom' alt="" />
+                {/* <img src="../bannerNew.jpg" className='w-full object-cover bg-bottom' alt="" /> */}
+                <h1 className='text-[20px] md:text-[40px] xl:text-[65px] poppins absolute bottom-[30%] md:bottom-[80px] left-[5%] md:left-[40px] font-[600]'>{allproductsApiData?.category}</h1>
+            </div>
+
+            <MobileCategories/>
+
+            {/* mobile banner */}
+            <div className='w-full flex md:hidden justify-center items-center relative bg-[color:var(--primary-color)] mt-4'>
+                <img src={VITE_BASE_LINK_2 + allproductsApiData?.category_mobile_banner} className='w-full object-cover bg-bottom' alt="" />
                 {/* <img src="../bannerNew.jpg" className='w-full object-cover bg-bottom' alt="" /> */}
                 <h1 className='text-[20px] md:text-[40px] xl:text-[65px] poppins absolute bottom-[30%] md:bottom-[80px] left-[5%] md:left-[40px] font-[600]'>{allproductsApiData?.category}</h1>
             </div>
@@ -119,7 +129,7 @@ const AllProductsView = () => {
                 </div>
 
                 {/* products */}
-                <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-10 px-4 md:pr-4'>
+                <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-5 md:mt-10 px-4 md:pr-4'>
                     {
                         allproductsApiData?.products?.length > 0 ?
                             // allProducts?.products?.length > 0 ?

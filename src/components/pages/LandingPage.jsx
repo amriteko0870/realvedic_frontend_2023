@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { VITE_BASE_LINK, VITE_BASE_LINK_2 } from '../../../baseLink'
 import landingPageApiDataAtom from '../../recoil/atoms/landingPageApiDataAtom'
+import MobileCategories from '../global-components/MobileCategories'
 import BestOffersSection from '../landing-page-components/BestOffersSection'
 import BlogsSection from '../landing-page-components/BlogsSection'
 import CategoryTabs from '../landing-page-components/CategoryTabs'
@@ -37,6 +38,7 @@ const LandingPage = () => {
     <div className=''>
       <CategoryTabs />
       <LandingPageBanners />
+      <MobileCategories/>
       <TopSellers />
       <SmallImageCarousal />
       <SingleImageCarousal />

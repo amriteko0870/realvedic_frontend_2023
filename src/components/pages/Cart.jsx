@@ -182,7 +182,7 @@ const CartPage = () => {
                                     <div className="w-full h-[50vh] flex justify-center items-center">
                                         <div className="w-full max-w-[600px] flex flex-col justify-center items-center gap-6">
                                             <h1 className="text-[20px] poppins">Your cart is empty..</h1>
-                                            <Link to='/'><button className="text-[14px] bg-[color:var(--button-primary)] py-2 px-4 shadow-md active:scale-[0.96]">Continue Shopping</button></Link>
+                                            <Link to='/'><button className="text-[14px] bg-[color:var(--button-primary)] py-2 px-4 shadow-md active:scale-[0.96] rounded-[5px]">Continue Shopping</button></Link>
                                         </div>
                                     </div>
                             }
@@ -223,7 +223,7 @@ const CartPage = () => {
                                                                 </span>
                                                                 <span>{data?.name}</span>
                                                             </div>
-                                                            <div className="text-center">Rs {data?.unit_price}</div>
+                                                            <div className="text-center flex justify-center items-start gap-2"><span className="text-gray-600 text-sm line-through">₹{data?.unit_price}</span><span>₹{data?.net_price}</span></div>
                                                             <div className="text-center">{data?.size}</div>
                                                             <div className="text-center flex justify-center items-start gap-4 ">
                                                                 <span className="cursor-pointer" onClick={async () => {
@@ -287,7 +287,7 @@ const CartPage = () => {
                                                             <div className="flex item-start justify-center  ">
                                                                 <div className=" min-w-[60px]">
                                                                     <span>Rs.</span>
-                                                                    <span className=""> {data?.price}</span>
+                                                                    <span className=""> {data?.final_net_price}</span>
                                                                 </div>
                                                             </div>
                                                             <div className="">
@@ -335,7 +335,7 @@ const CartPage = () => {
                                             <h1 className="text-center">Cart</h1>
                                             <div className="">
                                                 <div className="w-full flex justify-between items-end my-4">
-                                                    <h1 className="text-[14px]">Sub Total:</h1>
+                                                    <h1 className="text-[14px] flex flex-col"><span>Sub Total :</span><span className="text-gray-400 text-[11px] mr-1">&#40;Excluding GST&#41;</span></h1>
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.subtotal}</h1>
                                                 </div>
                                                 <div className="w-full flex justify-between items-center my-4">
@@ -343,7 +343,7 @@ const CartPage = () => {
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.shipping}</h1>
                                                 </div>
                                                 <div className="w-full flex justify-between items-center my-4">
-                                                    <h1 className="text-[14px]">Tax:</h1>
+                                                    <h1 className="text-[14px]">GST:</h1>
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.tax}</h1>
                                                 </div>
                                                 <div className="w-full flex justify-between items-center my-4">
@@ -357,7 +357,7 @@ const CartPage = () => {
                                     <div className="w-full h-[50vh] flex justify-center items-center">
                                         <div className="w-full max-w-[600px] flex flex-col justify-center items-center gap-6">
                                             <h1 className="text-[20px] poppins">Your cart is empty..</h1>
-                                            <Link to='/'><button className="text-[14px] bg-[color:var(--button-primary)] py-2 px-4 shadow-md active:scale-[0.96]">Continue Shopping</button></Link>
+                                            <Link to='/'><button className="text-[14px] bg-[color:var(--button-primary)] rounded-[5px] py-2 px-4 shadow-md active:scale-[0.96]">Continue Shopping</button></Link>
                                         </div>
                                     </div>
                             }

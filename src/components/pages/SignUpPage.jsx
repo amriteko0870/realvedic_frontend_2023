@@ -12,6 +12,8 @@ const SignUpPage = () => {
 
     const [passwordView, setPasswordView] = useState(false);
 
+    const [confirmpasswordView, setConfirmPasswordView] = useState(false);
+
     const navigate = useNavigate();
 
     const [signUpData, setSignUpData] = useState({});
@@ -63,7 +65,7 @@ const SignUpPage = () => {
 
     return (
         <div className='w-full flex justify-center items-center h-[80vh] poppins px-4'>
-            <div className='w-full max-w-[500px] flex flex-col justify-between items-center shadow-lg p-4 bg-[#f3f3f3]'>
+            <div className='w-full max-w-[500px] flex flex-col justify-between items-center shadow-lg rounded-[5px] p-4 bg-[#f3f3f3]'>
 
                 {/* <div className='w-full flex gap-2'>
                     <div className='w-full py-3 bg-[#fcfcfc] text-white flex justify-center items-center my-2 cursor-pointer active:scale-[0.96] active:bg-[#f0f0f0] shadow-md'>
@@ -117,7 +119,7 @@ const SignUpPage = () => {
                             })} placeholder='Enter last name' />
                         </div>
                     </div>
-                    <div className='w-full flex flex-col md:flex-row justify-between md:gap-5 items-center'>
+                    <div className='w-full flex flex-col justify-between items-center'>
                         <div className='w-full flex flex-col my-2'>
                             <label htmlFor="email" className='text-[12px]'>Email</label>
                             <input type="text" name='email' className='border py-2 outline-none px-2 text-[13px]' onChange={(e) => setSignUpData({
@@ -130,14 +132,21 @@ const SignUpPage = () => {
                             <span className='border w-full flex justify-center items-center bg-white pr-1'><input type={passwordView ? 'text' : 'password'} name='password' className='py-2 outline-none px-2 text-[13px] w-full' onChange={(e) => setSignUpData({
                                 ...signUpData,
                                 password: e?.target?.value
-                            })} placeholder='Enter password' /><span className=''><img onClick={() => setPasswordView(!passwordView)} src={passwordView ? eye_closed : eye_open} className='w-[20px] cursor-pointer' alt="" /></span></span>
+                            })} placeholder='Enter password' /><span className='px-1 pl-2'><img onClick={() => setPasswordView(!passwordView)} src={passwordView ? eye_closed : eye_open} className='w-[20px] cursor-pointer' alt="" /></span></span>
+                        </div>
+                        <div className='w-full flex flex-col my-2'>
+                            <label htmlFor="confirm-password" className='text-[12px]'>Confirm Password</label>
+                            <span className='border w-full flex justify-center items-center bg-white pr-1'><input type={confirmpasswordView ? 'text' : 'password'} name='confirm-password' className='py-2 outline-none px-2 text-[13px] w-full' onChange={(e) => setSignUpData({
+                                ...signUpData,
+                                confirm_password: e?.target?.value
+                            })} placeholder='Confirm password' /><span className='px-1 pl-2'><img onClick={() => setConfirmPasswordView(!confirmpasswordView)} src={confirmpasswordView ? eye_closed : eye_open} className='w-[20px] cursor-pointer' alt="" /></span></span>
                         </div>
                     </div>
 
                     <div className='w-full flex flex-col md:flex-row justify-between md:gap-5 items-center'>
                         <div className='w-full flex gap-4'>
                             <div className=' w-full max-w-[80px] flex flex-col my-2'>
-                                <label htmlFor="ph-code" className='text-[12px]'>Ph. Code</label>
+                                <label htmlFor="ph-code" className='text-[12px]'>ISD code</label>
                                 <input type="number" name='ph-code' className='border py-2 outline-none px-2 text-[13px]' onChange={(e) => setSignUpData({
                                     ...signUpData,
                                     phone_code: e?.target?.value
@@ -163,11 +172,17 @@ const SignUpPage = () => {
                         <h1 className='text-[10px]'>Forgot password ?</h1>
                     </div> */}
                     <div className='w-full my-2'>
-                        <button className='w-full py-2 flex justify-center items-center text-[17px] bg-[color:var(--button-primary)] active:scale-[0.96] active:bg-[#d6cf4c] shadow-md tracking-[1px]' onClick={signUp}>Sign Up</button>
+                        <button className='w-[50%] rounded-[5px] mx-auto py-2 flex justify-center items-center text-[15px] bg-[color:var(--button-primary)] active:scale-[0.96] active:bg-[#d6cf4c] shadow-md tracking-[1px]' onClick={signUp}>Sign Up</button>
+                        <div className='w-[40%] mx-auto flex justify-center items-center gap-3 my-3'>
+                            <div className='w-full h-[1px] bg-gray-300'></div>
+                            <div><h1 className='text-gray-600 poppins text-[14px]'>OR</h1></div>
+                            <div className='w-full h-[1px] bg-gray-300'></div>
+                        </div>
+                        <Link to='/login' className='w-full flex justify-center items-center'><button className='w-[50%] rounded-[5px] mx-auto py-2 flex justify-center items-center text-[15px] bg-[color:var(--button-primary)] active:scale-[0.96] active:bg-[#d6cf4c] shadow-md tracking-[1px]'>Login</button></Link>
                     </div>
-                    <div className='w-full flex justify-center items-center'>
+                    {/* <div className='w-full flex justify-center items-center'>
                         <Link to='/login'><h1 className='text-[10px]'>Already have an account? Log in.</h1></Link>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

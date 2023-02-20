@@ -47,29 +47,29 @@ const Navbar = () => {
 
     // const [cartData, setCartData] = useState();
 
-    const [mockProducts, setMockProducts] = useState([
-        { title: 'Dosa Mix', id: 0, image: item, category: 'Dosa', },
-        { title: 'Rasam Kokum', id: 1, image: item, category: 'Rasam & Soups', },
-        { title: 'Flour', id: 2, image: item, category: 'Wheat & Rice', },
-        { title: 'Kokum Rasam', id: 3, image: item, category: 'Rasam & Soups', },
-        { title: 'Dosa Mix', id: 4, image: item, category: 'Dosa', },
-        { title: 'Rasam Mix', id: 5, image: item, category: 'Rasam & Soups', },
-        { title: 'Flour', id: 6, image: item, category: 'Wheat & Rice', },
-        { title: 'Kokum Rasam', id: 7, image: item, category: 'Rasam & Soups', },
-        { title: 'Dosa Mix', id: 8, image: item, category: 'Dosa', },
-        { title: 'Rasam Mix', id: 9, image: item, category: 'Rasam & Soups', },
-        { title: 'Flour', id: 10, image: item, category: 'Wheat & Rice', },
-        { title: 'Vegitable masala | Chillie', id: 11, image: item, category: 'Masala & Powders', },
-        { title: 'Kokum Rasam', id: 12, image: item, category: 'Rasam & Soups', },
-        { title: 'Rasam Mix', id: 13, image: item, category: 'Rasam & Soups', },
-        { title: 'Flour', id: 14, image: item, category: 'Wheat & Rice', },
-        { title: 'Vegitable masala | Chillie', id: 15, image: item, category: 'Masala & Powders', },
-        { title: 'Kokum Rasam', id: 16, image: item, category: 'Rasam & Soups', },
-        { title: 'Dosa Mix', id: 17, image: item, category: 'Dosa', },
-        { title: 'Rasam Mix', id: 18, image: item, category: 'Rasam & Soups', },
-        { title: 'Flour', id: 19, image: item, category: 'Wheat & Rice', },
-        { title: 'Vegitable masala | Chillie', id: 20, image: item, category: 'Masala & Powders', },
-    ]);
+    // const [mockProducts, setMockProducts] = useState([
+    //     { title: 'Dosa Mix', id: 0, image: item, category: 'Dosa', },
+    //     { title: 'Rasam Kokum', id: 1, image: item, category: 'Rasam & Soups', },
+    //     { title: 'Flour', id: 2, image: item, category: 'Wheat & Rice', },
+    //     { title: 'Kokum Rasam', id: 3, image: item, category: 'Rasam & Soups', },
+    //     { title: 'Dosa Mix', id: 4, image: item, category: 'Dosa', },
+    //     { title: 'Rasam Mix', id: 5, image: item, category: 'Rasam & Soups', },
+    //     { title: 'Flour', id: 6, image: item, category: 'Wheat & Rice', },
+    //     { title: 'Kokum Rasam', id: 7, image: item, category: 'Rasam & Soups', },
+    //     { title: 'Dosa Mix', id: 8, image: item, category: 'Dosa', },
+    //     { title: 'Rasam Mix', id: 9, image: item, category: 'Rasam & Soups', },
+    //     { title: 'Flour', id: 10, image: item, category: 'Wheat & Rice', },
+    //     { title: 'Vegitable masala | Chillie', id: 11, image: item, category: 'Masala & Powders', },
+    //     { title: 'Kokum Rasam', id: 12, image: item, category: 'Rasam & Soups', },
+    //     { title: 'Rasam Mix', id: 13, image: item, category: 'Rasam & Soups', },
+    //     { title: 'Flour', id: 14, image: item, category: 'Wheat & Rice', },
+    //     { title: 'Vegitable masala | Chillie', id: 15, image: item, category: 'Masala & Powders', },
+    //     { title: 'Kokum Rasam', id: 16, image: item, category: 'Rasam & Soups', },
+    //     { title: 'Dosa Mix', id: 17, image: item, category: 'Dosa', },
+    //     { title: 'Rasam Mix', id: 18, image: item, category: 'Rasam & Soups', },
+    //     { title: 'Flour', id: 19, image: item, category: 'Wheat & Rice', },
+    //     { title: 'Vegitable masala | Chillie', id: 20, image: item, category: 'Masala & Powders', },
+    // ]);
 
     useEffect(() => {
         if (cartView === true) {
@@ -291,7 +291,7 @@ const Navbar = () => {
                                                                 }}>+</div>
                                                             </div>
                                                             <div className='w-fit min-w-[60px] flex justify-center items-center'>
-                                                                <h1 className='text-[15px] font-[500]'>₹ {data?.price}</h1>
+                                                                <h1 className='text-[15px] font-[500]'>₹ {data?.final_net_price}</h1>
                                                             </div>
                                                             <div className='w-full max-w-[50px] flex justify-center items-center'>
                                                                 <img src={cross} className='w-full max-w-[13px] cursor-pointer' alt="" onClick={async () => {
@@ -336,7 +336,7 @@ const Navbar = () => {
                                             <h1 className='text-[16px] font-[500]'>₹ {cartData?.cart_total?.final_price}</h1>
                                         </div>
                                         <div className='w-full flex justify-end items-center'>
-                                            <Link to='/cart'><button className='px-3 py-1 bg-[color:var(--button-primary)] text-[12px] shadow-md'>Go to cart & checkout</button></Link>
+                                            <Link to='/cart'><button className='px-3 py-1 bg-[color:var(--button-primary)] rounded-[5px] text-[12px] shadow-md'>Go to cart</button></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -368,7 +368,7 @@ const Navbar = () => {
                                     </div>
                                 </Link>
                                 :
-                                <Link to='/cart'><img src={cart} className='w-[20px] cursor-pointer' alt="" /></Link>
+                                <Link to='/cart'><img src={cart} className='min-w-[28px] cursor-pointer' alt="" /></Link>
                         }
                         <div className=' flex justify-center items-center' onClick={() => setSidebarToggle(true)}>
                             <img src={sidebar_icon} className='w-[26px] cursor-pointer mr-2' alt="" />

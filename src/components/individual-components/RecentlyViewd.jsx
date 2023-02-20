@@ -15,6 +15,7 @@ const RecentlyViewd = () => {
     useEffect(() => {
         let formdata = new FormData()
         formdata.append('token', localStorage?.getItem('token'))
+        formdata.append('no_login_token', localStorage?.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'recently_viewed_oc', formdata).then((response) => {
             console.log(response?.data)
             setItemData(response?.data)
@@ -24,6 +25,7 @@ const RecentlyViewd = () => {
     useEffect(() => {
         let formdata = new FormData()
         formdata.append('token', localStorage?.getItem('token'))
+        formdata.append('no_login_token', localStorage?.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'recently_viewed_oc', formdata).then((response) => {
             console.log(response?.data)
             setItemData(response?.data)

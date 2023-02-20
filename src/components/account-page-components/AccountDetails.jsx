@@ -110,7 +110,7 @@ const AccountDetails = () => {
                     </div>
                     <div className='w-full flex justify-start items-center gap-3'>
                         <div className='w-full max-w-[60px] flex flex-col'>
-                            <label htmlFor="phone-code" className='text-[12px]'>Ph Code</label>
+                            <label htmlFor="phone-code" className='text-[12px]'>ISD code</label>
                             <input value={accountData?.phone_code} type="text" min={0} name='phone-code' className='w-full outline-none text-[14px] border py-2 px-2' onChange={(e) => {
                                 setAccountData({
                                     ...accountData,
