@@ -29,7 +29,7 @@ const DoctorsPage = () => {
 
   useEffect(() => {
     axios.get(VITE_BASE_LINK + 'doctor_detail_view  ').then((response) => {
-      console.log(response?.data)
+      // console.log(response?.data)
       setDocData(response?.data)
     })
   }, [])
@@ -142,7 +142,7 @@ const DoctorsPage = () => {
             <div className='w-full flex justify-center items-center mt-2'>
               <button className='px-4 py-2 bg-[color:var(--button-primary)] shadow-md active:scale-[0.96] text-[15px] poppins font-[500] rounded-[10px]' onClick={() => {
                 axios.post(VITE_BASE_LINK + '', formData).then((response) => {
-                  console.log(response?.data)
+                  // console.log(response?.data)
                   // alert(response?.data?.message)
                 })
               }}>Submit</button>

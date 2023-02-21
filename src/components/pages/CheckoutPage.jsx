@@ -4,7 +4,7 @@ import edit from '../../assets/icons/edit.svg'
 import cross from '../../assets/icons/cross.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { VITE_BASE_LINK, VITE_BASE_LINK_2 } from '../../../baseLink';
+import { VITE_BASE_LINK, VITE_BASE_LINK_2, VITE_BASE_LINK_3 } from '../../../baseLink';
 import { toast } from 'react-toastify';
 
 const CheckoutPage = () => {
@@ -57,7 +57,7 @@ const CheckoutPage = () => {
             // bodyData.append("items", JSON.stringify(checkoutData?.items))
 
             await axios({
-                url: VITE_BASE_LINK_2 + `handle_payment_success`,
+                url: VITE_BASE_LINK_3 + `handle_payment_success`,
                 method: "POST",
                 data: bodyData,
                 headers: {
@@ -131,7 +131,7 @@ const CheckoutPage = () => {
         bodyData.append("token", localStorage.getItem("token"));
 
         const data = await axios({
-            url: VITE_BASE_LINK_2 + `start_payment`,
+            url: VITE_BASE_LINK_3 + `start_payment`,
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -189,10 +189,10 @@ const CheckoutPage = () => {
 
 
     return (
-        <div className='w-full poppins px-[20px] md:px-[50px] xl:px-[100px] relative'>
+        <div className='w-full poppins px-[20px] md:px-[50px] xl:px-[100px] pt-10 relative'>
 
             {/* breadcrumbs */}
-            <div className='w-full flex justify-start items-center gap-2 py-5'>
+            <div className=' w-full flex justify-start items-center gap-2 py-5'>
                 <Link to='/cart' className='text-[13px]'>Cart</Link>
                 <h1 className='text-[13px]'>&#62;</h1>
                 <h1 className='text-[13px] font-[600]'>Checkout</h1>
@@ -306,7 +306,7 @@ const CheckoutPage = () => {
                                                 </div>
                                                 <div className='w-full flex flex-col'>
                                                     <div className='w-full flex flex-col md:flex-row md:justify-between md:items-center'>
-                                                        <h1 className='text-[11px] md:text-[13px] font-[500]'>{data?.title}</h1>
+                                                        <h1 className='text-[11px] md:text-[13px] font-[500]'>{data?.name}</h1>
                                                         <h1 className='text-[11px] md:text-[13px] font-[500]'>Rs {data?.price}</h1>
                                                     </div>
                                                     <h1 className='text-[9px]'>{data?.weight}</h1>

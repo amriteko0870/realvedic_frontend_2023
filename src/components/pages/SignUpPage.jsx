@@ -27,15 +27,15 @@ const SignUpPage = () => {
         })
     }, [gender])
 
-    useEffect(() => {
-        console.log(signUpData)
-    }, [signUpData])
+    // useEffect(() => {
+    //     console.log(signUpData)
+    // }, [signUpData])
 
 
     const signUp = () => {
         axios.post(VITE_BASE_LINK_2 + 'signUp', signUpData).then((response) => {
             if (response?.data?.status === true) {
-                console.log(response?.data)
+                // console.log(response?.data)
                 toast.success(response?.data?.message, {
                     position: "top-right",
                     autoClose: 2000,

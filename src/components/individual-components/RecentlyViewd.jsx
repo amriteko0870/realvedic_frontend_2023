@@ -20,7 +20,7 @@ const RecentlyViewd = () => {
         formdata.append('token', localStorage?.getItem('token'))
         formdata.append('no_login_token', localStorage?.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'recently_viewed_oc', formdata).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setItemData(response?.data)
         })
     }, [])
@@ -30,7 +30,7 @@ const RecentlyViewd = () => {
         formdata.append('token', localStorage?.getItem('token'))
         formdata.append('no_login_token', localStorage?.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'recently_viewed_oc', formdata).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setItemData(response?.data)
         })
     }, [location?.pathname])
@@ -40,7 +40,7 @@ const RecentlyViewd = () => {
         formdata.append('token', localStorage?.getItem('token'))
         formdata.append('no_login_token', localStorage?.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'recently_viewed_oc', formdata).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setItemData(response?.data)
         })
     }, [cartDataApi])
@@ -79,7 +79,7 @@ const RecentlyViewd = () => {
                 //         <button className='bg-[#FCF55C] active:bg-[#f5ec4b] px-8 py-2 poppins text-[15px] font-[500] cursor-pointer active:scale-[0.98]'>ADD TO CART</button>
                 //     </div>
                 // </div>
-                <Link to={`/single-product/` + data?.id}><ProductCard key={i} id={data?.id} title={data?.title} image={data?.image} weight={data?.weight} price={data?.price}  status={data?.cart_status} statusArray={data?.cart_status_array} /></Link>
+                <ProductCard key={i} id={data?.id} title={data?.title} image={data?.image} weight={data?.weight} price={data?.price}  status={data?.cart_status} statusArray={data?.cart_status_array} />
             ))
         }
         </div>

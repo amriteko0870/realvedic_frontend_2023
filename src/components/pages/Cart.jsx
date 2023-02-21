@@ -117,7 +117,7 @@ const CartPage = () => {
                                                                             formdata.append('size', data?.size)
                                                                             formdata.append('update_type', '-')
                                                                             await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                                                                console.log(response?.data)
+                                                                                // console.log(response?.data)
                                                                                 toast.warn(response?.data?.message, {
                                                                                     position: "top-right",
                                                                                     autoClose: 2000,
@@ -148,7 +148,7 @@ const CartPage = () => {
                                                                         formdata.append('size', data?.size)
                                                                         formdata.append('update_type', '+')
                                                                         await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                                                            console.log(response?.data)
+                                                                            // console.log(response?.data)
                                                                             toast.warn(response?.data?.message, {
                                                                                 position: "top-right",
                                                                                 autoClose: 2000,
@@ -235,7 +235,7 @@ const CartPage = () => {
                                                                     formdata.append('size', data?.size)
                                                                     formdata.append('update_type', '-')
                                                                     await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                                                        console.log(response?.data)
+                                                                        // console.log(response?.data)
                                                                         toast.warn(response?.data?.message, {
                                                                             position: "top-right",
                                                                             autoClose: 2000,
@@ -265,7 +265,7 @@ const CartPage = () => {
                                                                     formdata.append('size', data?.size)
                                                                     formdata.append('update_type', '+')
                                                                     await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                                                        console.log(response?.data)
+                                                                        // console.log(response?.data)
                                                                         toast.warn(response?.data?.message, {
                                                                             position: "top-right",
                                                                             autoClose: 2000,
@@ -414,7 +414,7 @@ const CartPage = () => {
                                             {
                                                 localStorage.getItem('token') ?
                                                     <div>
-                                                        <Link to='/checkout' className="bg-[#FCF55C] active:scale-[0.96] cursor-pointer active:bg-[#ddd650] px-5 py-2 md:p-4 md:px-10 font-[600]  text-[18px] ">
+                                                        <Link to='/checkout' className="bg-[#FCF55C] active:scale-[0.96] shadow-md cursor-pointer active:bg-[#ddd650] px-5 py-2 md:p-4 md:px-10 font-[600]  text-[18px] ">
                                                             CHECKOUT
                                                         </Link>
                                                     </div>

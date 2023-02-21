@@ -26,7 +26,7 @@ const OrderConfirmedPage = () => {
         let formdata = new FormData();
         formdata.append('token', localStorage.getItem('token'))
         axios.post(VITE_BASE_LINK_2 + 'userAccountView', formdata).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setProfileData(response?.data)
         })
     }, [])

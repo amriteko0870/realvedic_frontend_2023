@@ -29,20 +29,20 @@ const ProductCard = (props) => {
 
 
     return (
-        <div>
+        <div className=''>
             { 
             props?.statusArray &&
                 <div>
 
-                <div className='w-full border shadow-md p-2'>
+                <div className='w-full border shadow-md p-2 h-full flex flex-col justify-between min-h-[280px] lg:min-h-[350px] xl:min-h-[320px]'>
                     <Link to={`/single-product/` + props?.id} className='w-full flex justify-center items-center'>
                         <img src={VITE_BASE_LINK_2 + props?.image} className='w-[85%] mx-auto' alt="" />
                     </Link>
                     <div className='w-full flex justify-between items-center mt-1'>
-                        <div className='w-full lg:w-[51%] xl:w-auto'>
+                        <div className='w-full xl:w-auto'>
                             <h1 className='poppins text-[13px]'>{props?.title}</h1>
                         </div>
-                        <div className='w-full min-w-[100px] pt-1 px-[6px] flex justify-end items-center relative gap-2 cursor-pointer' onClick={() => {
+                        <div className='w-full max-w-[80px] pt-1 px-[6px] flex justify-end items-center relative gap-2 cursor-pointer' onClick={() => {
                             // console.log('clicked')
                             setVariantDropdown(!variantDropdown);
                             if (selectedProductID) {
@@ -71,7 +71,7 @@ const ProductCard = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className='w-full flex justify-end items-center mt-1' onClick={() => {
+                    <div className='w-full flex justify-end items-center xl:min-h-[50px]' onClick={() => {
                     }}>
                         {
                             cartData?.cartItems?.length > 0 ?
@@ -173,7 +173,7 @@ const ProductCard = (props) => {
                                             <div className='w-full flex justify-between items-center mt-1'>
                                                 <div className='flex justify-end'>
                                                     <div className='w-fit'>
-                                                        <h1 className='poppins text-[15px] font-[400]'>Rs {props?.price[activeIndex]}</h1>
+                                                        <h1 className='helvetica text-[17px] font-[500]'>₹ {props?.price[activeIndex]}</h1>
                                                     </div>
                                                 </div>
                                                 <button className='bg-[#FCF55C] rounded-[5px] w-full max-w-[80px] active:bg-[#f5ec4b] px-3 shadow-md py-[2px] poppins text-[15px] font-[500] cursor-pointer active:scale-[0.98]' onClick={async () => {

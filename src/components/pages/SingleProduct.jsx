@@ -68,7 +68,7 @@ const SingleProduct = () => {
         formdata.append('token', localStorage.getItem('token'));
         formdata.append('no_login_token', localStorage.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             // console.log(response?.data?.product_details?.pack_sizes)
             setProductData(response?.data)
             setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
@@ -81,12 +81,12 @@ const SingleProduct = () => {
         formdata.append('token', localStorage.getItem('token'));
         formdata.append('no_login_token', localStorage.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             // console.log(response?.data?.product_details?.pack_sizes)
             setProductData(response?.data)
             setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
         })
-    }, [location])
+    }, [location, cartData])
 
     // useEffect(() => {
     //     let formdata = new FormData()
@@ -100,18 +100,18 @@ const SingleProduct = () => {
 
     useEffect(() => {
         axios.get(VITE_BASE_LINK_2 + 'NavbarCategoryView').then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setSidebarCategory(response?.data)
         })
     }, [])
 
-    useEffect(() => {
-        // console.log(productData)
-        // console.log("upfated cart", cartData)
-        // console.log(packSizeSelect)
-        // console.log(sidebarCategory)
-        // console.log(productData?.product_details?.pack_size[selectedWeightIndex])
-    }, [cartData])
+    // useEffect(() => {
+    //     console.log(productData)
+    //     console.log("upfated cart", cartData)
+    //     console.log(packSizeSelect)
+    //     console.log(sidebarCategory)
+    //     console.log(productData?.product_details?.pack_size[selectedWeightIndex])
+    // }, [cartData])
 
 
     return (
@@ -138,7 +138,7 @@ const SingleProduct = () => {
                                             <div className='w-full flex flex-col mt-2 pl-2'>
                                                 {
                                                     data?.items?.map((sub_data, sub_index) => (
-                                                        <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3'>
+                                                        <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3' onClick={() => setCategoryDropDown(null)}>
                                                             <div className='w-fit'>
                                                                 <img src={VITE_BASE_LINK_2 + sub_data?.image} className='w-[35px]' alt="" />
                                                             </div>
@@ -243,7 +243,7 @@ const SingleProduct = () => {
                                                 formdata.append('size', packSizeSelect?.weight)
                                                 formdata.append('update_type', '-')
                                                 await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                                    console.log(response?.data)
+                                                    // console.log(response?.data)
                                                     toast.warn(response?.data?.message, {
                                                         position: "top-right",
                                                         autoClose: 2000,
@@ -256,7 +256,7 @@ const SingleProduct = () => {
                                                 })
                                                 formdata.append('no_login_token', localStorage.getItem('no_login_token'))
                                                 await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                                    console.log(response?.data)
+                                                    // console.log(response?.data)
                                                     // console.log(response?.data?.product_details?.pack_sizes)
                                                     setProductData(response?.data)
                                                     setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
@@ -291,7 +291,7 @@ const SingleProduct = () => {
                                                 formdata.append('size', packSizeSelect?.weight)
                                                 formdata.append('update_type', '+')
                                                 await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                                    console.log(response?.data)
+                                                    // console.log(response?.data)
                                                     toast.warn(response?.data?.message, {
                                                         position: "top-right",
                                                         autoClose: 2000,
@@ -303,7 +303,7 @@ const SingleProduct = () => {
                                                     })
                                                 })
                                                 await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                                    console.log(response?.data)
+                                                    // console.log(response?.data)
                                                     // console.log(response?.data?.product_details?.pack_sizes)
                                                     setProductData(response?.data)
                                                     setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
@@ -360,8 +360,8 @@ const SingleProduct = () => {
                                                                 progress: undefined,
                                                                 theme: "colored",
                                                             })
-                                                            console.log('error in backend')
-                                                            console.log(response)
+                                                            // console.log('error in backend')
+                                                            // console.log(response)
                                                         }
                                                     }
                                                 })
@@ -373,7 +373,7 @@ const SingleProduct = () => {
                                                 setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
                                             })
                                             await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
-                                                console.log('cart', response?.data)
+                                                // console.log('cart', response?.data)
                                                 setCartData(response?.data)
                                             })
                                         }}>ADD TO CART</button>
@@ -479,7 +479,7 @@ const SingleProduct = () => {
                                     formdata.append('size', packSizeSelect?.weight)
                                     formdata.append('update_type', '-')
                                     await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                        console.log(response?.data)
+                                        // console.log(response?.data)
                                         toast.warn(response?.data?.message, {
                                             position: "top-right",
                                             autoClose: 2000,
@@ -492,7 +492,7 @@ const SingleProduct = () => {
                                     })
                                     formdata.append('no_login_token', localStorage.getItem('no_login_token'))
                                     await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                        console.log(response?.data)
+                                        // console.log(response?.data)
                                         // console.log(response?.data?.product_details?.pack_sizes)
                                         setProductData(response?.data)
                                         setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
@@ -527,7 +527,7 @@ const SingleProduct = () => {
                                     formdata.append('size', packSizeSelect?.weight)
                                     formdata.append('update_type', '+')
                                     await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                        console.log(response?.data)
+                                        // console.log(response?.data)
                                         toast.warn(response?.data?.message, {
                                             position: "top-right",
                                             autoClose: 2000,
@@ -540,7 +540,7 @@ const SingleProduct = () => {
                                     })
                                     formdata.append('no_login_token', localStorage.getItem('no_login_token'))
                                     await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                        console.log(response?.data)
+                                        // console.log(response?.data)
                                         // console.log(response?.data?.product_details?.pack_sizes)
                                         setProductData(response?.data)
                                         setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
@@ -595,14 +595,14 @@ const SingleProduct = () => {
                                                         progress: undefined,
                                                         theme: "colored",
                                                     })
-                                                    console.log('error in backend')
-                                                    console.log(response)
+                                                    // console.log('error in backend')
+                                                    // console.log(response)
                                                 }
                                             }
                                         })
                                     formdata.append('prod_id', productData?.product_details?.id);
                                     await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                        console.log(response?.data)
+                                        // console.log(response?.data)
                                         // console.log(response?.data?.product_details?.pack_sizes)
                                         setProductData(response?.data)
                                         setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])

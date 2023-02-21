@@ -17,9 +17,9 @@ const MyOrders = () => {
         })
     }, [])
 
-    useEffect(() => {
-        console.log(orderData);
-    }, [orderData])
+    // useEffect(() => {
+    //     console.log(orderData);
+    // }, [orderData])
 
     // const order_data = {
     //     orders: [

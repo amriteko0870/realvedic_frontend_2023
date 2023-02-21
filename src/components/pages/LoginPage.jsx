@@ -78,7 +78,7 @@ const LoginPage = () => {
                             axios.post(VITE_BASE_LINK_2 + 'login', formdata).then((response) => {
                                 localStorage.clear();
                                 if (response?.data?.status) {
-                                    console.log(response?.data)
+                                    // console.log(response?.data)
                                     localStorage.setItem('token', response?.data?.token)
                                     toast.success(response?.data?.message, {
                                         position: "top-right",

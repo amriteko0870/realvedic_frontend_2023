@@ -35,14 +35,14 @@ const AllProductsView = () => {
         formdata.append('token', localStorage.getItem('token'));
         formdata.append('no_login_token', localStorage.getItem('no_login_token'));
         axios.post(VITE_BASE_LINK_2 + 'categoryPage2', formdata).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setAllproductsApiData(response?.data)
         })
     }, [params])
 
     useEffect(() => {
         axios.get(VITE_BASE_LINK_2 + 'NavbarCategoryView').then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setSidebarCategory(response?.data)
         })
     }, [])
@@ -87,7 +87,7 @@ const AllProductsView = () => {
 
             <div className='w-full flex gap-4 pb-10 px-5'>
 
-                {/* filters */}
+                {/* sidebar */}
                 <div className='hidden md:block w-[30%] lg:w-[20%] bg- px-2 pt-4 poppins'>
                     <div className='w-full sticky top-[150px]'>
                         <h1 className='text-[17px] pb-4'>Categories</h1>
@@ -108,7 +108,7 @@ const AllProductsView = () => {
                                             <div className='w-full flex flex-col mt-2 pl-2'>
                                                 {
                                                     data?.items?.map((sub_data, sub_index) => (
-                                                        <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3'>
+                                                        <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3' onClick={() => setCategoryDropDown(null)}>
                                                             <div className='w-fit'>
                                                                 <img src={VITE_BASE_LINK_2 + sub_data?.image} className='w-[35px]' alt="" />
                                                             </div>

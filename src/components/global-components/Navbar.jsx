@@ -91,7 +91,8 @@ const Navbar = () => {
     }, [])
 
     useEffect(() => {
-        setSearchData('');
+        setSearchData('')
+        setCartView(false)
     }, [location?.pathname])
 
 
@@ -330,17 +331,32 @@ const Navbar = () => {
                                             </div>
                                     }
                                 </div>
-                                <div className='w-full flex justify-end pr-3 items-center mt-2'>
-                                    <div className='w-[70%] flex justify-between items-end bg-[#ffffff80] px-2 py-3'>
-                                        <div className='w-full flex justify-start gap-2 items-center'>
-                                            <h1 className='text-[13px]'>Cart Total:</h1>
-                                            <h1 className='text-[16px] font-[500]'>₹ {cartData?.cart_total?.final_price}</h1>
+                                {
+                                    cartData?.cartItems?.length > 0 ?
+                                        <div className='w-full flex justify-end pr-3 items-center mt-2'>
+                                            <div className='w-[70%] flex justify-between items-end bg-[#ffffff80] px-2 py-3'>
+                                                <div className='w-full flex justify-start gap-2 items-center'>
+                                                    <h1 className='text-[13px]'>Cart Total:</h1>
+                                                    <h1 className='text-[16px] font-[500]'>₹ {cartData?.cart_total?.final_price}</h1>
+                                                </div>
+                                                <div className='w-full flex justify-end items-center'>
+                                                    <Link to='/cart'><button className='px-3 py-1 bg-[color:var(--button-primary)] active:scale-[0.95] rounded-[5px] text-[12px] shadow-md'>Go to cart</button></Link>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className='w-full flex justify-end items-center'>
-                                            <Link to='/cart'><button className='px-3 py-1 bg-[color:var(--button-primary)] rounded-[5px] text-[12px] shadow-md'>Go to cart</button></Link>
+                                        :
+                                        <div className='w-full flex justify-end px-[15px] items-center mt-2'>
+                                            <div className='w-full flex justify-between items-end bg-[#ffffff80] px-2 py-3'>
+                                                {/* <div className='w-full flex justify-start gap-2 items-center'>
+                                                    <h1 className='text-[13px]'>Cart Total:</h1>
+                                                    <h1 className='text-[16px] font-[500]'>₹ {cartData?.cart_total?.final_price}</h1>
+                                                </div>
+                                                <div className='w-full flex justify-end items-center'>
+                                                    <Link to='/cart'><button className='px-3 py-1 bg-[color:var(--button-primary)] rounded-[5px] text-[12px] shadow-md'>Go to cart</button></Link>
+                                                </div> */}
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
                         </div>
 

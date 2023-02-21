@@ -16,7 +16,7 @@ const SingleOrderDetails = () => {
         formdata.append('token', localStorage.getItem('token'))
         formdata.append('order_id', params?.order_id)
         axios.post(VITE_BASE_LINK_2 + 'single_order_view', formdata).then((response) => {
-            console.log(response?.data)
+            // console.log(response?.data)
             setOrderData(response?.data)
         })
     }, [])
