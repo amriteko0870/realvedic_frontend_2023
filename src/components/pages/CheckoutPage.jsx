@@ -57,7 +57,7 @@ const CheckoutPage = () => {
             // bodyData.append("items", JSON.stringify(checkoutData?.items))
 
             await axios({
-                url: VITE_BASE_LINK_3 + `handle_payment_success`,
+                url: VITE_BASE_LINK_2 + `handle_payment_success`,
                 method: "POST",
                 data: bodyData,
                 headers: {
@@ -131,7 +131,7 @@ const CheckoutPage = () => {
         bodyData.append("token", localStorage.getItem("token"));
 
         const data = await axios({
-            url: VITE_BASE_LINK_3 + `start_payment`,
+            url: VITE_BASE_LINK_2 + `start_payment`,
             method: "POST",
             headers: {
                 Accept: "application/json",

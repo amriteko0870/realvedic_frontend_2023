@@ -20,7 +20,7 @@ const TopSellers = (props) => {
       {/* <div className='w-full flex justify-center items-center'>
         <h1 className='px-8 py-2 bg-[color:var(--primary-color)] rounded-[20px] poppins text-[19px] font-[500] my-8'>Top Sellers</h1>
       </div> */}
-      <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:flex gap-4 xl:gap-8 px-5 md:px-10 mb-10'>
+      <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:flex gap-4 xl:gap-8 px-5 md:px-10 mb-10'>
         {
           landingApiData?.top_seller_products?.map((data, i) => {
             return (

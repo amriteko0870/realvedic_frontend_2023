@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import logo from '../../assets/images/realvedic-logo.png'
+import logo from '../../assets/icons/realvedic_full_logo_rasheed_black.svg'
 import blog from '../../assets/icons/blogs_2.svg'
 import mom_baby from '../../assets/icons/mom&baby.svg'
 import products from '../../assets/icons/products.svg'
@@ -21,7 +21,8 @@ import cross from "../../assets/icons/cross.svg";
 import search from '../../assets/icons/search.svg'
 import tabData from '../../mockApi/categoryTabs'
 import landingPageApiDataAtom from '../../recoil/atoms/landingPageApiDataAtom'
-import mobile_logo from '../../assets/icons/realvedic-logo-no-text.svg'
+import mobile_logo from '../../assets/icons/realvedic_logo_flower.svg'
+import text from '../../assets/icons/realvedic_logo_title.svg'
 
 const Navbar = () => {
 
@@ -372,7 +373,10 @@ const Navbar = () => {
 
                     {/* logo */}
                     <span className='w-fit flex items-center'>
-                        <Link to='/'><img src={mobile_logo} className="cursor-pointer w-[34px]" alt="" /></Link>
+                        <Link to='/' className='flex items-center'>
+                            <img src={mobile_logo} className="cursor-pointer w-[34px]" alt="" />
+                            {/* <img src={text} className='w-[70px]' alt="" /> */}
+                        </Link>
                     </span>
 
                     <div className='w-fit flex-1 flex justify-end items-center gap-4'>

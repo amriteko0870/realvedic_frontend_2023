@@ -81,7 +81,7 @@ const SingleProduct = () => {
         formdata.append('token', localStorage.getItem('token'));
         formdata.append('no_login_token', localStorage.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-            // console.log(response?.data)
+            console.log(response?.data)
             // console.log(response?.data?.product_details?.pack_sizes)
             setProductData(response?.data)
             setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
