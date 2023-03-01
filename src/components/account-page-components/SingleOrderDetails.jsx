@@ -16,7 +16,7 @@ const SingleOrderDetails = () => {
         formdata.append('token', localStorage.getItem('token'))
         formdata.append('order_id', params?.order_id)
         axios.post(VITE_BASE_LINK_2 + 'single_order_view', formdata).then((response) => {
-            // console.log(response?.data)
+            console.log(response?.data)
             setOrderData(response?.data)
         })
     }, [])
@@ -125,7 +125,7 @@ const SingleOrderDetails = () => {
                                                 </div>
                                                 <div className='w-full flex justify-between items-start'>
                                                     <h1 className='text-[14px] text-[#696969b6] font-[300]'>Pack Size</h1>
-                                                    <h1 className='text-[13px] font-[300]'>{data?.weight}gm</h1>
+                                                    <h1 className='text-[13px] font-[300]'>{data?.size}</h1>
                                                 </div>
                                                 <div className='w-full flex justify-between items-start'>
                                                     <h1 className='text-[14px] font-[500]'>Total</h1>

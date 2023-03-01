@@ -294,7 +294,7 @@ const Navbar = () => {
                                                                 }}>+</div>
                                                             </div>
                                                             <div className='w-fit min-w-[60px] flex justify-center items-center'>
-                                                                <h1 className='text-[15px] font-[500]'>₹ {data?.final_net_price}</h1>
+                                                                <h1 className='text-[15px] font-[500]'>₹ {data?.price}</h1>
                                                             </div>
                                                             <div className='w-full max-w-[50px] flex justify-center items-center'>
                                                                 <img src={cross} className='w-full max-w-[13px] cursor-pointer' alt="" onClick={async () => {

@@ -58,7 +58,7 @@ const ProductCard = (props) => {
                                 <span><img src={arrow} className='w-[14px]' alt="" /></span>
                                 <div className={`w-full overflow-hidden absolute top-[100%] transition-all duration-300 bg-white shadow-2xl ${variantDropdown === true ? 'max-h-[120px] px-2 py-3 ease-in z-[150]' : 'max-h-0 ease-out'}`}>
                                     {
-                                        props?.weight?.map((data, i) => (
+                                        props?.weight?.map((data, i) => (   
                                             <div key={i} onClick={() => {
                                                 setVariantDropdown(false);
                                                 setActiveIndex(i)
@@ -81,7 +81,10 @@ const ProductCard = (props) => {
                                                 <div className='w-full flex justify-between items-center mt-1'>
                                                     <div className='w-full max-w-[50px] min-w-[50px] flex justify-end'>
                                                         <div className='w-full max-w-[50px] min-w-[50px]'>
-                                                            <h1 className='helvetica text-[17px] font-[500]'>₹ {props?.price[activeIndex]}</h1>
+                                                            <h1 className='helvetica flex flex-col gap-1 items-center'>
+                                                                <span className='line-through text-[15px] text-gray-500'>₹ {props?.unit_price[activeIndex]}</span>
+                                                                <span className='text-[17px] font-[500]'>₹ {props?.net_price[activeIndex]}</span>
+                                                            </h1>
                                                         </div>
                                                     </div>
                                                     <div className='w-fit pr-2'>
@@ -94,7 +97,7 @@ const ProductCard = (props) => {
                                                             formdata.append('prod_id', props?.id)
                                                             formdata.append('token', localStorage.getItem('token'))
                                                             formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                                            formdata.append('price', props?.price[activeIndex])
+                                                            formdata.append('price', props?.unit_price[activeIndex])
                                                             formdata.append('size', props?.weight[activeIndex])
                                                             formdata.append('update_type', '-')
                                                             await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
@@ -142,7 +145,7 @@ const ProductCard = (props) => {
                                                             formdata.append('prod_id', props?.id)
                                                             formdata.append('token', localStorage.getItem('token'))
                                                             formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                                            formdata.append('price', props?.price[activeIndex])
+                                                            formdata.append('price', props?.unit_price[activeIndex])
                                                             formdata.append('size', props?.weight[activeIndex])
                                                             formdata.append('update_type', '+')
                                                             await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
@@ -171,14 +174,17 @@ const ProductCard = (props) => {
                                                                 })
                                                             }
                                                         }}>+</button>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 :
                                                 <div className='w-full flex justify-between items-center mt-1'>
                                                     <div className='flex justify-end'>
                                                         <div className='w-fit'>
-                                                            <h1 className='helvetica text-[17px] font-[500]'>₹ {props?.price[activeIndex]}</h1>
+                                                            <h1 className='helvetica flex flex-col gap-1 items-center'>
+                                                                <span className='line-through text-[15px] text-gray-500'>₹ {props?.unit_price[activeIndex]}</span>
+                                                                <span className='text-[17px] font-[500]'>₹ {props?.net_price[activeIndex]}</span>
+                                                            </h1>
                                                         </div>
                                                     </div>
                                                     <button className='bg-[#FCF55C] rounded-[5px] w-full max-w-[80px] active:bg-[#f5ec4b] px-3 shadow-md py-[2px] poppins text-[15px] font-[500] cursor-pointer active:scale-[0.98]' onClick={async () => {
@@ -187,7 +193,7 @@ const ProductCard = (props) => {
                                                         formdata.append('product_id', props?.id);
                                                         formdata.append('token', localStorage.getItem('token'));
                                                         formdata.append('size', props?.weight[activeIndex]);
-                                                        formdata.append('price', props?.price[activeIndex]),
+                                                        formdata.append('price', props?.unit_price[activeIndex]),
                                                             formdata.append('no_login_token', localStorage.getItem('no_login_token'))
                                                         await axios.post(VITE_BASE_LINK_2 + 'add_to_cart', formdata).then((response) => {
                                                             // console.log(response?.data)
@@ -228,7 +234,10 @@ const ProductCard = (props) => {
                                     <div className='w-full flex justify-between items-center mt-1'>
                                         <div className='flex justify-end'>
                                             <div className='w-fit'>
-                                                <h1 className='helvetica text-[17px] font-[500]'>₹ {props?.price[activeIndex]}</h1>
+                                                <h1 className='helvetica flex flex-col gap-1 items-center'>
+                                                    <span className='line-through text-[15px] text-gray-500'>₹ {props?.unit_price[activeIndex]}</span>
+                                                    <span className='text-[17px] font-[500]'>₹ {props?.net_price[activeIndex]}</span>
+                                                </h1>
                                             </div>
                                         </div>
                                         <button className='bg-[#FCF55C] rounded-[5px] w-full max-w-[80px] active:bg-[#f5ec4b] px-3 shadow-md py-[2px] poppins text-[15px] font-[500] cursor-pointer active:scale-[0.98]' onClick={async () => {
@@ -237,7 +246,7 @@ const ProductCard = (props) => {
                                             formdata.append('product_id', props?.id);
                                             formdata.append('token', localStorage.getItem('token'));
                                             formdata.append('size', props?.weight[activeIndex]);
-                                            formdata.append('price', props?.price[activeIndex]),
+                                            formdata.append('price', props?.unit_price[activeIndex]),
                                                 formdata.append('no_login_token', localStorage.getItem('no_login_token'))
                                             await axios.post(VITE_BASE_LINK_2 + 'add_to_cart', formdata).then((response) => {
                                                 // console.log(response?.data)

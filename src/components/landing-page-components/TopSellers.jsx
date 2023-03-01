@@ -25,7 +25,7 @@ const TopSellers = (props) => {
           landingApiData?.top_seller_products?.map((data, i) => {
             return (
 
-              <ProductCard key={i} id={data?.id} title={data?.title} image={data?.image} weight={data?.weight} price={data?.price}  status={data?.cart_status} statusArray={data?.cart_status_array}/>
+              <ProductCard key={i} id={data?.id} title={data?.title} image={data?.image} weight={data?.weight} unit_price={data?.unit_price} net_price={data?.net_price} status={data?.cart_status} statusArray={data?.cart_status_array}/>
             )
           })
         }

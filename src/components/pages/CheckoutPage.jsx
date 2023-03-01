@@ -281,10 +281,10 @@ const CheckoutPage = () => {
                                     <h1 className='text-[13px]'>Discount:</h1>
                                     <h1 className='text-[13px]'></h1>
                                 </div> */}
-                                <div className='flex justify-between md:w-[60%] gap-2 items-center'>
+                                {/* <div className='flex justify-between md:w-[60%] gap-2 items-center'>
                                     <h1 className='text-[13px]'>Tax:</h1>
                                     <h1 className='text-[13px]'>Rs {checkoutData?.tax}</h1>
-                                </div>
+                                </div> */}
                                 <div className='flex justify-between md:w-[60%] gap-2 items-center'>
                                     <h1 className='text-[13px]'>Delivery charges:</h1>
                                     <h1 className='text-[13px]'>Rs {checkoutData?.delivery_charges}</h1>

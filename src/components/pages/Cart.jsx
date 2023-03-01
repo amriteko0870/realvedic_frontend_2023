@@ -287,7 +287,7 @@ const CartPage = () => {
                                                             <div className="flex item-start justify-center  ">
                                                                 <div className=" min-w-[60px]">
                                                                     <span>Rs.</span>
-                                                                    <span className=""> {data?.final_net_price}</span>
+                                                                    <span className=""> {data?.price}</span>
                                                                 </div>
                                                             </div>
                                                             <div className="">
