@@ -87,9 +87,9 @@ const ProductCard = (props) => {
                                                             </h1>
                                                         </div>
                                                     </div>
-                                                    <div className='w-fit pr-2'>
+                                                    {/* <div className='w-fit pr-2'>
                                                         <Link to='/cart'><button className='px-3 py-1 bg-[color:var(--button-primary)] active:scale-[0.95] rounded-[5px] text-[12px] shadow-md flex w-full max-w-[80px] min-w-[80px]'>Go to cart</button></Link>
-                                                    </div>
+                                                    </div> */}
                                                     <div className='flex w-fit gap-2'>
 
                                                         <button className='text-[18px] px-1 bg-[#b4b4b4]' onClick={async () => {

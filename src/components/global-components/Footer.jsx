@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 // Media Files
 import arrow from "../../assets/icons/down-arrow-thin.svg";
-import facebook from "../../assets/icons/facebook-white.svg";
-import instagram from "../../assets/icons/instagram-white.svg";
+import facebook from "../../assets/icons/fb.svg";
+import instagram from "../../assets/icons/insta.svg";
 const Footer = () => {
   // Footer data
   const footerData = [

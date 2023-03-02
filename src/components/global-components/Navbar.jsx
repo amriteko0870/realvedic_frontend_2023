@@ -176,11 +176,11 @@ const Navbar = () => {
                         {
                             localStorage?.getItem('token') ?
                                 <Link to='/account' className='w-fit cursor-pointer'>
-                                    <img src={profile} className="w-full max-w-[30px]" alt="" />
+                                    <img src={profile} className="w-full max-w-[33px]" alt="" />
                                 </Link>
                                 :
                                 <Link to='/login' className='w-fit cursor-pointer'>
-                                    <img src={profile} className="w-full max-w-[30px]" alt="" />
+                                    <img src={profile} className="w-full max-w-[33px]" alt="" />
                                 </Link>
                         }
 
@@ -190,9 +190,9 @@ const Navbar = () => {
                         {
                             localStorage.getItem('token') ?
                                 <div className='w-fit'>
-                                    <img src={logout} className='w-[30px] cursor-pointer' onClick={() => {
+                                    <img src={logout} className='w-[33px] cursor-pointer' onClick={() => {
                                         localStorage.clear()
-                                        navigate('/login')
+                                        navigate('/')
                                     }} alt="" />
                                 </div>
                                 :
@@ -207,40 +207,40 @@ const Navbar = () => {
                                 {
                                     cartData?.cartItems?.length > 0 ?
                                         <div className='relative flex justify-center items-center p-[6px]'>
-                                            <div className='bg-red-500 h-[7px] w-[7px] rounded-full absolute top-0 right-0'></div>
-                                            <img src={cart} className='w-[30px] cursor-pointer' alt="" />
+                                            <span className='border bg-red-500 w-[45%] flex justify-center items-center rounded-full absolute top-0 right-0 text-[13px] text-white '>{cartData?.cartItems?.length}</span>
+                                            <img src={cart} className='w-[40px] cursor-pointer' alt="" />
                                         </div>
                                         :
-                                        <img src={cart} className='w-[30px] cursor-pointer' alt="" />
+                                        <img src={cart} className='w-[40px] cursor-pointer' alt="" />
                                 }
                             </NavLink>
 
 
                             {/* cart popup */}
-                            <div className={`absolute poppins w-[500px] right-[3%] top-[65%] bg-[#f2f2f2] transition-all duration-100 ${cartView ? 'visible ease-in max-h-[400px] w-full pb-3' : 'invisible ease-out max-h-0 max-w-0 overflow-hidden'} shadow-md `} onMouseEnter={() => setCartView(true)} onMouseLeave={() => setCartView(false)}>
-                                <div className='w-[95%] px-2 mx-auto max-h-[190px] overflow-y-scroll mt-6 bg-white border pt-2'>
+                            <div className={`absolute  w-[650px] right-[3%] top-[65%] bg-[#f2f2f2] transition-all duration-100 ${cartView ? 'visible ease-in max-h-[400px] w-full pb-3' : 'invisible ease-out max-h-0 max-w-0 overflow-hidden'} shadow-md `} onMouseEnter={() => setCartView(true)} onMouseLeave={() => setCartView(false)}>
+                                <div className='w-[95%] px-2 mx-auto max-h-[230px] overflow-y-scroll mt-6 bg-white border pt-2'>
                                     {
                                         cartData?.cartItems?.length > 0 ?
                                             <>
                                                 {
                                                     cartData?.cartItems?.map((data, i) => (
                                                         <div key={i} className='w-full flex justify-between shadow-md bg-[#f5f5f5] mb-4 px-2 py-2'>
-                                                            <div className='w-full flex justify-start items-center gap-2'>
+                                                            <div className='w-full poppins flex justify-start items-center gap-2'>
                                                                 <div className='w-fit'>
-                                                                    <img src={VITE_BASE_LINK_2 + data?.image} className='w-full max-w-[45px]' alt="" />
+                                                                    <img src={VITE_BASE_LINK_2 + data?.image} className='w-full max-w-[100px]' alt="" />
                                                                 </div>
                                                                 <div className='w-full flex flex-col leading-none gap-1'>
                                                                     <div className='w-full'>
-                                                                        <h1 className='text-[13px] font-[500]'>{data?.name}</h1>
+                                                                        <h1 className='text-[14px] font-[500]'>{data?.name}</h1>
                                                                     </div>
                                                                     <div className='flex flex-col gap-[3px]'>
-                                                                        <h1 className='text-[11px]'>{data?.size}</h1>
-                                                                        <h1 className='text-[11px]'>qty: {data?.quantity}</h1>
+                                                                        <h1 className='text-[12px]'>{data?.size}</h1>
+                                                                        <h1 className='text-[12px]'>qty: {data?.quantity}</h1>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div className='w-full max-w-[70px] flex justify-center items-center gap-3'>
-                                                                <div className='text-[20px] cursor-pointer font-[300]' onClick={async () => {
+                                                            <div className='w-full max-w-[100px] flex justify-center items-center gap-3'>
+                                                                <div className='text-[22px] cursor-pointer font-[400]' onClick={async () => {
                                                                     let formdata = new FormData()
                                                                     formdata.append('prod_id', data?.product_id)
                                                                     formdata.append('token', localStorage.getItem('token'))
@@ -266,8 +266,8 @@ const Navbar = () => {
                                                                         setCartData(response?.data)
                                                                     })
                                                                 }}>-</div>
-                                                                <div className='text-[14px] font-[300]'>{data?.quantity}</div>
-                                                                <div className='text-[20px] cursor-pointer font-[300]' onClick={async () => {
+                                                                <div className='text-[18px] font-[400]'>{data?.quantity}</div>
+                                                                <div className='text-[22px] cursor-pointer font-[400]' onClick={async () => {
                                                                     let formdata = new FormData()
                                                                     formdata.append('prod_id', data?.product_id)
                                                                     formdata.append('token', localStorage.getItem('token'))
@@ -293,8 +293,9 @@ const Navbar = () => {
                                                                     })
                                                                 }}>+</div>
                                                             </div>
-                                                            <div className='w-fit min-w-[60px] flex justify-center items-center'>
-                                                                <h1 className='text-[15px] font-[500]'>₹ {data?.price}</h1>
+                                                            <div className='w-fit min-w-[100px] flex flex-col justify-center items-center '>
+                                                                <h1 className='text-[15px] helvetica font-[500]'>₹ {data?.price}</h1>
+                                                                <h1 className='text-[13px] helvetica font-[400] text-green-600 '>You saved ₹ {data?.saved}</h1>
                                                             </div>
                                                             <div className='w-full max-w-[50px] flex justify-center items-center'>
                                                                 <img src={cross} className='w-full max-w-[13px] cursor-pointer' alt="" onClick={async () => {

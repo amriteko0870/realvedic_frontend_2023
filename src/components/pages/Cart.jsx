@@ -41,13 +41,13 @@ const CartPage = () => {
 
 
     return (
-        <div className="poppins pt-5">
+        <div className=" pt-5">
             <div className="w-full">
 
 
                 <div className="min-h-[80vh] relative">
                     
-                    <h1 className="w-[85%] mx-auto text-3xl font-bold mb-10 md:mb-20 md:mt-20 text-center md:text-start">
+                    <h1 className="w-[85%] mx-auto text-3xl font-bold mb-10 md:mb-20 md:mt-20 text-center md:text-start poppins">
                         My cart
                     </h1>
 
@@ -200,13 +200,13 @@ const CartPage = () => {
                                         <div className="w-full">
 
                                             {/* table headers */}
-                                            <div className="grid grid-cols-[36%_12.5%_12.5%_12.5%_12.5%_12.5%] ">
+                                            <div className="grid grid-cols-[36%_12.5%_12.5%_12.5%_12.5%_12.5%] poppins">
                                                 <div className=" text-[#6D6D6D]">Item</div>
                                                 <div className="text-center text-[#6D6D6D]">Unit Price</div>
                                                 <div className="text-center text-[#6D6D6D]">Pack Size</div>
                                                 <div className="text-center text-[#6D6D6D]">Quantity</div>
                                                 <div className="text-center text-[#6D6D6D]">Final Price</div>
-                                                <div className="text-center text-[#6D6D6D]">Remove</div>
+                                                {/* <div className="text-center text-[#6D6D6D]">Remove</div> */}
                                             </div>
 
                                             {/* table content */}
@@ -218,12 +218,12 @@ const CartPage = () => {
                                                             className="grid grid-cols-[36%_12.5%_12.5%_12.5%_12.5%_12.5%]  my-5"
                                                         >
                                                             <div className="flex items-center gap-5 ">
-                                                                <span className="w-[40px] h-[40px] inline-block">
+                                                                <span className="w-[70px] h-[70px] inline-block">
                                                                     <img src={VITE_BASE_LINK_2 + data?.image} className='w-full' alt="" />
                                                                 </span>
-                                                                <span>{data?.name}</span>
+                                                                <span className="text-[16px] poppins">{data?.name}</span>
                                                             </div>
-                                                            <div className="text-center flex justify-center items-start gap-2"><span className="text-gray-600 text-sm line-through">₹{data?.unit_price}</span><span>₹{data?.net_price}</span></div>
+                                                            <div className="text-center flex justify-center items-start gap-2 helvetica"><span className="text-gray-600 text-sm line-through">₹{data?.unit_price}</span><span className="text-[17px]">₹{data?.net_price}</span></div>
                                                             <div className="text-center">{data?.size}</div>
                                                             <div className="text-center flex justify-center items-start gap-4 ">
                                                                 <span className="cursor-pointer" onClick={async () => {
@@ -285,8 +285,8 @@ const CartPage = () => {
                                                                 }}>+</span>
                                                             </div>
                                                             <div className="flex item-start justify-center  ">
-                                                                <div className=" min-w-[60px]">
-                                                                    <span>Rs.</span>
+                                                                <div className="text-[17px] helvetica min-w-[60px]">
+                                                                    <span>₹ </span>
                                                                     <span className=""> {data?.price}</span>
                                                                 </div>
                                                             </div>
@@ -294,7 +294,7 @@ const CartPage = () => {
                                                                 <img
                                                                     src={cross}
                                                                     alt="X"
-                                                                    className="cursor-pointer mx-auto w-[18px]"
+                                                                    className="cursor-pointer mx-auto w-[15px]"
                                                                     onClick={async () => {
                                                                         let formdata = new FormData()
                                                                         formdata.append('prod_id', data?.product_id)
