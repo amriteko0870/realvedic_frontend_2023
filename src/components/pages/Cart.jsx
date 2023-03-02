@@ -46,10 +46,10 @@ const CartPage = () => {
 
 
                 <div className="min-h-[80vh] relative">
+                    
                     <h1 className="w-[85%] mx-auto text-3xl font-bold mb-10 md:mb-20 md:mt-20 text-center md:text-start">
                         My cart
                     </h1>
-
 
                     <>
                         {/* Cart Items for mobile*/}
@@ -335,17 +335,17 @@ const CartPage = () => {
                                             <h1 className="text-center">Cart</h1>
                                             <div className="">
                                                 <div className="w-full flex justify-between items-end my-4">
-                                                    <h1 className="text-[14px] flex flex-col"><span>Sub Total :</span><span className="text-gray-400 text-[11px] mr-1">&#40;Excluding GST&#41;</span></h1>
+                                                    <h1 className="text-[14px] flex flex-col"><span>Sub Total :</span><span className="text-gray-400 text-[11px] mr-1">&#40;Including GST&#41;</span></h1>
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.subtotal}</h1>
                                                 </div>
                                                 <div className="w-full flex justify-between items-center my-4">
                                                     <h1 className="text-[14px]">Shipping:</h1>
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.shipping}</h1>
                                                 </div>
-                                                <div className="w-full flex justify-between items-center my-4">
+                                                {/* <div className="w-full flex justify-between items-center my-4">
                                                     <h1 className="text-[14px]">GST:</h1>
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.tax}</h1>
-                                                </div>
+                                                </div> */}
                                                 <div className="w-full flex justify-between items-center my-4">
                                                     <h1 className="text-[14px]">Total:</h1>
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.final_price}</h1>
@@ -385,10 +385,10 @@ const CartPage = () => {
                                                     <h1 className="text-[14px]">Shipping:</h1>
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.shipping}</h1>
                                                 </div>
-                                                <div className="w-full flex justify-between items-center my-4">
+                                                {/* <div className="w-full flex justify-between items-center my-4">
                                                     <h1 className="text-[14px]">Tax:</h1>
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.tax}</h1>
-                                                </div>
+                                                </div> */}
                                                 <div className="w-full flex justify-between items-center my-4">
                                                     <h1 className="text-[14px]">Total:</h1>
                                                     <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.final_price}</h1>

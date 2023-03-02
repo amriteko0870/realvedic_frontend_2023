@@ -98,9 +98,9 @@ const SingleOrderDetails = () => {
 
                         </div>
 
-                        <div className=''>
+                        {/* <div className=''>
                             <button className='text-[13px] px-2  py-1 bg-[color:var(--button-primary)] shadow-md active:scale-[0.96]'>Return an item</button>
-                        </div>
+                        </div> */}
 
                     </div>
 

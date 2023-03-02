@@ -45,7 +45,7 @@ const OrderConfirmedPage = () => {
                         <h1>We'll send you a shipping confirmation email as soon as your order ships</h1>
                     </div>
                     <div className='w-full flex justify-center items-center mt-2'>
-                        <button className='px-3 py-[6px] bg-[color:var(--button-primary)] font-[500] text-[16px] active:scale-[0.96] shadow-md'>CHECK STATUS</button>
+                        <Link to='/orders'><button className='px-3 py-[6px] bg-[color:var(--button-primary)] font-[500] text-[16px] active:scale-[0.96] shadow-md'>CHECK STATUS</button></Link>
                     </div>
                 </div>
             </div>

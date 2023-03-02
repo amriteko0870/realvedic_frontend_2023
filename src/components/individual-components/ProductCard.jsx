@@ -81,7 +81,7 @@ const ProductCard = (props) => {
                                                 <div className='w-full flex justify-between items-center mt-1'>
                                                     <div className='w-full max-w-[50px] min-w-[50px] flex justify-end'>
                                                         <div className='w-full max-w-[50px] min-w-[50px]'>
-                                                            <h1 className='helvetica flex flex-col gap-1 items-center'>
+                                                            <h1 className='helvetica flex flex-col items-center'>
                                                                 <span className='line-through text-[15px] text-gray-500'>₹ {props?.unit_price[activeIndex]}</span>
                                                                 <span className='text-[17px] font-[500]'>₹ {props?.net_price[activeIndex]}</span>
                                                             </h1>
@@ -181,7 +181,7 @@ const ProductCard = (props) => {
                                                 <div className='w-full flex justify-between items-center mt-1'>
                                                     <div className='flex justify-end'>
                                                         <div className='w-fit'>
-                                                            <h1 className='helvetica flex flex-col gap-1 items-center'>
+                                                            <h1 className='helvetica flex flex-col items-center'>
                                                                 <span className='line-through text-[15px] text-gray-500'>₹ {props?.unit_price[activeIndex]}</span>
                                                                 <span className='text-[17px] font-[500]'>₹ {props?.net_price[activeIndex]}</span>
                                                             </h1>
@@ -234,7 +234,7 @@ const ProductCard = (props) => {
                                     <div className='w-full flex justify-between items-center mt-1'>
                                         <div className='flex justify-end'>
                                             <div className='w-fit'>
-                                                <h1 className='helvetica flex flex-col gap-1 items-center'>
+                                                <h1 className='helvetica flex flex-col items-center'>
                                                     <span className='line-through text-[15px] text-gray-500'>₹ {props?.unit_price[activeIndex]}</span>
                                                     <span className='text-[17px] font-[500]'>₹ {props?.net_price[activeIndex]}</span>
                                                 </h1>

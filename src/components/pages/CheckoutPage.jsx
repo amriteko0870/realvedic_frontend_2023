@@ -15,36 +15,10 @@ const CheckoutPage = () => {
 
     const navigate = useNavigate();
 
-    // const checkout_data = {
-    //     personal_info: {
-    //         first_name: 'Vivek',
-    //         last_name: 'Khanal',
-    //         email: 'vivek@gmail.com',
-    //         phone_code: '+91',
-    //         phone_number: '7784555487',
-    //     },
-    //     address_info: {
-    //         address_line_1: 'Realvedic, 76, 7th B cross',
-    //         address_line_2: 'Kormangla 4th B block',
-    //         city: 'Bengaluru',
-    //         state: 'Karnataka',
-    //         pincode: '50306',
-    //         country: 'India',
-    //     },
-    //     items: [
-    //         { title: 'Garlic Rasam Powder | Instant Mix ', price: '180', quanity: '1', image: item, id: 0 },
-    //         { title: 'Lemon Grass Rasam | Instant Mix ', price: '180', quanity: '2', image: item, id: 1 },
-    //         { title: 'Garlic Rasam Powder | Instant Mix ', price: '180', quanity: '4', image: item, id: 2 },
-    //     ],
-    //     item_total: '540',
-    //     delivery_charges: '40',
-    //     order_total: '580',
 
-    // };
-
+    
     // this function will handel payment when user submit his/her money
     // and it will confim if payment is successfull or not
-
 
     const handlePaymentSuccess = async (response) => {
         try {

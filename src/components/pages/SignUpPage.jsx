@@ -33,33 +33,46 @@ const SignUpPage = () => {
 
 
     const signUp = () => {
-        axios.post(VITE_BASE_LINK_2 + 'signUp', signUpData).then((response) => {
-            if (response?.data?.status === true) {
-                // console.log(response?.data)
-                toast.success(response?.data?.message, {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    // draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                })
-                navigate('/login')
-            } else {
-                toast.error(response?.data?.message, {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    // draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                })
-            }
-        })
+        if (signUpData?.confirm_password === signUpData?.password) {
+            axios.post(VITE_BASE_LINK_2 + 'signUp', signUpData).then((response) => {
+                if (response?.data?.status === true) {
+                    // console.log(response?.data)
+                    toast.success(response?.data?.message, {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        // draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    })
+                    navigate('/login')
+                } else {
+                    toast.error(response?.data?.message, {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        // draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    })
+                }
+            })
+        } else {
+            toast.error('Passwords dont match', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                // draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+        }
     }
 
 
