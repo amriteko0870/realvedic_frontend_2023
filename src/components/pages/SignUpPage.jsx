@@ -173,13 +173,13 @@ const SignUpPage = () => {
                                 })} placeholder='Enter phone number' />
                             </div>
                         </div>
-                        <div className=' w-full max-w-[130px] flex flex-col my-2'>
+                        {/* <div className=' w-full max-w-[130px] flex flex-col my-2'>
                             <label htmlFor="dob" className='text-[12px]'>Date of Birth</label>
                             <input type="date" name='dob' className='border py-2 outline-none px-2 text-[13px]' onChange={(e) => setSignUpData({
                                 ...signUpData,
                                 dob: e?.target?.value
                             })} placeholder='DOB' />
-                        </div>
+                        </div> */}
                     </div>
                     {/* <div className='w-full flex justify-end items-center'>
                         <h1 className='text-[10px]'>Forgot password ?</h1>

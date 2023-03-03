@@ -15,6 +15,7 @@ import axios from "axios";
 import { VITE_BASE_LINK, VITE_BASE_LINK_2 } from "../../../baseLink";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import RecentlyViewd from "../individual-components/RecentlyViewd";
 
 
 const CartPage = () => {
@@ -45,8 +46,8 @@ const CartPage = () => {
             <div className="w-full">
 
 
-                <div className="min-h-[80vh] relative">
-                    
+                <div className=" relative">
+
                     <h1 className="w-[85%] mx-auto text-3xl font-bold mb-10 md:mb-20 md:mt-20 text-center md:text-start poppins">
                         My cart
                     </h1>
@@ -188,11 +189,8 @@ const CartPage = () => {
                             }
                         </div>
 
-
-
-
                         {/* Cart Items for PC view */}
-                        <div className="w-[85%] mx-auto hidden md:flex gap-20 xl:gap-0 flex-col xl:flex-row pb-4">
+                        <div className="w-[85%] mx-auto hidden md:flex gap-20 xl:gap-0 flex-col xl:flex-row ">
 
                             {
                                 cartDataApi?.cartItems?.length > 0 ?
@@ -436,6 +434,10 @@ const CartPage = () => {
                         </div>
                     </>
 
+                </div>
+
+                <div className="w-full">
+                    <RecentlyViewd />
                 </div>
 
             </div>

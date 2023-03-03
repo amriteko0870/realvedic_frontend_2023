@@ -45,11 +45,11 @@ const LandingPageBanners = () => {
           {
             landingApiData?.banner?.map((data, i) => (
               <div key={i} className='w-full overflow-hidden'>
-                <Link to={`/single-product/` + data?.product_id}>
+                {/* <Link to={`/single-product/` + data?.product_id}> */}
                   <div>
                     <img src={VITE_BASE_LINK_2 + data?.image} className='w-full min-h-[20vh] md:h-auto object-cover md:object-contain' alt="" />
                   </div>
-                </Link>
+                {/* </Link> */}
               </div>
             ))
           }
@@ -63,11 +63,11 @@ const LandingPageBanners = () => {
         {
           landingApiData?.mobile_banner?.map((data, i) => (
             <div key={i} className='w-full overflow-hidden'>
-              <Link to={`/single-product/` + data?.product_id}>
+              {/* <Link to={`/single-product/` + data?.product_id}> */}
                 <div>
                   <img src={VITE_BASE_LINK_2 + data?.image} className='w-full min-h-[20vh] md:h-auto object-cover md:object-contain' alt="" />
                 </div>
-              </Link>
+              {/* </Link> */}
             </div>
           ))
         }

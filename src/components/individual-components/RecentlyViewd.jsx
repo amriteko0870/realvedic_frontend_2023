@@ -51,11 +51,11 @@ const RecentlyViewd = () => {
 
 
   return (
-    <div className='w-full mt-20 px-4 md:px-10 xl:px-16'>
+    <div className='w-full mt-10 px-4 md:px-10 xl:px-16 pb-3'>
         <div className='w-full py-8 text-center'>
-            <h1 className='poppins text-[18px] font-[500]'>More Products</h1>
+            <h1 className='poppins text-[18px] font-[500]'>Recently Viewed</h1>
         </div>
-        <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-5'>
+        <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 lg:gap-5'>
         {
             itemData?.map((data, i) => (
                 <ProductCard key={i} id={data?.id} title={data?.title} image={data?.image} weight={data?.weight} unit_price={data?.unit_price} net_price={data?.net_price} status={data?.cart_status} statusArray={data?.cart_status_array}/>

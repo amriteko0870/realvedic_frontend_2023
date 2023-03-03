@@ -217,7 +217,7 @@ const Navbar = () => {
 
 
                             {/* cart popup */}
-                            <div className={`absolute  w-[650px] right-[3%] top-[65%] bg-[#f2f2f2] transition-all duration-100 ${cartView ? 'visible ease-in max-h-[400px] w-full pb-3' : 'invisible ease-out max-h-0 max-w-0 overflow-hidden'} shadow-md `} onMouseEnter={() => setCartView(true)} onMouseLeave={() => setCartView(false)}>
+                            <div className={`absolute  w-[600px] right-[3%] top-[65%] bg-[#f2f2f2] transition-all duration-100 ${cartView ? 'visible ease-in max-h-[400px] w-full pb-3' : 'invisible ease-out max-h-0 max-w-0 overflow-hidden'} shadow-md `} onMouseEnter={() => setCartView(true)} onMouseLeave={() => setCartView(false)}>
                                 <div className='w-[95%] px-2 mx-auto max-h-[230px] overflow-y-scroll mt-6 bg-white border pt-2'>
                                     {
                                         cartData?.cartItems?.length > 0 ?
