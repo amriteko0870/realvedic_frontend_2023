@@ -55,17 +55,24 @@ const ProductCard = (props) => {
                                 <h1 className='poppins text-[12px] font-[600]'>
                                     {props?.weight[activeIndex]}
                                 </h1>
-                                <span><img src={arrow} className='w-[14px]' alt="" /></span>
-                                <div className={`w-full overflow-hidden absolute top-[100%] transition-all duration-300 bg-white shadow-2xl ${variantDropdown === true ? 'max-h-[120px] px-2 py-3 ease-in z-[150]' : 'max-h-0 ease-out'}`}>
-                                    {
-                                        props?.weight?.map((data, i) => (   
-                                            <div key={i} onClick={() => {
-                                                setVariantDropdown(false);
-                                                setActiveIndex(i)
-                                            }} className='border-b py-1 text-[12px] poppins cursor-pointer'>{data}</div>
-                                        ))
-                                    }
-                                </div>
+                                {
+                                    props?.weight?.length > 1 ?
+                                        <>
+                                            <span><img src={arrow} className='w-[14px]' alt="" /></span>
+                                            <div className={`w-full overflow-hidden absolute top-[100%] transition-all duration-300 bg-white shadow-2xl ${variantDropdown === true ? 'max-h-[120px] px-2 py-3 ease-in z-[150]' : 'max-h-0 ease-out'}`}>
+                                                {
+                                                    props?.weight?.map((data, i) => (
+                                                        <div key={i} onClick={() => {
+                                                            setVariantDropdown(false);
+                                                            setActiveIndex(i)
+                                                        }} className='border-b py-1 text-[12px] poppins cursor-pointer'>{data}</div>
+                                                    ))
+                                                }
+                                            </div>
+                                        </>
+                                        :
+                                        ''
+                                }
                                 <div className={`fixed inset-0 bg-black opacity-20 ${variantDropdown ? 'block z-[120]' : 'hidden z-[0]'}`} onClick={() => setVariantDropdown(false)}>
 
                                 </div>
