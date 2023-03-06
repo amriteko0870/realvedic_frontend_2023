@@ -6,17 +6,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { VITE_BASE_LINK, VITE_BASE_LINK_2, VITE_BASE_LINK_3 } from '../../../baseLink';
 import { toast } from 'react-toastify';
+import cartPageAtom from '../../recoil/atoms/cartPageAtom';
+import { useRecoilState } from 'recoil';
 
 const CheckoutPage = () => {
 
     const [popUpView, setPopUpView] = useState(false);
+
+    const [cartDataApi, setCartDataApi] = useRecoilState(cartPageAtom)
 
     const [checkoutData, setCheckoutData] = useState({});
 
     const navigate = useNavigate();
 
 
-    
+
     // this function will handel payment when user submit his/her money
     // and it will confim if payment is successfull or not
 
@@ -125,7 +129,7 @@ const CheckoutPage = () => {
             key_secret: '8hPVwKRnj4DZ7SB1wyW1miaf',
             amount: data.data.payment.amount,
             currency: "INR",
-            name: "Org. Name",
+            name: "Realvedic",
             description: "Test teansaction",
             image: "", // add image url
             order_id: data.data.payment.id,
@@ -153,12 +157,34 @@ const CheckoutPage = () => {
 
 
     useEffect(() => {
-        let formdata = new FormData()
-        formdata.append('token', localStorage.getItem('token'))
-        axios.post(VITE_BASE_LINK_2 + 'checkout', formdata).then((response) => {
-            console.log(response?.data)
-            setCheckoutData(response?.data)
-        })
+        const myFunc = async () => {
+            let formdata = new FormData();
+            formdata.append('token', localStorage.getItem('token'))
+            formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+            await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
+                console.log(response?.data)
+                setCartDataApi(response?.data)
+            })
+            await axios.post(VITE_BASE_LINK_2 + 'checkout', formdata).then((response) => {
+                if (response?.data?.items?.length > 0) {
+                    console.log(response?.data)
+                    setCheckoutData(response?.data)
+                } else {
+                    toast.error(response?.data?.message, {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        // draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    })
+                    navigate('/')
+                }
+            })
+        }
+        myFunc();
     }, [])
 
 
@@ -281,7 +307,7 @@ const CheckoutPage = () => {
                                                 <div className='w-full flex flex-col'>
                                                     <div className='w-full flex flex-col md:flex-row md:justify-between md:items-center'>
                                                         <h1 className='text-[11px] md:text-[13px] font-[500]'>{data?.name}</h1>
-                                                        <h1 className='text-[11px] md:text-[13px] font-[500]'>Rs {data?.price}</h1>
+                                                        <span><h1 className='text-[11px] font-[500] line-through'>Rs {data?.unit_price}</h1><h1 className='text-[12px] md:text-[14px] font-[500]'>Rs {data?.net_price}</h1></span>
                                                     </div>
                                                     <h1 className='text-[9px]'>{data?.weight}</h1>
                                                     <h1 className='text-[9px]'>qty: x{data?.quantity}</h1>

@@ -35,7 +35,7 @@ const SignUpPage = () => {
     const signUp = () => {
         if (signUpData?.confirm_password === signUpData?.password) {
             axios.post(VITE_BASE_LINK_2 + 'signUp', signUpData).then((response) => {
-                if (response?.data?.status === true) {
+                if (response?.data?.status) {
                     // console.log(response?.data)
                     toast.success(response?.data?.message, {
                         position: "top-right",

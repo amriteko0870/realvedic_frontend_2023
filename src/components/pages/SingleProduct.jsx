@@ -68,10 +68,24 @@ const SingleProduct = () => {
         formdata.append('token', localStorage.getItem('token'));
         formdata.append('no_login_token', localStorage.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-            // console.log(response?.data)
-            // console.log(response?.data?.product_details?.pack_sizes)
-            setProductData(response?.data)
-            setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+            if (response?.data?.status) {
+                // console.log(response?.data)
+                // console.log(response?.data?.product_details?.pack_sizes)
+                setProductData(response?.data)
+                setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+            } else {
+                navigate('/')
+                toast.error(response?.data?.message, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    // draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                })
+            }
         })
     }, [])
 
@@ -187,7 +201,7 @@ const SingleProduct = () => {
                 {/* product details desktop */}
                 <div className='hidden w-full md:flex md:flex-col lg:flex-row px-5 xl:px-16 pb-10'>
 
-                    
+
                     {/* product images */}
                     <div className='flex-1 min-h-[400px] lg:w-[60%] flex flex-col-reverse xl:flex-row md:justify-center xl:justify-end items-end xl:items-center'>
 

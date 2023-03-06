@@ -35,7 +35,8 @@ const ProductCard = (props) => {
                 <div>
 
                     <div className='w-full border shadow-md p-2 h-full flex flex-col justify-between min-h-[280px] lg:min-h-[350px] xl:min-h-[320px]'>
-                        <Link to={`/single-product/` + props?.id} className='w-full flex justify-center items-center'>
+                        
+                        <Link to={`/single-product/` + props?.id} className='w-full flex justify-center items-center' onClick={() => {}}>
                             <img src={VITE_BASE_LINK_2 + props?.image} className='w-[85%] mx-auto' alt="" />
                         </Link>
                         <div className='w-full flex justify-between items-center mt-1'>
@@ -270,7 +271,7 @@ const ProductCard = (props) => {
                                                         theme: "colored",
                                                     })
                                                 } else {
-                                                    toast.warn('Please log in first', {
+                                                    toast.error(response?.data?.message, {
                                                         position: "top-right",
                                                         autoClose: 2000,
                                                         hideProgressBar: false,

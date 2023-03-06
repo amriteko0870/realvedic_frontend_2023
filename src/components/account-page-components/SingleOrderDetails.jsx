@@ -115,7 +115,7 @@ const SingleOrderDetails = () => {
                                         </div>
                                         <div className='w-full flex flex-col justify-start items-center'>
                                             <div className='w-full flex justify-between isolate md:flex-col'>
-                                                <h1 className='text-[13px] md:text-[15px] font-[500]'>{data?.title}</h1>
+                                                <h1 className='text-[13px] md:text-[15px] font-[500]'>{data?.name}</h1>
                                                 {/* <h1 className='text-[13px] font-[300]'>Rs {data?.price_per_unit}</h1> */}
                                             </div>
                                             <div className='w-full'>

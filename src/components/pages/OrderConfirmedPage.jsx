@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { VITE_BASE_LINK_2 } from '../../../baseLink';
 import tick from '../../assets/icons/tick-green.svg'
 
@@ -45,7 +46,7 @@ const OrderConfirmedPage = () => {
                         <h1>We'll send you a shipping confirmation email as soon as your order ships</h1>
                     </div>
                     <div className='w-full flex justify-center items-center mt-2'>
-                        <Link to='/orders'><button className='px-3 py-[6px] bg-[color:var(--button-primary)] font-[500] text-[16px] active:scale-[0.96] shadow-md'>CHECK STATUS</button></Link>
+                        <Link to='/account'><button className='px-3 py-[6px] bg-[color:var(--button-primary)] font-[500] text-[16px] active:scale-[0.96] shadow-md'>CHECK STATUS</button></Link>
                     </div>
                 </div>
             </div>
