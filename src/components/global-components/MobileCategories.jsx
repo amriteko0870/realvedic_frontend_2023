@@ -16,7 +16,7 @@ const MobileCategories = () => {
 
     return (
         <div className='block md:hidden w-full'>
-            <div className='w-full grid grid-cols-4 sm:grid-cols-4 gap-4 px-4 pt-4'>
+            <div className='w-full grid grid-cols-4 gap-4 px-4 pt-4'>
                 {
                     landingApiData?.tab?.map((data, i) => (
                         <Link to={`/all-products/` + data?.id} key={i} className='flex flex-col sm:flex-row justify-start gap-[5px] rounded-[4px] w items-center border bg-gray-200 p-2 sm:p-4 cursor-pointer'>

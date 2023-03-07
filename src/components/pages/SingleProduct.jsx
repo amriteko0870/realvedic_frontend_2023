@@ -18,6 +18,7 @@ import allProducts from '../../mockApi/allProductsView'
 import arrow_down from '../../assets/icons/arrow_icon.svg'
 import cartPageAtom from '../../recoil/atoms/cartPageAtom'
 import { useRecoilState } from 'recoil'
+import { Puff } from 'react-loader-spinner'
 
 const SingleProduct = () => {
 
@@ -141,7 +142,7 @@ const SingleProduct = () => {
                                 return (
                                     <div key={i} className='w-full py-3 flex flex-col justify-center items-center border-b'>
                                         <div className='text-[13px] w-full flex justify-between items-center' htmlFor={data?.title} onClick={() => categoryDropDown === data?.category ? setCategoryDropDown(null) : setCategoryDropDown(data?.category)}>
-                                            <h1 className='text-[13px]'>{data?.category}</h1>
+                                            <Link to={`/all-products/` + data?.id}><h1 className='text-[13px]'>{data?.category}</h1></Link>
                                             <div className='cursor-pointer'>
                                                 <div className='w-fit'>
                                                     <img src={down} className='w-[20px]' alt="" />
@@ -211,7 +212,23 @@ const SingleProduct = () => {
                                 productData?.product_details?.images?.map((data, i) => {
                                     return (
                                         <div className={`w-fit max-w-[100px] xl:max-w-[160px] flex justify-end cursor-pointer ${i === selectedImageIndex ? 'border border-black p-[2px]' : 'p-[2px]'}`} key={i} onClick={() => setSelectedImageIndex(i)}>
-                                            <img src={VITE_BASE_LINK_2 + data} className='w-full max-w-[80px] xl:max-w-[120px]' alt="" />
+                                            {
+                                                productData?.product_details?.images?.length > 0 ?
+                                                    <img src={VITE_BASE_LINK_2 + data} className='w-full max-w-[400px] xl:max-w-[600px] ' alt="" />
+                                                    :
+                                                    <div className='w-full flex justify-center items-center aspect-square'>
+                                                        <Puff
+                                                            height="80"
+                                                            width="80"
+                                                            radius={1}
+                                                            color="#4fa94d"
+                                                            ariaLabel="puff-loading"
+                                                            wrapperStyle={{}}
+                                                            wrapperClass=""
+                                                            visible={true}
+                                                        />
+                                                    </div>
+                                            }
                                         </div>
                                     )
                                 })
@@ -220,7 +237,23 @@ const SingleProduct = () => {
 
                         {/* single image */}
                         <div className='w-[90%] xl:w-[80%] flex justify-center items-center'>
-                            <img src={VITE_BASE_LINK_2 + productData?.product_details?.images[selectedImageIndex]} className='w-full max-w-[400px] xl:max-w-[600px]' alt="" />
+                            {
+                                productData?.product_details?.images?.length > 0 ?
+                                    <img src={VITE_BASE_LINK_2 + productData?.product_details?.images[selectedImageIndex]} className='w-full max-w-[400px] xl:max-w-[600px]' alt="" />
+                                    :
+                                    <div className='w-full aspect-square'>
+                                        <Puff
+                                            height="80"
+                                            width="80"
+                                            radius={1}
+                                            color="#4fa94d"
+                                            ariaLabel="puff-loading"
+                                            wrapperStyle={{}}
+                                            wrapperClass=""
+                                            visible={true}
+                                        />
+                                    </div>
+                            }
                         </div>
                     </div>
 
@@ -442,21 +475,37 @@ const SingleProduct = () => {
 
                     {/* slider */}
                     <div className='w-full min-h-[200px]'>
-                        < Slider
-                            className="w-full overflow-hidden"
-                            dotsClass="slick-dots"
-                            {...sliderSettings}
-                        >
-                            {productData?.product_details?.images?.map((data, i) => (
-                                <div key={i} className=" max-w-[100%] h-[100%]">
-                                    <img
-                                        src={VITE_BASE_LINK_2 + data}
-                                        alt=""
-                                        className="object-contain w-[95%] mx-auto"
+                        {
+                            productData?.product_details?.images?.length > 0 ?
+                                < Slider
+                                    className="w-full overflow-hidden"
+                                    dotsClass="slick-dots"
+                                    {...sliderSettings}
+                                >
+                                    {productData?.product_details?.images?.map((data, i) => (
+                                        <div key={i} className=" max-w-[100%] h-[100%]">
+                                            <img
+                                                src={VITE_BASE_LINK_2 + data}
+                                                alt=""
+                                                className="object-contain w-[95%] mx-auto"
+                                            />
+                                        </div>
+                                    ))}
+                                </ Slider>
+                                :
+                                <div className='w-full flex justify-center items-center aspect-square'>
+                                    <Puff
+                                        height="80"
+                                        width="80"
+                                        radius={1}
+                                        color="#4fa94d"
+                                        ariaLabel="puff-loading"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                        visible={true}
                                     />
                                 </div>
-                            ))}
-                        </ Slider>
+                        }
                     </div>
 
                     {/* title & description */}

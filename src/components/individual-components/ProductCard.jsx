@@ -7,6 +7,7 @@ import { VITE_BASE_LINK, VITE_BASE_LINK_2 } from '../../../baseLink'
 import cartPageAtom from '../../recoil/atoms/cartPageAtom'
 import arrow from '../../assets/images/down-arrow.png'
 import landingPageApiDataAtom from '../../recoil/atoms/landingPageApiDataAtom'
+import { Puff } from 'react-loader-spinner'
 
 const ProductCard = (props) => {
 
@@ -35,10 +36,26 @@ const ProductCard = (props) => {
                 <div>
 
                     <div className='w-full border shadow-md p-2 h-full flex flex-col justify-between min-h-[280px] lg:min-h-[350px] xl:min-h-[320px]'>
-                        
-                        <Link to={`/single-product/` + props?.id} className='w-full flex justify-center items-center' onClick={() => {}}>
-                            <img src={VITE_BASE_LINK_2 + props?.image} className='w-[85%] mx-auto' alt="" />
-                        </Link>
+                        {
+                            props?.image ?
+                                <Link to={`/single-product/` + props?.id} className='w-full flex justify-center items-center' onClick={() => { }}>
+                                    <img src={VITE_BASE_LINK_2 + props?.image} className='w-[85%] mx-auto' alt="" />
+                                </Link>
+                                :
+                                <div className='w-full flex justify-center items-center'>
+                                    <Puff
+                                        height="80"
+                                        width="80"
+                                        radius={1}
+                                        color="#4fa94d"
+                                        ariaLabel="puff-loading"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                        visible={true}
+                                    />
+                                    {/* <h1 className='text-[100px] text-red-500'>Loader</h1> */}
+                                </div>
+                        }
                         <div className='w-full flex justify-between items-center mt-1'>
                             <div className='w-full xl:w-auto'>
                                 <h1 className='poppins text-[13px]'>{props?.title}</h1>

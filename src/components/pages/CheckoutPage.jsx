@@ -125,8 +125,8 @@ const CheckoutPage = () => {
         //that has been made by the user
 
         var options = {
-            key_id: 'rzp_test_gHJS0k5aSWUMQc', // in react your environment variable must start with REACT_APP_
-            key_secret: '8hPVwKRnj4DZ7SB1wyW1miaf',
+            key_id: import.meta.env.REACT_APP_RAZORPAY_KEY_ID, // in react your environment variable must start with REACT_APP_
+            key_secret: import.meta.env.REACT_APP_RAZORPAY_KEY_SECRET,
             amount: data.data.payment.amount,
             currency: "INR",
             name: "Realvedic",

@@ -28,9 +28,9 @@ const LandingPage = () => {
     })
   }, [])
 
-  // useEffect(() => {
-  //   console.log(landingApiData)
-  // }, [landingApiData])
+  useEffect(() => {
+    console.log(landingApiData)
+  }, [landingApiData])
 
 
 
@@ -43,7 +43,7 @@ const LandingPage = () => {
       <SmallImageCarousal />
       <SingleImageCarousal />
       <SingleFoodProductSection />
-      <BestOffersSection />
+      {/* <BestOffersSection /> */}
       {/* <BlogsSection /> */}
     </div>
   )

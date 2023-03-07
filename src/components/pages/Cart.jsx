@@ -363,7 +363,7 @@ const CartPage = () => {
                         </div>
 
                         {/* Checkout for mobile */}
-                        <div className="sticky md:static bottom-0 right-0 left-0 md:mt-[60px] md:pr-[170px] py-4 md:py-8 bg-[color:var(--primary-color)] md:bg-white">
+                        <div className="sticky md:static bottom-0 right-0 left-0 md:pr-[170px] py-4 md:py-8 bg-[color:var(--primary-color)] md:bg-white">
                             <div className="w-[85%] mx-auto md:w-full md:mx-0">
                                 <div className="w-full relative mb-4">
                                     <div className="flex md:hidden justify-center gap-2 items-center z-[100]" onClick={() => setPriceBreakdown(!priceBreakdown)}>
@@ -401,7 +401,7 @@ const CartPage = () => {
 
                                 {
                                     cartDataApi?.cartItems?.length > 0 ?
-                                        <div className="flex flex-col md:gap-5   justify-between  items-center md:items-end w-full">
+                                        <div className="flex flex-col md:gap-5 justify-between  items-center md:items-end w-full">
                                             <div className="flex justify-center items-center gap-3">
                                                 <h2 className="text-black  text-[17px]">Final Price :</h2>
                                                 <h1 className="text-black font-extrabold text-[21px] ">

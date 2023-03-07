@@ -14,6 +14,7 @@ import down from '../../assets/icons/down_arrow.svg'
 import tabData from '../../mockApi/categoryTabs'
 import CategoryTabs from '../landing-page-components/CategoryTabs'
 import MobileCategories from '../global-components/MobileCategories'
+import { Puff } from 'react-loader-spinner'
 
 const AllProductsView = () => {
 
@@ -65,7 +66,7 @@ const AllProductsView = () => {
                 <h1 className='text-[20px] md:text-[40px] xl:text-[65px] poppins absolute bottom-[30%] md:bottom-[80px] left-[5%] md:left-[40px] font-[600]'>{allproductsApiData?.category}</h1>
             </div>
 
-            <MobileCategories/>
+            <MobileCategories />
 
             {/* mobile banner */}
             <div className='w-full flex md:hidden justify-center items-center relative bg-[color:var(--primary-color)] mt-4'>
@@ -93,37 +94,37 @@ const AllProductsView = () => {
                         <h1 className='text-[17px] pb-4'>Categories</h1>
                         {
                             sidebarCategory?.map((data, i) => {
-                            if (data?.category !== 'All Products') {
-                                return (
-                                    <div key={i} className='w-full py-3 flex flex-col justify-center items-center border-b'>
-                                        <div className='text-[13px] w-full flex justify-between items-center' htmlFor={data?.title} onClick={() => categoryDropDown === data?.category ? setCategoryDropDown(null) : setCategoryDropDown(data?.category)}>
-                                            <h1 className='text-[13px]'>{data?.category}</h1>
-                                            <div className='cursor-pointer'>
-                                                <div className='w-fit'>
-                                                    <img src={down} className='w-[20px]' alt="" />
+                                if (data?.category !== 'All Products') {
+                                    return (
+                                        <div key={i} className='w-full py-3 flex flex-col justify-center items-center border-b'>
+                                            <div className='text-[13px] w-full flex justify-between items-center' htmlFor={data?.title} onClick={() => categoryDropDown === data?.category ? setCategoryDropDown(null) : setCategoryDropDown(data?.category)}>
+                                            <Link to={`/all-products/` + data?.id}><h1 className='text-[13px]'>{data?.category}</h1></Link>
+                                                <div className='cursor-pointer'>
+                                                    <div className='w-fit'>
+                                                        <img src={down} className='w-[20px]' alt="" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className={`w-full flex justify-center items-center top-[80%] overflow-hidden transition-all duration-300 ${categoryDropDown === data?.category ? 'max-h-[500px] overflow-y-scroll' : 'max-h-0'}`}>
+                                                <div className='w-full flex flex-col mt-2 pl-2'>
+                                                    {
+                                                        data?.items?.map((sub_data, sub_index) => (
+                                                            <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3' onClick={() => setCategoryDropDown(null)}>
+                                                                <div className='w-fit'>
+                                                                    <img src={VITE_BASE_LINK_2 + sub_data?.image} className='w-[35px]' alt="" />
+                                                                </div>
+                                                                <div>
+                                                                    <h1 className='text-[12px]'>{sub_data?.title}</h1>
+                                                                </div>
+                                                            </Link>
+                                                        ))
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className={`w-full flex justify-center items-center top-[80%] overflow-hidden transition-all duration-300 ${categoryDropDown === data?.category ? 'max-h-[500px] overflow-y-scroll' : 'max-h-0'}`}>
-                                            <div className='w-full flex flex-col mt-2 pl-2'>
-                                                {
-                                                    data?.items?.map((sub_data, sub_index) => (
-                                                        <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3' onClick={() => setCategoryDropDown(null)}>
-                                                            <div className='w-fit'>
-                                                                <img src={VITE_BASE_LINK_2 + sub_data?.image} className='w-[35px]' alt="" />
-                                                            </div>
-                                                            <div>
-                                                                <h1 className='text-[12px]'>{sub_data?.title}</h1>
-                                                            </div>
-                                                        </Link>
-                                                    ))
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            }
-                        })
+                                    )
+                                }
+                            })
                         }
                     </div>
                 </div>
@@ -146,7 +147,7 @@ const AllProductsView = () => {
                                     // })
                                     allproductsApiData?.products?.map((data, i) => {
                                         return (
-                                            <ProductCard key={i} id={data?.id} title={data?.title} image={data?.image} weight={data?.weight} unit_price={data?.unit_price} net_price={data?.net_price} status={data?.cart_status} statusArray={data?.cart_status_array}/>
+                                            <ProductCard key={i} id={data?.id} title={data?.title} image={data?.image} weight={data?.weight} unit_price={data?.unit_price} net_price={data?.net_price} status={data?.cart_status} statusArray={data?.cart_status_array} />
                                         )
                                         // console.log('lalalalalalalalalal', cartProductId?.includes(data?.id))
                                         // if (cartProductId?.includes(data?.id)) {
@@ -161,8 +162,17 @@ const AllProductsView = () => {
                                 }
                             </>
                             :
-                            <div className='w-[80vw] mx-auto flex justify-center items-center border'>
-                                <h1 className='w-fit'>no products</h1>
+                            <div className='w-[80vw] flex justify-center items-center'>
+                                <Puff
+                                    height="80"
+                                    width="80"
+                                    radius={1}
+                                    color="#4fa94d"
+                                    ariaLabel="puff-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
+                                />
                             </div>
                     }
                 </div>

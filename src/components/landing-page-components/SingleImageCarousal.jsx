@@ -9,6 +9,7 @@ import { useRecoilState } from 'recoil';
 import landingPageApiDataAtom from '../../recoil/atoms/landingPageApiDataAtom';
 import { VITE_BASE_LINK, VITE_BASE_LINK_2 } from '../../../baseLink';
 import { Link } from 'react-router-dom';
+import { Puff } from 'react-loader-spinner';
 
 const PreviousBtn = (props) => {
     const { className, onClick } = props;
@@ -47,32 +48,48 @@ const SingleImageCarousal = () => {
 
     return (
         <div className='hidden md:block w-[80%] mx-auto my-4 md:my-[100px]'>
-            <Slider
-                className="w-full px-2 rounded-[5px] border-[3px] pt-2 border-[#696969]"
-                {...settings}
-                prevArrow={<PreviousBtn />}
-                nextArrow={<NextBtn />}
-            >
-                {
-                    landingApiData?.large_carousal_images?.map((data, index) => {
-                        if (data?.type === '') {
-                            return (
-                                <div className="w-full flex justify-center items-center outline-none aspect-[5/2] overflow-hidden cursor-pointer z-[100]" key={index}>
-                                    <img src={VITE_BASE_LINK_2 + data?.image} className=" w-full object-contain z-[100]" />
-                                </div>
-                            )
-                        } else {
-                            return (
-                                <Link to={data?.type === 'c' ? '/all-products/' + data?.product_id : data?.type === 'p' ? '/single-product/' + data?.product_id : ''}>   
-                                    <div className="w-full flex justify-center items-center outline-none aspect-[5/2] overflow-hidden cursor-pointer z-[100]" key={index}>
-                                        <img src={VITE_BASE_LINK_2 + data?.image} className=" w-full object-contain z-[100]" />
-                                    </div>
-                                </Link>
-                            )
+            {
+                landingApiData?.large_carousal_images ?
+                    <Slider
+                        className="w-full px-2 rounded-[5px] border-[3px] pt-2 border-[#696969]"
+                        {...settings}
+                        prevArrow={<PreviousBtn />}
+                        nextArrow={<NextBtn />}
+                    >
+                        {
+                            landingApiData?.large_carousal_images?.map((data, index) => {
+                                if (data?.type === '') {
+                                    return (
+                                        <div className="w-full flex justify-center items-center outline-none aspect-[5/2] overflow-hidden cursor-pointer z-[100]" key={index}>
+                                            <img src={VITE_BASE_LINK_2 + data?.image} className=" w-full object-contain z-[100]" />
+                                        </div>
+                                    )
+                                } else {
+                                    return (
+                                        <Link to={data?.type === 'c' ? '/all-products/' + data?.product_id : data?.type === 'p' ? '/single-product/' + data?.product_id : ''}>
+                                            <div className="w-full flex justify-center items-center outline-none aspect-[5/2] overflow-hidden cursor-pointer z-[100]" key={index}>
+                                                <img src={VITE_BASE_LINK_2 + data?.image} className=" w-full object-contain z-[100]" />
+                                            </div>
+                                        </Link>
+                                    )
+                                }
+                            })
                         }
-                    })
-                }
-            </Slider >
+                    </Slider >
+                    :
+                    <div className='w-full aspect-square flex justify-center items-center'>
+                        <Puff
+                            height="80"
+                            width="80"
+                            radius={1}
+                            color="#4fa94d"
+                            ariaLabel="puff-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
+                    </div>
+            }
         </div >
     )
 }

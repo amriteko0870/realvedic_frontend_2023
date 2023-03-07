@@ -240,7 +240,7 @@ const Navbar = () => {
                                                                 </div>
                                                             </div>
                                                             <div className='w-full max-w-[100px] flex justify-center items-center gap-3'>
-                                                                <div className='text-[22px] cursor-pointer font-[400]' onClick={async () => {
+                                                                <div className='text-[20px] active:scale-[0.90] active:shadow-none cursor-pointer bg-white shadow-md rounded-[5px] poppins px-2 font-[400]' onClick={async () => {
                                                                     let formdata = new FormData()
                                                                     formdata.append('prod_id', data?.product_id)
                                                                     formdata.append('token', localStorage.getItem('token'))
@@ -267,7 +267,7 @@ const Navbar = () => {
                                                                     })
                                                                 }}>-</div>
                                                                 <div className='text-[18px] font-[400]'>{data?.quantity}</div>
-                                                                <div className='text-[22px] cursor-pointer font-[400]' onClick={async () => {
+                                                                <div className='text-[20px] active:scale-[0.90] active:shadow-none cursor-pointer bg-white shadow-md rounded-[5px] poppins px-2 font-[400]' onClick={async () => {
                                                                     let formdata = new FormData()
                                                                     formdata.append('prod_id', data?.product_id)
                                                                     formdata.append('token', localStorage.getItem('token'))
@@ -385,12 +385,22 @@ const Navbar = () => {
                             cartData?.cartItems?.length > 0 ?
                                 <Link to='/cart'>
                                     <div className='relative flex justify-center items-center p-[2px]'>
-                                        <div className='bg-red-500 h-[7px] w-[7px] rounded-full absolute top-0 right-0'></div>
-                                        <img src={cart} className='min-w-[28px] cursor-pointer' alt="" />
+                                        <span className='border bg-red-500 w-[45%] flex justify-center items-center rounded-full absolute top-0 right-0 text-[9px] text-white '>{cartData?.cartItems?.length}</span>
+                                        <img src={cart} className='min-w-[32px] cursor-pointer' alt="" />
                                     </div>
                                 </Link>
                                 :
-                                <Link to='/cart'><img src={cart} className='min-w-[28px] cursor-pointer' alt="" /></Link>
+                                <Link to='/cart'><img src={cart} className='min-w-[32px] cursor-pointer' alt="" /></Link>
+                        }
+                        {
+                            localStorage?.getItem('token') ?
+                                <Link to='/account' className='w-fit cursor-pointer'>
+                                    <img src={profile} className="w-full max-w-[28px]" alt="" />
+                                </Link>
+                                :
+                                <Link to='/login' className='w-fit cursor-pointer'>
+                                    <img src={profile} className="w-full max-w-[28px]" alt="" />
+                                </Link>
                         }
                         <div className=' flex justify-center items-center' onClick={() => setSidebarToggle(true)}>
                             <img src={sidebar_icon} className='w-[26px] cursor-pointer mr-2' alt="" />
