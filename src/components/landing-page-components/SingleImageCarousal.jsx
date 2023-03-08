@@ -10,6 +10,7 @@ import landingPageApiDataAtom from '../../recoil/atoms/landingPageApiDataAtom';
 import { VITE_BASE_LINK, VITE_BASE_LINK_2 } from '../../../baseLink';
 import { Link } from 'react-router-dom';
 import { Puff } from 'react-loader-spinner';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 const PreviousBtn = (props) => {
     const { className, onClick } = props;
@@ -77,17 +78,19 @@ const SingleImageCarousal = () => {
                         }
                     </Slider >
                     :
-                    <div className='w-full aspect-square flex justify-center items-center'>
-                        <Puff
-                            height="80"
-                            width="80"
-                            radius={1}
-                            color="#4fa94d"
-                            ariaLabel="puff-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
-                        />
+                    <div className='w-full aspect-square flex justify-center h-[40vh] items-center'>
+                        <div className='w-full h-[40vh] justify-center items-center'>
+                            {/* skeleton */}
+                            <div className='w-full'>
+                                <div className='w-full'>
+                                    <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
+                                        <p>
+                                            <Skeleton width='100%' height='40vh' />
+                                        </p>
+                                    </SkeletonTheme>
+                                </div>
+                            </div>
+                        </div>
                     </div>
             }
         </div >

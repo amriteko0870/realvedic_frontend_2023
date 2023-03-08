@@ -338,7 +338,7 @@ const CartPage = () => {
                                                 </div>
                                                 <div className="w-full flex justify-between items-center my-4">
                                                     <h1 className="text-[14px]">Shipping:</h1>
-                                                    <h1 className="text-[16px] font-[500]">₹ {cartDataApi?.cart_total?.shipping}</h1>
+                                                    <h1 className="text-[16px] font-[500]"> {cartDataApi?.cart_total?.subtotal < 499 ? '₹ ' + cartDataApi?.cart_total?.shipping : <span className="text-green-500">Free</span>} </h1>
                                                 </div>
                                                 {/* <div className="w-full flex justify-between items-center my-4">
                                                     <h1 className="text-[14px]">GST:</h1>

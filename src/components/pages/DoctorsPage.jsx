@@ -3,7 +3,7 @@ import banner from '../../assets/images/category-image.jpg'
 import check from '../../assets/icons/tick-green.svg'
 import doc_img from '../../assets/images/about-us.png'
 import axios from 'axios'
-import { VITE_BASE_LINK } from '../../../baseLink'
+import { VITE_BASE_LINK, VITE_BASE_LINK_2 } from '../../../baseLink'
 
 
 const DoctorsPage = () => {
@@ -28,7 +28,7 @@ const DoctorsPage = () => {
   };
 
   useEffect(() => {
-    axios.get(VITE_BASE_LINK + 'doctor_detail_view  ').then((response) => {
+    axios.get(VITE_BASE_LINK_2 + 'doctor_detail_view  ').then((response) => {
       // console.log(response?.data)
       setDocData(response?.data)
     })
@@ -141,7 +141,7 @@ const DoctorsPage = () => {
             </div>
             <div className='w-full flex justify-center items-center mt-2'>
               <button className='px-4 py-2 bg-[color:var(--button-primary)] shadow-md active:scale-[0.96] text-[15px] poppins font-[500] rounded-[10px]' onClick={() => {
-                axios.post(VITE_BASE_LINK + '', formData).then((response) => {
+                axios.post(VITE_BASE_LINK_2 + '', formData).then((response) => {
                   // console.log(response?.data)
                   // alert(response?.data?.message)
                 })

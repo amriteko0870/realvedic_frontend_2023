@@ -8,6 +8,7 @@ import { VITE_BASE_LINK } from '../../../baseLink'
 import YouTube from 'react-youtube'
 import ProductCard from '../individual-components/ProductCard'
 import { Puff } from 'react-loader-spinner'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 const SingleFoodProductSection = () => {
 
@@ -25,7 +26,7 @@ const SingleFoodProductSection = () => {
     return (
         <div className='w-full md:w-[70%] mx-auto px-4 md:px-10 mb-6'>
             {
-                landingApiData.single_product_details?
+                landingApiData.single_product_details ?
                     <div className='flex flex-col lg:flex-row justify-center gap-4'>
 
 
@@ -110,17 +111,19 @@ const SingleFoodProductSection = () => {
                     </div>
 
                     :
-                    <div className='w-full aspect-square flex justify-center items-center'>
-                        <Puff
-                            height="80"
-                            width="80"
-                            radius={1}
-                            color="#4fa94d"
-                            ariaLabel="puff-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
-                        />
+                    <div className='w-full aspect-square flex justify-center h-[20vh] items-center'>
+                        <div className='w-[96%] mx-auto aspect-square mt-5 md:mt-0 h-[20vh] justify-center items-center'>
+                            {/* skeleton */}
+                            <div className='w-full'>
+                                <div className='w-full'>
+                                    <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
+                                        <p>
+                                            <Skeleton width='100%' height='20vh' />
+                                        </p>
+                                    </SkeletonTheme>
+                                </div>
+                            </div>
+                        </div>
                     </div>
             }
         </div>

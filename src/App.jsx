@@ -37,6 +37,7 @@ import axios from 'axios'
 import cartPageAtom from './recoil/atoms/cartPageAtom'
 import { atom, useRecoilState } from 'recoil'
 import cartProductIDs from './recoil/atoms/cartProductsIDs'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 function App() {

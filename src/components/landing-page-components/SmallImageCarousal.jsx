@@ -11,6 +11,7 @@ import { useRecoilState } from 'recoil';
 import { VITE_BASE_LINK, VITE_BASE_LINK_2, VITE_BASE_LINK_3 } from '../../../baseLink';
 import { Link } from 'react-router-dom';
 import { Puff } from 'react-loader-spinner';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 const PreviousBtn = (props) => {
     const { className, onClick } = props;
@@ -34,6 +35,10 @@ const NextBtn = (props) => {
 const SmallImageCarousal = () => {
 
     const [landingApiData, setLandingApiData] = useRecoilState(landingPageApiDataAtom);
+
+    var skeletons = [0, 1, 2, 3, 4, 5, 6, 7,];
+
+    var mobile_skeletons = [0, 1, 2, 3, 4, 5,];
 
     let settings = {
         // dots: true,
@@ -84,17 +89,23 @@ const SmallImageCarousal = () => {
                         </div>
                     </div >
                     :
-                    <div className='w-full aspect-square flex justify-center items-center'>
-                        <Puff
-                            height="80"
-                            width="80"
-                            radius={1}
-                            color="#4fa94d"
-                            ariaLabel="puff-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
-                        />
+                    <div className='w-[96%] mx-auto aspect-square hidden md:grid grid-cols-8 mt-10 gap-5 h-[20vh] justify-center items-center'>
+                        {
+                            skeletons?.map((data, i) => (
+                                <>
+                                    {/* skeleton */}
+                                    <div className='w-full'>
+                                        <div className='w-full'>
+                                            <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
+                                                <p>
+                                                    <Skeleton width='100%' height='20vh' />
+                                                </p>
+                                            </SkeletonTheme>
+                                        </div>
+                                    </div>
+                                </>
+                            ))
+                        }
                     </div>
             }
 
@@ -125,17 +136,25 @@ const SmallImageCarousal = () => {
                         </div >
                     </nav>
                     :
-                    <div className='w-full aspect-square flex justify-center items-center'>
-                        <Puff
-                            height="80"
-                            width="80"
-                            radius={1}
-                            color="#4fa94d"
-                            ariaLabel="puff-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
-                        />
+                    <div className='w-full aspect-square flex md:hidden h-[10vh] mb-2 justify-center items-center'>
+                        <div className='w-[90%] mx-auto aspect-square grid md:hidden grid-cols-6  gap-5 h-[10vh] justify-center items-center'>
+                            {
+                                mobile_skeletons?.map((data, i) => (
+                                    <>
+                                        {/* skeleton */}
+                                        <div className='w-full'>
+                                            <div className='w-full'>
+                                                <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
+                                                    <p>
+                                                        <Skeleton width='100%' height='10vh' />
+                                                    </p>
+                                                </SkeletonTheme>
+                                            </div>
+                                        </div>
+                                    </>
+                                ))
+                            }
+                        </div>
                     </div>
             }
         </>
