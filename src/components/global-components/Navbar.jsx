@@ -17,7 +17,7 @@ import axios from 'axios'
 import { VITE_BASE_LINK, VITE_BASE_LINK_2 } from '../../../baseLink'
 import cartPageAtom from '../../recoil/atoms/cartPageAtom'
 import { toast } from 'react-toastify'
-import cross from "../../assets/icons/cross.svg";
+import cross from "../../assets/icons/cross_red.svg";
 import search from '../../assets/icons/search.svg'
 import tabData from '../../mockApi/categoryTabs'
 import landingPageApiDataAtom from '../../recoil/atoms/landingPageApiDataAtom'
@@ -298,7 +298,7 @@ const Navbar = () => {
                                                                 <h1 className='text-[13px] helvetica font-[400] text-green-600 '>You saved ₹ {data?.saved}</h1>
                                                             </div>
                                                             <div className='w-full max-w-[50px] flex justify-center items-center'>
-                                                                <img src={cross} className='w-full max-w-[13px] cursor-pointer' alt="" onClick={async () => {
+                                                                <img src={cross} className='w-full max-w-[24px] rounded-[5px] bg-white active:scale-[0.9] transition-all duration-300 shadow-md cursor-pointer' alt="" onClick={async () => {
                                                                     let formdata = new FormData()
                                                                     formdata.append('prod_id', data?.product_id)
                                                                     formdata.append('token', localStorage.getItem('token'))

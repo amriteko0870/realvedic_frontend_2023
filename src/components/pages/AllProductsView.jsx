@@ -15,6 +15,7 @@ import tabData from '../../mockApi/categoryTabs'
 import CategoryTabs from '../landing-page-components/CategoryTabs'
 import MobileCategories from '../global-components/MobileCategories'
 import { Puff } from 'react-loader-spinner'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 const AllProductsView = () => {
 
@@ -29,6 +30,8 @@ const AllProductsView = () => {
     const [searchData, setSearchData] = useState('');
 
     const params = useParams();
+
+    const skeleton_data = [1, 2, 3, 4, 5, 6, 7, 8];
 
     useEffect(() => {
         let formdata = new FormData();
@@ -61,18 +64,46 @@ const AllProductsView = () => {
 
             {/* banner */}
             <div className='w-full hidden md:flex justify-center items-center relative bg-[color:var(--primary-color)] mb-4'>
-                <img src={VITE_BASE_LINK_2 + allproductsApiData?.category_banner} className='w-full object-cover bg-bottom' alt="" />
-                {/* <img src="../bannerNew.jpg" className='w-full object-cover bg-bottom' alt="" /> */}
-                <h1 className='text-[20px] md:text-[40px] xl:text-[65px] poppins absolute bottom-[30%] md:bottom-[80px] left-[5%] md:left-[40px] font-[600]'>{allproductsApiData?.category}</h1>
+                {
+                    allproductsApiData?.category_banner ?
+                        <>
+                            <img src={VITE_BASE_LINK_2 + allproductsApiData?.category_banner} className='w-full object-cover bg-bottom' alt="" />
+                            <h1 className='text-[20px] md:text-[40px] xl:text-[65px] poppins absolute bottom-[30%] md:bottom-[80px] left-[5%] md:left-[40px] font-[600]'>{allproductsApiData?.category}</h1>
+                        </>
+                        :
+                        <div className='hidden md:flex flex-col w-full justify-center items-center h-[40vh]'>
+                            <div className='w-full'>
+                                <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
+                                    <p>
+                                        <Skeleton width='100%' height='40vh' />
+                                    </p>
+                                </SkeletonTheme>
+                            </div>
+                        </div>
+                }
             </div>
 
             <MobileCategories />
 
             {/* mobile banner */}
             <div className='w-full flex md:hidden justify-center items-center relative bg-[color:var(--primary-color)] mt-4'>
-                <img src={VITE_BASE_LINK_2 + allproductsApiData?.category_mobile_banner} className='w-full object-cover bg-bottom' alt="" />
-                {/* <img src="../bannerNew.jpg" className='w-full object-cover bg-bottom' alt="" /> */}
-                <h1 className='text-[20px] md:text-[40px] xl:text-[65px] poppins absolute bottom-[30%] md:bottom-[80px] left-[5%] md:left-[40px] font-[600]'>{allproductsApiData?.category}</h1>
+                {
+                    allproductsApiData?.category_mobile_banner ?
+                        <>
+                            <img src={VITE_BASE_LINK_2 + allproductsApiData?.category_mobile_banner} className='w-full object-cover bg-bottom' alt="" />
+                            <h1 className='text-[20px] md:text-[40px] xl:text-[65px] poppins absolute bottom-[30%] md:bottom-[80px] left-[5%] md:left-[40px] font-[600]'>{allproductsApiData?.category}</h1>
+                        </>
+                        :
+                        <div className='flex md:hidden flex-col w-full justify-center items-center h-[30vh]'>
+                            <div className='w-full'>
+                                <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
+                                    <p>
+                                        <Skeleton width='100%' height='30vh' />
+                                    </p>
+                                </SkeletonTheme>
+                            </div>
+                        </div>
+                }
             </div>
 
             {/* <div className='w-full flex justify-between items-center px-4 lg:px-8'>
@@ -93,38 +124,53 @@ const AllProductsView = () => {
                     <div className='w-full sticky top-[150px]'>
                         <h1 className='text-[17px] pb-4'>Categories</h1>
                         {
-                            sidebarCategory?.map((data, i) => {
-                                if (data?.category !== 'All Products') {
-                                    return (
-                                        <div key={i} className='w-full py-3 flex flex-col justify-center items-center border-b'>
-                                            <div className='text-[13px] w-full flex justify-between items-center' htmlFor={data?.title} onClick={() => categoryDropDown === data?.category ? setCategoryDropDown(null) : setCategoryDropDown(data?.category)}>
-                                            <Link to={`/all-products/` + data?.id}><h1 className='text-[13px]'>{data?.category}</h1></Link>
-                                                <div className='cursor-pointer'>
-                                                    <div className='w-fit'>
-                                                        <img src={down} className='w-[20px]' alt="" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className={`w-full flex justify-center items-center top-[80%] overflow-hidden transition-all duration-300 ${categoryDropDown === data?.category ? 'max-h-[500px] overflow-y-scroll' : 'max-h-0'}`}>
-                                                <div className='w-full flex flex-col mt-2 pl-2'>
-                                                    {
-                                                        data?.items?.map((sub_data, sub_index) => (
-                                                            <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3' onClick={() => setCategoryDropDown(null)}>
+                            sidebarCategory ?
+                                <>
+                                    {
+                                        sidebarCategory?.map((data, i) => {
+                                            if (data?.category !== 'All Products') {
+                                                return (
+                                                    <div key={i} className='w-full py-3 flex flex-col justify-center items-center border-b'>
+                                                        <div className='text-[13px] w-full flex justify-between items-center' htmlFor={data?.title} onClick={() => categoryDropDown === data?.category ? setCategoryDropDown(null) : setCategoryDropDown(data?.category)}>
+                                                            <Link to={`/all-products/` + data?.id}><h1 className='text-[13px]'>{data?.category}</h1></Link>
+                                                            <div className='cursor-pointer'>
                                                                 <div className='w-fit'>
-                                                                    <img src={VITE_BASE_LINK_2 + sub_data?.image} className='w-[35px]' alt="" />
+                                                                    <img src={down} className='w-[20px]' alt="" />
                                                                 </div>
-                                                                <div>
-                                                                    <h1 className='text-[12px]'>{sub_data?.title}</h1>
-                                                                </div>
-                                                            </Link>
-                                                        ))
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                            })
+                                                            </div>
+                                                        </div>
+                                                        <div className={`w-full flex justify-center items-center top-[80%] overflow-hidden transition-all duration-300 ${categoryDropDown === data?.category ? 'max-h-[500px] overflow-y-scroll' : 'max-h-0'}`}>
+                                                            <div className='w-full flex flex-col mt-2 pl-2'>
+                                                                {
+                                                                    data?.items?.map((sub_data, sub_index) => (
+                                                                        <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3' onClick={() => setCategoryDropDown(null)}>
+                                                                            <div className='w-fit'>
+                                                                                <img src={VITE_BASE_LINK_2 + sub_data?.image} className='w-[35px]' alt="" />
+                                                                            </div>
+                                                                            <div>
+                                                                                <h1 className='text-[12px]'>{sub_data?.title}</h1>
+                                                                            </div>
+                                                                        </Link>
+                                                                    ))
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        })
+                                    }
+                                </>
+                                :
+                                <div className='hidden md:flex w-full justify-center items-center mt-14 h-[40vh]'>
+                                    <div className='w-full'>
+                                        <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
+                                            <p>
+                                                <Skeleton width='100%' height='40vh' />
+                                            </p>
+                                        </SkeletonTheme>
+                                    </div>
+                                </div>
                         }
                     </div>
                 </div>
@@ -162,18 +208,21 @@ const AllProductsView = () => {
                                 }
                             </>
                             :
-                            <div className='w-[80vw] flex justify-center items-center'>
-                                <Puff
-                                    height="80"
-                                    width="80"
-                                    radius={1}
-                                    color="#4fa94d"
-                                    ariaLabel="puff-loading"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    visible={true}
-                                />
-                            </div>
+                            <>
+                                {
+                                    skeleton_data?.map((data, i) => (
+                                        <div key={i} className='flex flex-col w-full justify-center items-center mt-14 h-[40vh]'>
+                                            <div className='w-full'>
+                                                <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
+                                                    <p>
+                                                        <Skeleton width='100%' height='40vh' />
+                                                    </p>
+                                                </SkeletonTheme>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </>
                     }
                 </div>
             </div>

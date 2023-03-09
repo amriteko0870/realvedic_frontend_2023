@@ -19,6 +19,7 @@ import arrow_down from '../../assets/icons/arrow_icon.svg'
 import cartPageAtom from '../../recoil/atoms/cartPageAtom'
 import { useRecoilState } from 'recoil'
 import { Puff } from 'react-loader-spinner'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 const SingleProduct = () => {
 
@@ -37,6 +38,8 @@ const SingleProduct = () => {
     const [categoryDropDown, setCategoryDropDown] = useState(null);
 
     const navigate = useNavigate();
+
+    const skeleton_data = [1, 2, 3, 4,];
 
     const [selectedWeightIndex, setSelectedWeightIndex] = useState(0);
 
@@ -69,24 +72,25 @@ const SingleProduct = () => {
         formdata.append('token', localStorage.getItem('token'));
         formdata.append('no_login_token', localStorage.getItem('no_login_token'))
         axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-            if (response?.data?.status) {
-                // console.log(response?.data)
-                // console.log(response?.data?.product_details?.pack_sizes)
-                setProductData(response?.data)
-                setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
-            } else {
-                navigate('/')
-                toast.error(response?.data?.message, {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    // draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                })
-            }
+            // console.log(response?.data)
+            // console.log(response?.data?.product_details?.pack_sizes)
+            setProductData(response?.data)
+            setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+            // if (response?.data?.status) {
+
+            // } else {
+            //     // navigate('/')
+            //     // toast.error(response?.data?.message, {
+            //     //     position: "top-right",
+            //     //     autoClose: 2000,
+            //     //     hideProgressBar: false,
+            //     //     closeOnClick: true,
+            //     //     pauseOnHover: true,
+            //     //     // draggable: true,
+            //     //     progress: undefined,
+            //     //     theme: "colored",
+            //     // })
+            // }
         })
     }, [])
 
@@ -137,38 +141,50 @@ const SingleProduct = () => {
                 <div className='w-full '>
                     <h1 className='text-[17px] pb-4'>Categories</h1>
                     {
-                        sidebarCategory?.map((data, i) => {
-                            if (data?.category !== 'All Products') {
-                                return (
-                                    <div key={i} className='w-full py-3 flex flex-col justify-center items-center border-b'>
-                                        <div className='text-[13px] w-full flex justify-between items-center' htmlFor={data?.title} onClick={() => categoryDropDown === data?.category ? setCategoryDropDown(null) : setCategoryDropDown(data?.category)}>
-                                            <Link to={`/all-products/` + data?.id}><h1 className='text-[13px]'>{data?.category}</h1></Link>
-                                            <div className='cursor-pointer'>
-                                                <div className='w-fit'>
-                                                    <img src={down} className='w-[20px]' alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className={`w-full flex justify-center items-center top-[80%] overflow-hidden transition-all duration-300 ${categoryDropDown === data?.category ? 'max-h-[500px] overflow-y-scroll' : 'max-h-0'}`}>
-                                            <div className='w-full flex flex-col mt-2 pl-2'>
-                                                {
-                                                    data?.items?.map((sub_data, sub_index) => (
-                                                        <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3' onClick={() => setCategoryDropDown(null)}>
+                        sidebarCategory ?
+                            <>
+                                {
+                                    sidebarCategory?.map((data, i) => {
+                                        if (data?.category !== 'All Products') {
+                                            return (
+                                                <div key={i} className='w-full py-3 flex flex-col justify-center items-center border-b'>
+                                                    <div className='text-[13px] w-full flex justify-between items-center' htmlFor={data?.title} onClick={() => categoryDropDown === data?.category ? setCategoryDropDown(null) : setCategoryDropDown(data?.category)}>
+                                                        <Link to={`/all-products/` + data?.id}><h1 className='text-[13px]'>{data?.category}</h1></Link>
+                                                        <div className='cursor-pointer'>
                                                             <div className='w-fit'>
-                                                                <img src={VITE_BASE_LINK_2 + sub_data?.image} className='w-[35px]' alt="" />
+                                                                <img src={down} className='w-[20px]' alt="" />
                                                             </div>
-                                                            <div>
-                                                                <h1 className='text-[12px]'>{sub_data?.title}</h1>
-                                                            </div>
-                                                        </Link>
-                                                    ))
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            }
-                        })
+                                                        </div>
+                                                    </div>
+                                                    <div className={`w-full flex justify-center items-center top-[80%] overflow-hidden transition-all duration-300 ${categoryDropDown === data?.category ? 'max-h-[500px] overflow-y-scroll' : 'max-h-0'}`}>
+                                                        <div className='w-full flex flex-col mt-2 pl-2'>
+                                                            {
+                                                                data?.items?.map((sub_data, sub_index) => (
+                                                                    <Link to={`/single-product/` + sub_data?.id} key={sub_index} className='w-full mb-1 flex justify-start items-center gap-3' onClick={() => setCategoryDropDown(null)}>
+                                                                        <div className='w-fit'>
+                                                                            <img src={VITE_BASE_LINK_2 + sub_data?.image} className='w-[35px]' alt="" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <h1 className='text-[12px]'>{sub_data?.title}</h1>
+                                                                        </div>
+                                                                    </Link>
+                                                                ))
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                    })
+                                }
+                            </>
+                            :
+                            <div className='flex flex-col w-full justify-center items-center aspect-square h-[300px] relative overflow-hidden bg-[#dfdddd]'>
+                                <div className='w-full'>
+                                    {/* Skeleton */}
+                                    <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                </div>
+                            </div>
                     }
                 </div>
             </div>
@@ -209,29 +225,31 @@ const SingleProduct = () => {
                         {/* vertical images */}
                         <div className='w-[90%] xl:w-[20%] flex xl:flex-col justify-center xl:justify-evenly items-end'>
                             {
-                                productData?.product_details?.images?.map((data, i) => {
-                                    return (
-                                        <div className={`w-fit max-w-[100px] xl:max-w-[160px] flex justify-end cursor-pointer ${i === selectedImageIndex ? 'border border-black p-[2px]' : 'p-[2px]'}`} key={i} onClick={() => setSelectedImageIndex(i)}>
-                                            {
-                                                productData?.product_details?.images?.length > 0 ?
-                                                    <img src={VITE_BASE_LINK_2 + data} className='w-full max-w-[400px] xl:max-w-[600px] ' alt="" />
-                                                    :
-                                                    <div className='w-full flex justify-center items-center aspect-square'>
-                                                        <Puff
-                                                            height="80"
-                                                            width="80"
-                                                            radius={1}
-                                                            color="#4fa94d"
-                                                            ariaLabel="puff-loading"
-                                                            wrapperStyle={{}}
-                                                            wrapperClass=""
-                                                            visible={true}
-                                                        />
+                                productData?.product_details?.images ?
+                                    <>
+                                        {
+                                            productData?.product_details?.images?.map((data, i) => {
+                                                return (
+                                                    <div className={`w-fit max-w-[100px] xl:max-w-[160px] flex justify-end cursor-pointer ${i === selectedImageIndex ? 'border border-black p-[2px]' : 'p-[2px]'}`} key={i} onClick={() => setSelectedImageIndex(i)}>
+                                                        <img src={VITE_BASE_LINK_2 + data} className='w-full max-w-[400px] xl:max-w-[600px] ' alt="" />
                                                     </div>
-                                            }
-                                        </div>
-                                    )
-                                })
+                                                )
+                                            })
+                                        }
+                                    </>
+                                    :
+                                    <>
+                                        {
+                                            skeleton_data?.map((data, i) => (
+                                                <div className='flex flex-col w-full justify-center items-center aspect-square mt-0 md:mt-1 md:mb-1 mr-1 relative overflow-hidden bg-[#dfdddd]'>
+                                                    <div className='w-full'>
+                                                        {/* Skeleton */}
+                                                        <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </>
                             }
                         </div>
 
@@ -241,17 +259,11 @@ const SingleProduct = () => {
                                 productData?.product_details?.images?.length > 0 ?
                                     <img src={VITE_BASE_LINK_2 + productData?.product_details?.images[selectedImageIndex]} className='w-full max-w-[400px] xl:max-w-[600px]' alt="" />
                                     :
-                                    <div className='w-full aspect-square'>
-                                        <Puff
-                                            height="80"
-                                            width="80"
-                                            radius={1}
-                                            color="#4fa94d"
-                                            ariaLabel="puff-loading"
-                                            wrapperStyle={{}}
-                                            wrapperClass=""
-                                            visible={true}
-                                        />
+                                    <div className='flex flex-col w-full justify-center items-center aspect-square relative mr-4 overflow-hidden bg-[#dfdddd]'>
+                                        <div className='w-full'>
+                                            {/* Skeleton */}
+                                            <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                        </div>
                                     </div>
                             }
                         </div>
@@ -259,211 +271,241 @@ const SingleProduct = () => {
 
                     {/* product description */}
                     <div className='flex-1 lg:w-[40%] flex justify-center items-center '>
-                        <div className='w-full max-w-[620px]'>
-                            <h1 className='poppins hidden md:block text-[25px] py-2 font-[600]'>{productData?.product_details?.title}</h1>
-                            <div className='w-full py-2 mt-2'>
-                                <p className='poppins text-[14px]'>{productData?.product_details?.description}</p>
-                            </div>
-                            <div className='w-full'>
-                                <div className='w-full mt-4'>
-                                    <p className='text-[20px] font-[500] line-through'>₹ {packSizeSelect?.price}</p>
-                                </div>
-                                <div className='w-full flex justify-between'>
-                                    <div className='w-full flex items-center gap-3'>
-                                        <p className='text-[14px] font-[500] popins opacity-60'>Offer Price :-</p>
-                                        <p className='text-[20px] font-[500] popins'>₹ {packSizeSelect?.offer_price}</p>
+                        {
+                            productData ?
+                                <div className='w-full max-w-[620px]'>
+                                    <h1 className='poppins hidden md:block text-[25px] py-2 font-[600]'>{productData?.product_details?.title}</h1>
+                                    <div className='w-full py-2 mt-2'>
+                                        <p className='poppins text-[14px]'>{productData?.product_details?.description}</p>
                                     </div>
-                                </div>
-                            </div>
-                            <div className='w-full flex py-2 mt-4'>
-
-
-                                {
-                                    productData?.product_details?.cart_status && productData?.product_details?.cart_status_array[selectedWeightIndex] ?
-                                        <div className='w-full text-[18px] py-[10px] font-[500] flex justify-center items-center rounded-[10px]'>
-                                            <div className='w-[15%] flex justify-center items-center py-1 shadow-md active:scale-[0.96] bg-[color:var(--button-primary)] cursor-pointer' onClick={async () => {
-                                                let formdata = new FormData()
-                                                formdata.append('prod_id', productData?.product_details?.id)
-                                                formdata.append('token', localStorage.getItem('token'))
-                                                formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                                formdata.append('price', packSizeSelect?.price)
-                                                formdata.append('size', packSizeSelect?.weight)
-                                                formdata.append('update_type', '-')
-                                                await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                                    // console.log(response?.data)
-                                                    toast.warn(response?.data?.message, {
-                                                        position: "top-right",
-                                                        autoClose: 2000,
-                                                        hideProgressBar: false,
-                                                        closeOnClick: true,
-                                                        pauseOnHover: true,
-                                                        progress: undefined,
-                                                        theme: "colored",
-                                                    })
-                                                })
-                                                formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                                await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                                    // console.log(response?.data)
-                                                    // console.log(response?.data?.product_details?.pack_sizes)
-                                                    setProductData(response?.data)
-                                                    setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
-                                                })
-                                                await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
-                                                    // console.log(response?.data)
-                                                    setCartData(response?.data)
-                                                })
-                                                if (location?.pathname === "/") {
-                                                    let formdata = new FormData();
-                                                    formdata.append('token', localStorage.getItem('token'));
-                                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'));
-                                                    await axios.post(VITE_BASE_LINK_2 + 'write_data2', formdata).then((response) => {
-                                                        // console.log(response?.data)
-                                                        setLandingApiData(response?.data)
-                                                    })
-                                                }
-                                            }}>-</div>
-                                            {
-                                                cartData?.cartItems?.map((data, i) => {
-                                                    if (data?.product_id == productData?.product_details?.id && packSizeSelect?.weight === data?.size) {
-                                                        return <div key={i} className='bg-white w-full border flex justify-center items-center py-[3px]'>{data?.quantity}</div>
-                                                    }
-                                                })
-                                            }
-                                            <div className='w-[15%] flex justify-center items-center py-1 shadow-md active:scale-[0.96] bg-[color:var(--button-primary)] cursor-pointer' onClick={async () => {
-                                                let formdata = new FormData()
-                                                formdata.append('prod_id', productData?.product_details?.id)
-                                                formdata.append('token', localStorage.getItem('token'))
-                                                formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                                formdata.append('price', packSizeSelect?.price)
-                                                formdata.append('size', packSizeSelect?.weight)
-                                                formdata.append('update_type', '+')
-                                                await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                                    // console.log(response?.data)
-                                                    toast.warn(response?.data?.message, {
-                                                        position: "top-right",
-                                                        autoClose: 2000,
-                                                        hideProgressBar: false,
-                                                        closeOnClick: true,
-                                                        pauseOnHover: true,
-                                                        progress: undefined,
-                                                        theme: "colored",
-                                                    })
-                                                })
-                                                await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                                    // console.log(response?.data)
-                                                    // console.log(response?.data?.product_details?.pack_sizes)
-                                                    setProductData(response?.data)
-                                                    setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
-                                                })
-                                                await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
-                                                    // console.log(response?.data)
-                                                    setCartData(response?.data)
-                                                })
-                                                if (location?.pathname === "/") {
-                                                    let formdata = new FormData();
-                                                    formdata.append('token', localStorage.getItem('token'));
-                                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'));
-                                                    await axios.post(VITE_BASE_LINK_2 + 'write_data2', formdata).then((response) => {
-                                                        // console.log(response?.data)
-                                                        setLandingApiData(response?.data)
-                                                    })
-                                                }
-                                            }}>+</div>
+                                    <div className='w-full'>
+                                        <div className='w-full mt-4'>
+                                            <p className='text-[20px] font-[500] line-through'>₹ {packSizeSelect?.price}</p>
                                         </div>
-                                        :
-                                        <button className='w-full text-[18px]  py-[10px] font-[500] bg-[color:var(--button-primary)] shadow-md active:scale-[0.96] flex justify-center items-center rounded-[10px]' onClick={async () => {
-                                            let formdata = new FormData();
-                                            formdata.append('product_id', productData?.product_details?.id);
-                                            formdata.append('token', localStorage.getItem('token'));
-                                            formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                            formdata.append('size', packSizeSelect?.weight);
-                                            formdata.append('price', packSizeSelect?.price),
-                                                await axios.post(VITE_BASE_LINK_2 + 'add_to_cart', formdata).then((response) => {
-                                                    // console.log(response?.data)
-                                                    if (response?.data?.status === true) {
-                                                        localStorage.setItem('no_login_token', response?.data?.no_login_token)
-                                                        // alert(response?.data?.message)
-                                                        toast.success(response?.data?.message, {
-                                                            position: "top-right",
-                                                            autoClose: 2000,
-                                                            hideProgressBar: false,
-                                                            closeOnClick: true,
-                                                            pauseOnHover: true,
-                                                            // draggable: true,
-                                                            progress: undefined,
-                                                            theme: "colored",
-                                                        })
-                                                    } else {
-                                                        if (response?.data?.status) {
+                                        <div className='w-full flex justify-between'>
+                                            <div className='w-full flex items-center gap-3'>
+                                                <p className='text-[14px] font-[500] popins opacity-60'>Offer Price :-</p>
+                                                <p className='text-[20px] font-[500] popins'>₹ {packSizeSelect?.offer_price}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='w-full flex py-2 mt-4'>
 
-                                                        } else {
-                                                            toast.warn('Please log in first', {
+
+                                        {
+                                            productData?.product_details?.cart_status && productData?.product_details?.cart_status_array[selectedWeightIndex] ?
+                                                <div className='w-full text-[18px] py-[10px] font-[500] flex justify-center items-center rounded-[10px]'>
+                                                    <button className='w-[15%] flex justify-center items-center py-1 shadow-md active:scale-[0.96] bg-[color:var(--button-primary)] cursor-pointer' onClick={async () => {
+                                                        let formdata = new FormData()
+                                                        formdata.append('prod_id', productData?.product_details?.id)
+                                                        formdata.append('token', localStorage.getItem('token'))
+                                                        formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+                                                        formdata.append('price', packSizeSelect?.price)
+                                                        formdata.append('size', packSizeSelect?.weight)
+                                                        formdata.append('update_type', '-')
+                                                        await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            toast.warn(response?.data?.message, {
                                                                 position: "top-right",
                                                                 autoClose: 2000,
                                                                 hideProgressBar: false,
                                                                 closeOnClick: true,
                                                                 pauseOnHover: true,
-                                                                // draggable: true,
                                                                 progress: undefined,
                                                                 theme: "colored",
                                                             })
-                                                            // console.log('error in backend')
-                                                            // console.log(response)
+                                                        })
+                                                        formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+                                                        await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            // console.log(response?.data?.product_details?.pack_sizes)
+                                                            setProductData(response?.data)
+                                                            setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+                                                        })
+                                                        await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            setCartData(response?.data)
+                                                        })
+                                                        if (location?.pathname === "/") {
+                                                            let formdata = new FormData();
+                                                            formdata.append('token', localStorage.getItem('token'));
+                                                            formdata.append('no_login_token', localStorage.getItem('no_login_token'));
+                                                            await axios.post(VITE_BASE_LINK_2 + 'write_data2', formdata).then((response) => {
+                                                                // console.log(response?.data)
+                                                                setLandingApiData(response?.data)
+                                                            })
                                                         }
+                                                    }}>-</button>
+                                                    {
+                                                        cartData?.cartItems?.map((data, i) => {
+                                                            if (data?.product_id == productData?.product_details?.id && packSizeSelect?.weight === data?.size) {
+                                                                return <div key={i} className='bg-white w-full border flex justify-center items-center py-[3px]'>{data?.quantity}</div>
+                                                            }
+                                                        })
                                                     }
-                                                })
-                                            formdata.append('prod_id', productData?.product_details?.id);
-                                            await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                                // console.log(response?.data)
-                                                // console.log(response?.data?.product_details?.pack_sizes)
-                                                setProductData(response?.data)
-                                                setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
-                                            })
-                                            await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
-                                                // console.log('cart', response?.data)
-                                                setCartData(response?.data)
-                                            })
-                                        }}>ADD TO CART</button>
-                                }
+                                                    <button className='w-[15%] flex justify-center items-center py-1 shadow-md active:scale-[0.96] bg-[color:var(--button-primary)] cursor-pointer' onClick={async () => {
+                                                        let formdata = new FormData()
+                                                        formdata.append('prod_id', productData?.product_details?.id)
+                                                        formdata.append('token', localStorage.getItem('token'))
+                                                        formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+                                                        formdata.append('price', packSizeSelect?.price)
+                                                        formdata.append('size', packSizeSelect?.weight)
+                                                        formdata.append('update_type', '+')
+                                                        await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            toast.warn(response?.data?.message, {
+                                                                position: "top-right",
+                                                                autoClose: 2000,
+                                                                hideProgressBar: false,
+                                                                closeOnClick: true,
+                                                                pauseOnHover: true,
+                                                                progress: undefined,
+                                                                theme: "colored",
+                                                            })
+                                                        })
+                                                        await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            // console.log(response?.data?.product_details?.pack_sizes)
+                                                            setProductData(response?.data)
+                                                            setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+                                                        })
+                                                        await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            setCartData(response?.data)
+                                                        })
+                                                        if (location?.pathname === "/") {
+                                                            let formdata = new FormData();
+                                                            formdata.append('token', localStorage.getItem('token'));
+                                                            formdata.append('no_login_token', localStorage.getItem('no_login_token'));
+                                                            await axios.post(VITE_BASE_LINK_2 + 'write_data2', formdata).then((response) => {
+                                                                // console.log(response?.data)
+                                                                setLandingApiData(response?.data)
+                                                            })
+                                                        }
+                                                    }}>+</button>
+                                                </div>
+                                                :
+                                                <button className='w-full text-[18px]  py-[10px] font-[500] bg-[color:var(--button-primary)] shadow-md active:scale-[0.96] flex justify-center items-center rounded-[10px]' onClick={async () => {
+                                                    let formdata = new FormData();
+                                                    formdata.append('product_id', productData?.product_details?.id);
+                                                    formdata.append('token', localStorage.getItem('token'));
+                                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+                                                    formdata.append('size', packSizeSelect?.weight);
+                                                    formdata.append('price', packSizeSelect?.price),
+                                                        await axios.post(VITE_BASE_LINK_2 + 'add_to_cart', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            if (response?.data?.status === true) {
+                                                                localStorage.setItem('no_login_token', response?.data?.no_login_token)
+                                                                // alert(response?.data?.message)
+                                                                toast.success(response?.data?.message, {
+                                                                    position: "top-right",
+                                                                    autoClose: 2000,
+                                                                    hideProgressBar: false,
+                                                                    closeOnClick: true,
+                                                                    pauseOnHover: true,
+                                                                    // draggable: true,
+                                                                    progress: undefined,
+                                                                    theme: "colored",
+                                                                })
+                                                            } else {
+                                                                if (response?.data?.status) {
+
+                                                                } else {
+                                                                    toast.warn('Please log in first', {
+                                                                        position: "top-right",
+                                                                        autoClose: 2000,
+                                                                        hideProgressBar: false,
+                                                                        closeOnClick: true,
+                                                                        pauseOnHover: true,
+                                                                        // draggable: true,
+                                                                        progress: undefined,
+                                                                        theme: "colored",
+                                                                    })
+                                                                    // console.log('error in backend')
+                                                                    // console.log(response)
+                                                                }
+                                                            }
+                                                        })
+                                                    formdata.append('prod_id', productData?.product_details?.id);
+                                                    await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
+                                                        // console.log(response?.data)
+                                                        // console.log(response?.data?.product_details?.pack_sizes)
+                                                        setProductData(response?.data)
+                                                        setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+                                                    })
+                                                    await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
+                                                        // console.log('cart', response?.data)
+                                                        setCartData(response?.data)
+                                                    })
+                                                }}>ADD TO CART</button>
+                                        }
 
 
 
-                            </div>
+                                    </div>
 
-                            {/* pack sizes */}
+                                    {/* pack sizes */}
 
-                            <div className='w-full mt-6 relative'>
-                                <p className='text-[20px] font-[500] pb-3'>Pack Sizes</p>
-                                <div className='w-full flex justify-between pb-4'>
-                                    <div className='w-full max-w-[100px] font-[500] py-[10px] text-[15px] poppins flex justify-center items-center bg-gray-200 rounded-l-[10px] pl-2'>{packSizeSelect?.weight}</div>
-                                    <div className='w-full text-[20px] py-[10px] font-[500] bg-gray-200 flex justify-center items-center'>Rs {packSizeSelect?.price}</div>
-                                    <div className='w-fit px-4 text-[30px] poppins flex justify-center items-center bg-[color:var(--button-primary)] cursor-pointer rounded-r-[10px]' onClick={() => setDropdownOpen(!dropdownOpen)}>
-                                        <img src={arrow_down} className='w-[22px] rotate-180 opacity-80' alt="" />
+                                    <div className='w-full mt-6 relative'>
+                                        <p className='text-[20px] font-[500] pb-3'>Pack Sizes</p>
+                                        <div className='w-full flex justify-between pb-4'>
+                                            <div className='w-full max-w-[100px] font-[500] py-[10px] text-[15px] poppins flex justify-center items-center bg-gray-200 rounded-l-[10px] pl-2'>{packSizeSelect?.weight}</div>
+                                            <div className='w-full text-[20px] py-[10px] font-[500] bg-gray-200 flex justify-center items-center'>Rs {packSizeSelect?.price}</div>
+                                            <div className='w-fit px-4 text-[30px] poppins flex justify-center items-center bg-[color:var(--button-primary)] cursor-pointer rounded-r-[10px]' onClick={() => setDropdownOpen(!dropdownOpen)}>
+                                                <img src={arrow_down} className='w-[22px] rotate-180 opacity-80' alt="" />
+                                            </div>
+                                        </div>
+
+                                        {/* dropdown */}
+                                        <div className={`w-full mx-auto absolute top-0 mt-[98px] shadow-md bg-gray-200 transition-all duration-300 z-[500] ${dropdownOpen ? 'h-[200px] overflow-y-scroll ease-in py-2' : 'h-0 ease-out overflow-hidden p-0'}`}>
+                                            {
+                                                productData?.product_details?.pack_size?.map((data, i) => (
+                                                    <div key={i} className='w-full flex justify-between py-3 border-b border-[#cecece] cursor-pointer active:scale-[0.99] active:bg-[#C57963] px-4' onClick={() => {
+                                                        setPackSizeSelect(data)
+                                                        setSelectedWeightIndex(i)
+                                                        setDropdownOpen(false)
+                                                    }}>
+                                                        <div className='w-fit text-[16px] poppins'>
+                                                            {data?.weight}
+                                                        </div>
+                                                        <div className='w-fit text-[16px] poppins'>
+                                                            Rs {data?.price}
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+                                :
+                                <div className='w-full'>
+                                    <div className='flex flex-col w-full justify-center items-center h-[5vh] mb-4 relative overflow-hidden bg-[#dfdddd]'>
+                                        <div className='w-full'>
+                                            {/* Skeleton */}
+                                            <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                        </div>
+                                    </div>
+                                    <div className='flex flex-col w-full justify-center items-center mb-8 h-[20vh] relative overflow-hidden bg-[#dfdddd]'>
+                                        <div className='w-full'>
+                                            {/* Skeleton */}
+                                            <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                        </div>
+                                    </div>
+                                    <div className='flex flex-col w-full justify-center items-center h-[5vh] mb-8 relative overflow-hidden bg-[#dfdddd]'>
+                                        <div className='w-full'>
+                                            {/* Skeleton */}
+                                            <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                        </div>
+                                    </div>
+                                    <div className='flex flex-col w-full justify-center items-center h-[5vh] mb-8 relative overflow-hidden bg-[#dfdddd]'>
+                                        <div className='w-full'>
+                                            {/* Skeleton */}
+                                            <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                {/* dropdown */}
-                                <div className={`w-full mx-auto absolute top-0 mt-[98px] shadow-md bg-gray-200 transition-all duration-300 z-[500] ${dropdownOpen ? 'h-[200px] overflow-y-scroll ease-in py-2' : 'h-0 ease-out overflow-hidden p-0'}`}>
-                                    {
-                                        productData?.product_details?.pack_size?.map((data, i) => (
-                                            <div key={i} className='w-full flex justify-between py-3 border-b border-[#cecece] cursor-pointer active:scale-[0.99] active:bg-[#C57963] px-4' onClick={() => {
-                                                setPackSizeSelect(data)
-                                                setSelectedWeightIndex(i)
-                                                setDropdownOpen(false)
-                                            }}>
-                                                <div className='w-fit text-[16px] poppins'>
-                                                    {data?.weight}
-                                                </div>
-                                                <div className='w-fit text-[16px] poppins'>
-                                                    Rs {data?.price}
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                            </div>
-
-                        </div>
+                        }
                     </div>
 
                 </div>
@@ -493,190 +535,221 @@ const SingleProduct = () => {
                                     ))}
                                 </ Slider>
                                 :
-                                <div className='w-full flex justify-center items-center aspect-square'>
-                                    <Puff
-                                        height="80"
-                                        width="80"
-                                        radius={1}
-                                        color="#4fa94d"
-                                        ariaLabel="puff-loading"
-                                        wrapperStyle={{}}
-                                        wrapperClass=""
-                                        visible={true}
-                                    />
+                                <div className='flex flex-col w-full justify-center items-center aspect-square relative overflow-hidden bg-[#dfdddd]'>
+                                    <div className='w-full'>
+                                        {/* Skeleton */}
+                                        <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#f8f8f8c9] to-[#dfdddd] w-full skeleton-animation`}></div>
+                                    </div>
                                 </div>
                         }
                     </div>
 
                     {/* title & description */}
                     <div className='w-full mt-4'>
-                        <h1 className='poppins text-[20px] font-[700]'>{productData?.product_details?.title}</h1>
-                        <div className='w-full mt-2'>
-                            <p className='poppins text-[14px] '>{productData?.product_details?.description}</p>
-                        </div>
+                        {productData ?
+                            <>
+                                <h1 className='poppins text-[20px] font-[700]'>{productData?.product_details?.title}</h1>
+                                <div className='w-full mt-2'>
+                                    <p className='poppins text-[14px] '>{productData?.product_details?.description}</p>
+                                </div>
+                            </>
+                            :
+                            <div className='flex flex-col w-full justify-center items-center h-[15vh] relative overflow-hidden bg-[#dfdddd]'>
+                                <div className='w-full'>
+                                    {/* Skeleton */}
+                                    <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                </div>
+                            </div>
+                        }
                     </div>
 
                     {/* prices */}
                     <div className='w-full mt-4'>
-                        <div className='w-full'>
-                            <p className='text-[23px] font-[500] line-through'>₹ {packSizeSelect?.price}</p>
-                        </div>
-                        <div className='w-full flex justify-between'>
-                            <div className='w-full flex gap-3'>
-                                <p className='text-[23px] font-[500] popins opacity-60'>Offer Price :-</p>
-                                <p className='text-[23px] font-[500] popins'>₹ {packSizeSelect?.offer_price}</p>
-                            </div>
-                        </div>
+                        {
+                            productData ?
+                                <>
+                                    <div className='w-full'>
+                                        <p className='text-[23px] font-[500] line-through'>₹ {packSizeSelect?.price}</p>
+                                    </div>
+                                    <div className='w-full flex justify-between'>
+                                        <div className='w-full flex gap-3'>
+                                            <p className='text-[23px] font-[500] popins opacity-60'>Offer Price :-</p>
+                                            <p className='text-[23px] font-[500] popins'>₹ {packSizeSelect?.offer_price}</p>
+                                        </div>
+                                    </div>
+                                </>
+                                :
+                                <div className='flex flex-col w-full justify-center items-center h-[8vh] mb-4 relative overflow-hidden bg-[#dfdddd]'>
+                                    <div className='w-full'>
+                                        {/* Skeleton */}
+                                        <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                    </div>
+                                </div>
+                        }
                     </div>
 
                     {/* add to cart button mobile*/}
-                    {
-                        productData?.product_details?.cart_status && productData?.product_details?.cart_status_array[selectedWeightIndex] ?
-                            <div className='w-full flex py-2'>
-                                <div className='w-fit px-4 text-[20px] poppins flex justify-center items-center bg-[color:var(--button-primary)]' onClick={async () => {
-                                    let formdata = new FormData()
-                                    formdata.append('prod_id', productData?.product_details?.id)
-                                    formdata.append('token', localStorage.getItem('token'))
-                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                    formdata.append('price', packSizeSelect?.price)
-                                    formdata.append('size', packSizeSelect?.weight)
-                                    formdata.append('update_type', '-')
-                                    await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                        // console.log(response?.data)
-                                        toast.warn(response?.data?.message, {
-                                            position: "top-right",
-                                            autoClose: 2000,
-                                            hideProgressBar: false,
-                                            closeOnClick: true,
-                                            pauseOnHover: true,
-                                            progress: undefined,
-                                            theme: "colored",
-                                        })
-                                    })
-                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                    await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                        // console.log(response?.data)
-                                        // console.log(response?.data?.product_details?.pack_sizes)
-                                        setProductData(response?.data)
-                                        setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
-                                    })
-                                    await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
-                                        // console.log(response?.data)
-                                        setCartData(response?.data)
-                                    })
-                                    if (location?.pathname === "/") {
-                                        let formdata = new FormData();
-                                        formdata.append('token', localStorage.getItem('token'));
-                                        formdata.append('no_login_token', localStorage.getItem('no_login_token'));
-                                        await axios.post(VITE_BASE_LINK_2 + 'write_data2', formdata).then((response) => {
-                                            // console.log(response?.data)
-                                            setLandingApiData(response?.data)
-                                        })
-                                    }
-                                }}>-</div>
-                                {
-                                    cartData?.cartItems?.map((data, i) => {
-                                        if (data?.product_id == productData?.product_details?.id && packSizeSelect?.weight === data?.size) {
-                                            return <div key={i} className='w-full text-[16px] py-[10px] font-[500] flex justify-center items-center border' >{data?.quantity}</div>
-                                        }
-                                    })
-                                }
-                                <div className='w-fit px-4 text-[20px] poppins flex justify-center items-center bg-[color:var(--button-primary)]' onClick={async () => {
-                                    let formdata = new FormData()
-                                    formdata.append('prod_id', productData?.product_details?.id)
-                                    formdata.append('token', localStorage.getItem('token'))
-                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                    formdata.append('price', packSizeSelect?.price)
-                                    formdata.append('size', packSizeSelect?.weight)
-                                    formdata.append('update_type', '+')
-                                    await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
-                                        // console.log(response?.data)
-                                        toast.warn(response?.data?.message, {
-                                            position: "top-right",
-                                            autoClose: 2000,
-                                            hideProgressBar: false,
-                                            closeOnClick: true,
-                                            pauseOnHover: true,
-                                            progress: undefined,
-                                            theme: "colored",
-                                        })
-                                    })
-                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                    await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                        // console.log(response?.data)
-                                        // console.log(response?.data?.product_details?.pack_sizes)
-                                        setProductData(response?.data)
-                                        setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
-                                    })
-                                    await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
-                                        // console.log(response?.data)
-                                        setCartData(response?.data)
-                                    })
-                                    if (location?.pathname === "/") {
-                                        await axios.post(VITE_BASE_LINK_2 + 'write_data2', formdata).then((response) => {
-                                            // console.log(response?.data)
-                                            setLandingApiData(response?.data)
-                                        })
-                                    }
-                                }}>+</div>
-                            </div>
-                            :
-                            <div className='w-full flex justify-center items-center'>
-                                <div className='w-full text-[16px] py-[10px] font-[500] bg-[color:var(--button-primary)] rounded-[10px] shadow-md flex justify-center items-center' onClick={async () => {
-                                    let formdata = new FormData();
-                                    formdata.append('product_id', productData?.product_details?.id);
-                                    formdata.append('token', localStorage.getItem('token'));
-                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
-                                    formdata.append('size', packSizeSelect?.weight);
-                                    formdata.append('price', packSizeSelect?.price),
-                                        await axios.post(VITE_BASE_LINK_2 + 'add_to_cart', formdata).then((response) => {
-                                            // console.log(response?.data)
-                                            if (response?.data?.status === true) {
-                                                localStorage.setItem('no_login_token', response?.data?.no_login_token)
-                                                // alert(response?.data?.message)
-                                                toast.success(response?.data?.message, {
-                                                    position: "top-right",
-                                                    autoClose: 2000,
-                                                    hideProgressBar: false,
-                                                    closeOnClick: true,
-                                                    pauseOnHover: true,
-                                                    // draggable: true,
-                                                    progress: undefined,
-                                                    theme: "colored",
-                                                })
-                                            } else {
-                                                if (response?.data?.status) {
-
-                                                } else {
-                                                    toast.warn('Please log in first', {
-                                                        position: "top-right",
-                                                        autoClose: 2000,
-                                                        hideProgressBar: false,
-                                                        closeOnClick: true,
-                                                        pauseOnHover: true,
-                                                        // draggable: true,
-                                                        progress: undefined,
-                                                        theme: "colored",
+                    <>
+                        {
+                            productData ?
+                                <>
+                                    {
+                                        productData?.product_details?.cart_status && productData?.product_details?.cart_status_array[selectedWeightIndex] ?
+                                            <div className='w-full flex py-2'>
+                                                <button className='w-fit px-4 text-[20px] poppins flex justify-center items-center bg-[color:var(--button-primary)]' onClick={async () => {
+                                                    let formdata = new FormData()
+                                                    formdata.append('prod_id', productData?.product_details?.id)
+                                                    formdata.append('token', localStorage.getItem('token'))
+                                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+                                                    formdata.append('price', packSizeSelect?.price)
+                                                    formdata.append('size', packSizeSelect?.weight)
+                                                    formdata.append('update_type', '-')
+                                                    await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
+                                                        // console.log(response?.data)
+                                                        toast.warn(response?.data?.message, {
+                                                            position: "top-right",
+                                                            autoClose: 2000,
+                                                            hideProgressBar: false,
+                                                            closeOnClick: true,
+                                                            pauseOnHover: true,
+                                                            progress: undefined,
+                                                            theme: "colored",
+                                                        })
                                                     })
-                                                    // console.log('error in backend')
-                                                    // console.log(response)
+                                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+                                                    await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
+                                                        // console.log(response?.data)
+                                                        // console.log(response?.data?.product_details?.pack_sizes)
+                                                        setProductData(response?.data)
+                                                        setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+                                                    })
+                                                    await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
+                                                        // console.log(response?.data)
+                                                        setCartData(response?.data)
+                                                    })
+                                                    if (location?.pathname === "/") {
+                                                        let formdata = new FormData();
+                                                        formdata.append('token', localStorage.getItem('token'));
+                                                        formdata.append('no_login_token', localStorage.getItem('no_login_token'));
+                                                        await axios.post(VITE_BASE_LINK_2 + 'write_data2', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            setLandingApiData(response?.data)
+                                                        })
+                                                    }
+                                                }}>-</button>
+                                                {
+                                                    cartData?.cartItems?.map((data, i) => {
+                                                        if (data?.product_id == productData?.product_details?.id && packSizeSelect?.weight === data?.size) {
+                                                            return <div key={i} className='w-full text-[16px] py-[10px] font-[500] flex justify-center items-center border' >{data?.quantity}</div>
+                                                        }
+                                                    })
                                                 }
-                                            }
-                                        })
-                                    formdata.append('prod_id', productData?.product_details?.id);
-                                    await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
-                                        // console.log(response?.data)
-                                        // console.log(response?.data?.product_details?.pack_sizes)
-                                        setProductData(response?.data)
-                                        setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
-                                    })
-                                    await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
-                                        // console.log(response?.data)
-                                        setCartData(response?.data)
-                                    })
-                                }}>ADD TO CART</div>
-                            </div>
-                    }
+                                                <button className='w-fit px-4 text-[20px] poppins flex justify-center items-center bg-[color:var(--button-primary)]' onClick={async () => {
+                                                    let formdata = new FormData()
+                                                    formdata.append('prod_id', productData?.product_details?.id)
+                                                    formdata.append('token', localStorage.getItem('token'))
+                                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+                                                    formdata.append('price', packSizeSelect?.price)
+                                                    formdata.append('size', packSizeSelect?.weight)
+                                                    formdata.append('update_type', '+')
+                                                    await axios.post(VITE_BASE_LINK_2 + 'CartUpdate', formdata).then((response) => {
+                                                        // console.log(response?.data)
+                                                        toast.warn(response?.data?.message, {
+                                                            position: "top-right",
+                                                            autoClose: 2000,
+                                                            hideProgressBar: false,
+                                                            closeOnClick: true,
+                                                            pauseOnHover: true,
+                                                            progress: undefined,
+                                                            theme: "colored",
+                                                        })
+                                                    })
+                                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+                                                    await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
+                                                        // console.log(response?.data)
+                                                        // console.log(response?.data?.product_details?.pack_sizes)
+                                                        setProductData(response?.data)
+                                                        setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+                                                    })
+                                                    await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
+                                                        // console.log(response?.data)
+                                                        setCartData(response?.data)
+                                                    })
+                                                    if (location?.pathname === "/") {
+                                                        await axios.post(VITE_BASE_LINK_2 + 'write_data2', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            setLandingApiData(response?.data)
+                                                        })
+                                                    }
+                                                }}>+</button>
+                                            </div>
+                                            :
+                                            <div className='w-full flex justify-center items-center'>
+                                                <div className='w-full text-[16px] py-[10px] font-[500] bg-[color:var(--button-primary)] rounded-[10px] shadow-md flex justify-center items-center' onClick={async () => {
+                                                    let formdata = new FormData();
+                                                    formdata.append('product_id', productData?.product_details?.id);
+                                                    formdata.append('token', localStorage.getItem('token'));
+                                                    formdata.append('no_login_token', localStorage.getItem('no_login_token'))
+                                                    formdata.append('size', packSizeSelect?.weight);
+                                                    formdata.append('price', packSizeSelect?.price),
+                                                        await axios.post(VITE_BASE_LINK_2 + 'add_to_cart', formdata).then((response) => {
+                                                            // console.log(response?.data)
+                                                            if (response?.data?.status === true) {
+                                                                localStorage.setItem('no_login_token', response?.data?.no_login_token)
+                                                                // alert(response?.data?.message)
+                                                                toast.success(response?.data?.message, {
+                                                                    position: "top-right",
+                                                                    autoClose: 2000,
+                                                                    hideProgressBar: false,
+                                                                    closeOnClick: true,
+                                                                    pauseOnHover: true,
+                                                                    // draggable: true,
+                                                                    progress: undefined,
+                                                                    theme: "colored",
+                                                                })
+                                                            } else {
+                                                                if (response?.data?.status) {
+
+                                                                } else {
+                                                                    toast.warn('Please log in first', {
+                                                                        position: "top-right",
+                                                                        autoClose: 2000,
+                                                                        hideProgressBar: false,
+                                                                        closeOnClick: true,
+                                                                        pauseOnHover: true,
+                                                                        // draggable: true,
+                                                                        progress: undefined,
+                                                                        theme: "colored",
+                                                                    })
+                                                                    // console.log('error in backend')
+                                                                    // console.log(response)
+                                                                }
+                                                            }
+                                                        })
+                                                    formdata.append('prod_id', productData?.product_details?.id);
+                                                    await axios.post(VITE_BASE_LINK_2 + 'single_product_view2', formdata).then((response) => {
+                                                        // console.log(response?.data)
+                                                        // console.log(response?.data?.product_details?.pack_sizes)
+                                                        setProductData(response?.data)
+                                                        setPackSizeSelect(response?.data?.product_details?.pack_size[selectedWeightIndex])
+                                                    })
+                                                    await axios.post(VITE_BASE_LINK_2 + 'UserCartView', formdata).then((response) => {
+                                                        // console.log(response?.data)
+                                                        setCartData(response?.data)
+                                                    })
+                                                }}>ADD TO CART</div>
+                                            </div>
+                                    }
+                                </>
+                                :
+                                <div className='flex flex-col w-full justify-center items-center h-[6vh] relative overflow-hidden bg-[#dfdddd]'>
+                                    <div className='w-full'>
+                                        {/* Skeleton */}
+                                        <div className={`absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#dfdddd] via-[#ecebebc9] to-[#dfdddd] w-full skeleton-animation `}></div>
+                                    </div>
+                                </div>
+                        }
+                    </>
 
                     {/* pack sizes */}
                     <div className='w-full mt-4 relative mb-2'>
