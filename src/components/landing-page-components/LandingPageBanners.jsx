@@ -37,6 +37,7 @@ const LandingPageBanners = () => {
       <>
         {
           landingApiData?.banner ?
+            // banners
             <Slider
               className="hidden md:block w-full overflow-hidden z-[90]"
               {...settings}
@@ -52,6 +53,7 @@ const LandingPageBanners = () => {
               }
             </Slider >
             :
+            // skeleton loaders
             <div className='hidden md:flex flex-col w-full justify-center items-center mt-14 h-[40vh]'>
               <div className='w-full'>
                 <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
@@ -69,6 +71,7 @@ const LandingPageBanners = () => {
       <>
         {
           landingApiData?.mobile_banner ?
+            // banners
             <Slider
               className="block md:hidden w-full overflow-hidden z-[90]"
               {...settings}
@@ -86,6 +89,7 @@ const LandingPageBanners = () => {
               }
             </Slider >
             :
+            // skeleton loaders
             <div className='flex md:hidden px-5 md:px-10 mt-5 flex-col w-full justify-center items-center h-[30vh]'>
               <div className='w-full'>
                 <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">

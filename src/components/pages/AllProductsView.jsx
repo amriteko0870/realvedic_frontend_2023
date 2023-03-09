@@ -106,6 +106,7 @@ const AllProductsView = () => {
                 }
             </div>
 
+            {/* searchbar for products and total products */}
             {/* <div className='w-full flex justify-between items-center px-4 lg:px-8'>
                 <div className='border border-[#696969b6] rounded-[15px] bg-white flex px-2 py-2 w-full max-w-[150px] md:max-w-[300px]'>
                     <span className=' flex justify-center items-center'><img src={search} className="w-[16px]" /></span><input className='rounded-[15px] text-[13px] poppins w-full outline-none pl-2' placeholder='Search Products' onChange={(e) => {
@@ -117,6 +118,7 @@ const AllProductsView = () => {
                 </div>
             </div> */}
 
+            {/* page content */}
             <div className='w-full flex gap-4 pb-10 px-5'>
 
                 {/* sidebar */}
@@ -226,12 +228,16 @@ const AllProductsView = () => {
                     }
                 </div>
             </div>
-            {
-                allproductsApiData?.category === 'All Products' ?
-                    ''
-                    :
-                    <RecentlyViewd />
-            }
+
+            {/* recently viewed */}
+            <>
+                {
+                    allproductsApiData?.category === 'All Products' ?
+                        ''
+                        :
+                        <RecentlyViewd />
+                }
+            </>
         </div>
     )
 }

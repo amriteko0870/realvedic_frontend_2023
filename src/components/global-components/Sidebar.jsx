@@ -43,6 +43,9 @@ const Sidebar = () => {
     <>
       <div className={`h-screen bg-[color:var(--primary-color)] fixed right-0 z-[500] transition-all duration-200 ${sidebarToggle ? 'ease-in w-[80%]' : 'w-0 ease-out opacity-0'}`}>
         <div className='relative h-full pt-[13px]'>
+
+
+          {/* close button */}
           <div className='w-full flex justify-end pr-[24px]'>
             <span className='w-fit'>
               <img src={cross} className='w-[28px]' alt="" onClick={() => setSidebarToggle(false)} />
@@ -50,7 +53,7 @@ const Sidebar = () => {
           </div>
 
 
-          {/* category */}
+          {/* category links */}
           <div className='w-full mt-14'>
             <h1 className='text-[14px] poppins py-3 pb-2 border-b px-5 flex justify-between items-center' onClick={() => setShowCat(!showCat)}>Categories
               <span><img src={down} className='w-[12px] opacity-70' alt="" /></span>

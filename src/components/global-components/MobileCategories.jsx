@@ -22,6 +22,7 @@ const MobileCategories = () => {
             <div className='w-full grid grid-cols-4 gap-4 px-4 pt-4'>
                 {
                     landingApiData?.tab ?
+                        // category
                         <>
                             {
                                 landingApiData?.tab?.map((data, i) => (
@@ -37,6 +38,7 @@ const MobileCategories = () => {
                             }
                         </>
                         :
+                        // skeleton loader
                         <>
                             {
                                 skeleton_data?.map((data, i) => (

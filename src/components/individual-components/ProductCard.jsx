@@ -42,7 +42,7 @@ const ProductCard = (props) => {
                                     <img src={VITE_BASE_LINK_2 + props?.image} className='w-[85%] mx-auto' alt="" />
                                 </Link>
                                 :
-                                <div className='w-full flex justify-center items-center'>
+                                <div className='w-full flex justify-center items-center h-[20vh]'>
                                     <Puff
                                         height="80"
                                         width="80"

@@ -31,6 +31,7 @@ const TopSellers = (props) => {
       </div> */}
       {
         landingApiData?.top_seller_products ?
+          // products
           <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:flex gap-4 xl:gap-8 px-5 md:px-10 mb-10'>
             {
               landingApiData?.top_seller_products?.map((data, i) => {
@@ -42,6 +43,7 @@ const TopSellers = (props) => {
             }
           </div>
           :
+          // skeleton loaders
           <div className='flex w-full justify-center items-center md:h-[40vh]'>
             <div className='px-5 md:px-10 grid grid-cols-3 lg:grid-cols-5 w-full gap-4 md:gap-5 justify-between items-center md:h-[40vh]'>
 

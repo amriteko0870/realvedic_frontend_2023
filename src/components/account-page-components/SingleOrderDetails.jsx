@@ -56,11 +56,14 @@ const SingleOrderDetails = () => {
                 <div className='w-full flex justify-center poppins items-center pb-10'><h1 className='text-[28px] font-[700]'>ORDER DETAILS</h1></div>
 
 
+                {/* order information */}
                 <div className='w-[90%] md:w-[70%] xl:w-[60%] mx-auto bg-[#eeeeeeb6] px-8 md:px-20 pb-2 pt-10 md:pt-20 shadow-lg mb-10'>
 
-
+                    {/* delivery status */}
                     <div className='w-full flex justify-between items-start mb-10'>
 
+
+                        {/* delivery status */}
                         <div className='w-full max-w-[200px]'>
 
                             <div className='w-full flex flex-col gap-5 justify-center items-center'>
@@ -104,8 +107,10 @@ const SingleOrderDetails = () => {
 
                     </div>
 
+                    {/* products */}
                     <div className='w-full'>
                         <h1 className='text-center text-[18px] md:text-[22px] font-[500] mb-7'>Items</h1>
+                        {/* items */}
                         <div className='w-full'>
                             {
                                 orderData?.items?.map((data, i) => (
@@ -141,6 +146,8 @@ const SingleOrderDetails = () => {
 
                 </div>
 
+
+                {/* delivery information */}
                 <div className='w-[90%] md:w-[70%] xl:w-[60%] mx-auto bg-[#eeeeeeb6] px-8 md:px-20 py-10 md:py-12 shadow-lg'>
                     <div className='w-full'>
                         <h1 className='text-[15px] font-[500] mb-3'>Delivery Address</h1>

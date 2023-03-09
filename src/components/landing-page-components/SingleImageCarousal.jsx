@@ -51,6 +51,8 @@ const SingleImageCarousal = () => {
         <div className='hidden md:block w-[80%] mx-auto my-4 md:my-[100px]'>
             {
                 landingApiData?.large_carousal_images ?
+                    
+                    // images
                     <Slider
                         className="w-full px-2 rounded-[5px] border-[3px] pt-2 border-[#696969]"
                         {...settings}
@@ -77,7 +79,10 @@ const SingleImageCarousal = () => {
                             })
                         }
                     </Slider >
+                    
                     :
+
+                    // skeleton loaders
                     <div className='w-full aspect-square flex justify-center h-[40vh] items-center'>
                         <div className='w-full h-[40vh] justify-center items-center'>
                             {/* skeleton */}

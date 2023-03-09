@@ -68,6 +68,7 @@ const SmallImageCarousal = () => {
             {/* desktop */}
             {
                 landingApiData?.small_carousal_images ?
+                    // images
                     <div className='hidden md:block w-[96%] mx-auto bg-[color:var(--primary-color)] mt-10 py-2 pt-4'>
                         <div className='flex justify-between items-center gap-2'>
                             <div className='w-full max-w-[80px] flex justify-center items-center ml-4 font-[500]'>
@@ -89,6 +90,7 @@ const SmallImageCarousal = () => {
                         </div>
                     </div >
                     :
+                    // skeleton loaders
                     <div className='w-[96%] mx-auto aspect-square hidden md:grid grid-cols-8 mt-10 gap-5 h-[20vh] justify-center items-center'>
                         {
                             skeletons?.map((data, i) => (
@@ -114,6 +116,7 @@ const SmallImageCarousal = () => {
             {/* mobile */}
             {
                 landingApiData?.small_carousal_images ?
+                    // images
                     <nav className='block md:hidden w-full px-4'>
                         <div className='w-[50%] mx-auto bg-[color:var(--primary-color)] flex justify-center items-center font-[500] mb-2 py-1 rounded-[12px]'>
                             <h1 className='poppins font-[500] text-[12px] pl-1'>Best Sellers</h1>
@@ -136,6 +139,7 @@ const SmallImageCarousal = () => {
                         </div >
                     </nav>
                     :
+                    // skeleton loaders
                     <div className='w-full aspect-square flex md:hidden h-[10vh] mb-2 justify-center items-center'>
                         <div className='w-[90%] mx-auto aspect-square grid md:hidden grid-cols-6  gap-5 h-[10vh] justify-center items-center'>
                             {

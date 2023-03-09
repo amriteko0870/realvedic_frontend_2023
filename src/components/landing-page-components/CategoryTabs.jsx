@@ -34,25 +34,11 @@ const CategoryTabs = () => {
 
     return (
         <>
-            {/* <div className='flex w-full h-full items-center justify-between gap-5 px-2 md:px-4 py-3 md:py-6 overflow-x-scroll scrollbar-hide'>
-        {
-            landingApiData?.tab?.map((data, i) => (
-                <Link to={`all-products/` + data?.id} key={i} className={`w-full flex items-center min-w-[130px] md:min-w-[222px] rounded-[13px] pl-3 pr-1 py-1 justify-between`} style={{backgroundColor: data?.color}}>
-                    <div className='w-full max-w-[100px]'>
-                        <h1 className='helvetica text-[12px] md:text-[15px] font-[500] poppins'>{data?.title}</h1>
-                    </div>
-                    <div className='w-fit'>
-                        <img src={VITE_BASE_LINK + data?.image} className='' alt="" />
-                    </div>
-                </Link>
-            ))
-        }
-    </div> */}
 
             <div className='hidden md:flex w-full h-full items-center justify-between gap-5 px-2 xl:px-20 overflow-x-scroll scrollbar-hide sticky top-[70px] py-2 bg-white z-[200] shadow-md'>
                 {
                     landingApiData?.tab ?
-
+                        // tabs
                         <>
                             {
                                 landingApiData?.tab?.map((data, i) => (
@@ -68,6 +54,7 @@ const CategoryTabs = () => {
                             }
                         </>
                         :
+                        // skeleton loader
                         <div className='hidden md:flex flex-col w-full justify-center items-center h-[5vh]'>
                             <div className='w-full'>
                                 <SkeletonTheme baseColor="#f0f0f0" highlightColor="#d6d6d6">
@@ -79,22 +66,6 @@ const CategoryTabs = () => {
                         </div>
                 }
             </div>
-
-            {/* mobile view */}
-            {/* <div className='w-full block md:hidden px-2 py-4'>
-            {
-                tabData?.tab?.map((data, i) => (
-                    <div key={i} className={`w-full grid grid-cols-2 max-w-[700px] rounded-[13px] py-1 border border-blue-500`} style={{backgroundColor: data?.color}}>
-                        <div className=' border border-green-500'>
-                            <h1 className='helvetica text-[15px] font-[500] poppins'>{data?.title}</h1>
-                        </div>
-                        <div className=' border border-green-500'>
-                            <img src={data?.image} className='' alt="" />
-                        </div>
-                    </div>
-                ))
-            }
-    </div> */}
         </>
     )
 }

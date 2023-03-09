@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil";
 import cartPageAtom from "../../recoil/atoms/cartPageAtom";
 
 // Media files
-import cross from "../../assets/icons/cross.svg";
+import cross from "../../assets/icons/cross_red.svg";
 import down from '../../assets/icons/down-arrow-thin.svg'
 
 
@@ -215,16 +215,26 @@ const CartPage = () => {
                                                             key={index}
                                                             className="grid grid-cols-[36%_12.5%_12.5%_12.5%_12.5%_12.5%]  my-5"
                                                         >
+
+                                                            {/* image and name */}
                                                             <div className="flex items-center gap-5 ">
                                                                 <span className="w-[70px] h-[70px] inline-block">
                                                                     <img src={VITE_BASE_LINK_2 + data?.image} className='w-full' alt="" />
                                                                 </span>
                                                                 <span className="text-[16px] poppins">{data?.name}</span>
                                                             </div>
+
+                                                            {/* unit price */}
                                                             <div className="text-center flex justify-center items-start gap-2 helvetica"><span className="text-gray-600 text-sm line-through">₹{data?.unit_price}</span><span className="text-[17px]">₹{data?.net_price}</span></div>
-                                                            <div className="text-center">{data?.size}</div>
+
+                                                            {/* pack size */}
+                                                            <div className="text-center">
+                                                                {data?.size}
+                                                            </div>
+
+                                                            {/* quantity */}
                                                             <div className="text-center flex justify-center items-start gap-4 ">
-                                                                <span className="cursor-pointer" onClick={async () => {
+                                                                <button className="cursor-pointer active:scale-[0.95] active:bg-gray-300 border border-gray-200 px-[6px] bg-gray-200 font-[500] rounded-[5px] shadow-md" onClick={async () => {
                                                                     let formdata = new FormData()
                                                                     formdata.append('prod_id', data?.product_id)
                                                                     formdata.append('token', localStorage.getItem('token'))
@@ -250,11 +260,11 @@ const CartPage = () => {
                                                                         // console.log(response?.data)
                                                                         setCartDataApi(response?.data)
                                                                     })
-                                                                }}>-</span>
+                                                                }}>-</button>
 
                                                                 <span> {data?.quantity}</span>
 
-                                                                <span className="cursor-pointer" onClick={async () => {
+                                                                <button className="cursor-pointer active:scale-[0.95] active:bg-gray-300 border border-gray-200 px-[6px] bg-gray-200 font-[500] rounded-[5px] shadow-md" onClick={async () => {
                                                                     let formdata = new FormData()
                                                                     formdata.append('prod_id', data?.product_id)
                                                                     formdata.append('token', localStorage.getItem('token'))
@@ -280,19 +290,23 @@ const CartPage = () => {
                                                                         // console.log(response?.data)
                                                                         setCartDataApi(response?.data)
                                                                     })
-                                                                }}>+</span>
+                                                                }}>+</button>
                                                             </div>
+
+                                                            {/* final price */}
                                                             <div className="flex item-start justify-center  ">
                                                                 <div className="text-[17px] helvetica min-w-[60px]">
                                                                     <span>₹ </span>
                                                                     <span className=""> {data?.price}</span>
                                                                 </div>
                                                             </div>
+
+                                                            {/* remove item */}
                                                             <div className="">
                                                                 <img
                                                                     src={cross}
                                                                     alt="X"
-                                                                    className="cursor-pointer mx-auto w-[15px]"
+                                                                    className="cursor-pointer mx-auto w-full active:scale-[0.8] active:bg-gray-300 rounded-[5px] bg-[#f3f3f37e] shadow-md max-w-[30px]"
                                                                     onClick={async () => {
                                                                         let formdata = new FormData()
                                                                         formdata.append('prod_id', data?.product_id)

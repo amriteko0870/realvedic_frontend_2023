@@ -70,9 +70,15 @@ function App() {
 
   return (
     <>
+
+      {/* main body */}
       <div className="relative">
+
         <Sidebar />
         <Navbar />
+
+
+        {/* routes */}
         <div className=' md:mt-16 lg:mt-20 xl:mt-[40px]'>
           <Routes>
 
@@ -103,8 +109,12 @@ function App() {
             {/* <Route path='/test' element={<ProductCard id='2' title='Test Product' image='' weight='250' price='100' />} /> */}
           </Routes>
         </div>
+
         <Footer />
+
       </div>
+
+      {/* toast container */}
       <ToastContainer />
     </>
   )

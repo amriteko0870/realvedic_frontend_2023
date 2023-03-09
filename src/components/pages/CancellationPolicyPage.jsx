@@ -25,10 +25,13 @@ const CancellationPolicyPage = () => {
   return (
     <div>
       <div className="pb-16 pt-10">
+
+        {/* header */}
         <h1 className="font-extrabold text-2xl md:text-3xl text-center">
           Our Return and Refund Policy
         </h1>
 
+        {/* content */}
         <div>
           {pageData?.map((data, index) => {
             return (
@@ -53,6 +56,8 @@ const CancellationPolicyPage = () => {
             );
           })}
         </div>
+
+
       </div>
     </div>
   );

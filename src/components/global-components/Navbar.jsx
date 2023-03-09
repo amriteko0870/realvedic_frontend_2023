@@ -298,7 +298,7 @@ const Navbar = () => {
                                                                 <h1 className='text-[13px] helvetica font-[400] text-green-600 '>You saved ₹ {data?.saved}</h1>
                                                             </div>
                                                             <div className='w-full max-w-[50px] flex justify-center items-center'>
-                                                                <img src={cross} className='w-full max-w-[24px] rounded-[5px] bg-white active:scale-[0.9] transition-all duration-300 shadow-md cursor-pointer' alt="" onClick={async () => {
+                                                                <img src={cross} className='w-full max-w-[24px] rounded-[5px] bg-white active:scale-[0.9] active:bg-gray-300 transition-all duration-300 shadow-md cursor-pointer' alt="" onClick={async () => {
                                                                     let formdata = new FormData()
                                                                     formdata.append('prod_id', data?.product_id)
                                                                     formdata.append('token', localStorage.getItem('token'))
