@@ -244,12 +244,12 @@ const CheckoutPage = () => {
                             <h1 className='text-[13px] font-[500] mt-4 mb-3'>Address:</h1>
                             <div className='w-full items-center'>
                                 <h1 className='text-[13px] flex flex-col'>
-                                    <span className=''>{checkoutData?.address_info?.address_line_1}</span>
-                                    <span className=''>{checkoutData?.address_info?.address_line_2}</span>
-                                    <span className=''>{checkoutData?.address_info?.city}</span>
-                                    <span className=''>{checkoutData?.address_info?.state}</span>
-                                    <span className=''>{checkoutData?.address_info?.country}</span>
-                                    <span className=''>{checkoutData?.address_info?.pincode}</span>
+                                    <span className='w-fit'>{checkoutData?.address_info?.address_line_1}</span>
+                                    <span className='w-fit'>{checkoutData?.address_info?.address_line_2}</span>
+                                    <span className='w-fit'>{checkoutData?.address_info?.city}</span>
+                                    <span className='w-fit'>{checkoutData?.address_info?.state}</span>
+                                    <span className='w-fit'>{checkoutData?.address_info?.country}</span>
+                                    <span className='w-fit'>{checkoutData?.address_info?.pincode}</span>
                                 </h1>
                             </div>
                             <Link to='/account' className='w-fit absolute bottom-0 right-0 mr-3 mb-2'>
@@ -311,7 +311,6 @@ const CheckoutPage = () => {
                                                     </div>
                                                     <h1 className='text-[9px]'>{data?.weight}</h1>
                                                     <h1 className='text-[9px]'>qty: x{data?.quantity}</h1>
-                                                    {/* <h1 className='text-[9px]'>product code: {data?.product_id}</h1> */}
                                                 </div>
                                             </div>
                                         ))
