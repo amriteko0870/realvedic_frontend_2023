@@ -47,7 +47,7 @@ const DoctorsPage = () => {
         </div>
       </div>
 
-
+      {/* page content */}
       <div className='w-full px-2 pb-5'>
 
 

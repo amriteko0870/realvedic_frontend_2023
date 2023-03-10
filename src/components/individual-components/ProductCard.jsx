@@ -56,6 +56,8 @@ const ProductCard = (props) => {
                                     {/* <h1 className='text-[100px] text-red-500'>Loader</h1> */}
                                 </div>
                         }
+
+                        {/* title & variants */}
                         <div className='w-full flex justify-between items-center mt-1'>
                             <div className='w-full xl:w-auto'>
                                 <h1 className='poppins text-[13px]'>{props?.title}</h1>
@@ -96,6 +98,8 @@ const ProductCard = (props) => {
                                 </div>
                             </div>
                         </div>
+
+                        {/* add to cart / cart item quantity */}
                         <div className='w-full flex justify-end items-center xl:min-h-[50px]' onClick={() => {
                         }}>
                             {
@@ -103,7 +107,11 @@ const ProductCard = (props) => {
                                     <>
                                         {
                                             props?.status && props?.statusArray[activeIndex] ?
+
+                                                // quatity cart item
                                                 <div className='w-full flex justify-between items-center mt-1'>
+
+                                                    {/* price */}
                                                     <div className='w-full max-w-[50px] min-w-[50px] flex justify-end'>
                                                         <div className='w-full max-w-[50px] min-w-[50px]'>
                                                             <h1 className='helvetica flex flex-col items-center'>
@@ -112,11 +120,11 @@ const ProductCard = (props) => {
                                                             </h1>
                                                         </div>
                                                     </div>
-                                                    {/* <div className='w-fit pr-2'>
-                                                        <Link to='/cart'><button className='px-3 py-1 bg-[color:var(--button-primary)] active:scale-[0.95] rounded-[5px] text-[12px] shadow-md flex w-full max-w-[80px] min-w-[80px]'>Go to cart</button></Link>
-                                                    </div> */}
+
+                                                    {/* quantity manage */}
                                                     <div className='flex w-fit gap-2'>
 
+                                                        {/* decrease quantity */}
                                                         <button className='text-[18px] px-1 bg-[#b4b4b4]' onClick={async () => {
                                                             let formdata = new FormData()
                                                             formdata.append('prod_id', props?.id)
@@ -165,6 +173,7 @@ const ProductCard = (props) => {
 
                                                         </span>
 
+                                                        {/* increase quantity */}
                                                         <button className='text-[18px] px-1 bg-[#b4b4b4]' onClick={async () => {
                                                             let formdata = new FormData()
                                                             formdata.append('prod_id', props?.id)
@@ -203,7 +212,11 @@ const ProductCard = (props) => {
                                                     </div>
                                                 </div>
                                                 :
+
+                                                // add to cart
                                                 <div className='w-full flex justify-between items-center mt-1'>
+
+                                                    {/* price */}
                                                     <div className='flex justify-end'>
                                                         <div className='w-fit'>
                                                             <h1 className='helvetica flex flex-col items-center'>
@@ -212,6 +225,8 @@ const ProductCard = (props) => {
                                                             </h1>
                                                         </div>
                                                     </div>
+
+                                                    {/* add to cart button */}
                                                     <button className='bg-[#FCF55C] rounded-[5px] w-full max-w-[80px] active:bg-[#f5ec4b] px-3 shadow-md py-[2px] poppins text-[15px] font-[500] cursor-pointer active:scale-[0.98]' onClick={async () => {
                                                         let formdata = new FormData();
                                                         // console.log(props.id)
@@ -256,7 +271,11 @@ const ProductCard = (props) => {
                                         }
                                     </>
                                     :
+
+                                    // add to cart
                                     <div className='w-full flex justify-between items-center mt-1'>
+
+                                        {/* price */}
                                         <div className='flex justify-end'>
                                             <div className='w-fit'>
                                                 <h1 className='helvetica flex flex-col items-center'>
@@ -265,6 +284,8 @@ const ProductCard = (props) => {
                                                 </h1>
                                             </div>
                                         </div>
+
+                                        {/* add to cart button */}
                                         <button className='bg-[#FCF55C] rounded-[5px] w-full max-w-[80px] active:bg-[#f5ec4b] px-3 shadow-md py-[2px] poppins text-[15px] font-[500] cursor-pointer active:scale-[0.98]' onClick={async () => {
                                             let formdata = new FormData();
                                             // console.log(props.id)

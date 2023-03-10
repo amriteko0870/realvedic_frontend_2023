@@ -107,7 +107,11 @@ const Navbar = () => {
             {/* desktop */}
             <nav className='hidden md:block w-full bg-[color:var(--primary-color)] z-[400] fixed top-0'>
                 <div className='w-full flex justify-center items-center shadow-md '>
+
+                    {/* searchbar & logo */}
                     <div className='w-[70%] flex justify-start items-center gap-14 pl-14'>
+
+                        {/* main logo */}
                         <div className='w-fit'>
                             <NavLink to='/' className='flex justify-center items-center'>
                                 <img src={logo} className="cursor-pointer w-[70px]" alt="" />
@@ -158,6 +162,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     {/* icons */}
@@ -370,6 +375,8 @@ const Navbar = () => {
 
             {/* mobie */}
             <nav className='block sticky top-0 md:hidden w-full bg-[color:var(--primary-color)] z-[400] px-4 pt-2'>
+
+                {/* links */}
                 <div className='w-full relative flex justify-between items-center pb-2'>
 
                     {/* logo */}
@@ -380,6 +387,7 @@ const Navbar = () => {
                         </Link>
                     </span>
 
+                    {/* links */}
                     <div className='w-fit flex-1 flex justify-end items-center gap-4'>
                         {
                             cartData?.cartItems?.length > 0 ?

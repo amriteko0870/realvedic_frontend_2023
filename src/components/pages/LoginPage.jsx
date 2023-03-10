@@ -42,9 +42,9 @@ const LoginPage = () => {
                     <span className='w-full bg-[#000] h-[1px]'></span>
                 </div> */}
 
-                <div className='w-fit'>
-                    {/* <img src={logo} className='w-full max-w-[150px]' alt="" /> */}
-                </div>
+                {/* <div className='w-fit'>
+                    <img src={logo} className='w-full max-w-[150px]' alt="" />
+                </div> */}
 
 
                 <div className='w-full bg-gray-100 p-4 shadow-md rounded-[5px]'>

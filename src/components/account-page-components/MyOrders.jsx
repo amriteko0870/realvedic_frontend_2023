@@ -38,9 +38,17 @@ const MyOrders = () => {
     return (
         <div className='w-full '>
             <div className='w-full mx-auto mt-[100px] md:mt-[150px] mb-[180px]'>
-                <div className='w-full flex justify-center poppins items-center pb-5'><h1 className='text-[28px] font-[700]'>MY ORDERS</h1></div>
+
+                {/* header */}
+                <div className='w-full flex justify-center poppins items-center pb-5'>
+                    <h1 className='text-[28px] font-[700]'>MY ORDERS</h1>
+                </div>
                 <div className='w-[50%] mx-auto h-[1px] bg-[#696969b6]'></div>
+
+                {/* orders */}
                 <div className='w-full poppins'>
+
+                    {/* order list */}
                     <div className='w-[95%] md:w-[70%] xl:w-[50%] mx-auto h-[60vh] overflow-y-scroll'>
                         {
                             orderData?.orders?.length > 0 ?
