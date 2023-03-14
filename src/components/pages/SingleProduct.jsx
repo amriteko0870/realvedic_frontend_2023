@@ -189,6 +189,7 @@ const SingleProduct = () => {
                 </div>
             </div>
 
+            {/* content */}
             <div className='w-full mb-4 relative pr-3 md:pt-5'>
 
                 {/* header */}
