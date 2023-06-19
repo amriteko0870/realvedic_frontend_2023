@@ -100,14 +100,14 @@ const CheckoutPage = () => {
     const res = await loadScript();
 
     let bodyData = new FormData();
+    bodyData.append("amount", checkoutData?.final_price);
+    bodyData.append("name", checkoutData?.personal_info?.first_name);
+    bodyData.append("token", localStorage.getItem("token"));
 
     // we will pass the amount and product name to the backend using form data
     // bodyData.append("amount", product?.price.toString());
     // bodyData.append("name", product?.product_name);
 
-    bodyData.append("amount", checkoutData?.final_price);
-    bodyData.append("name", checkoutData?.personal_info?.first_name);
-    bodyData.append("token", localStorage.getItem("token"));
 
     const data = await axios({
       url: VITE_BASE_LINK_2 + `start_payment`,
@@ -192,11 +192,29 @@ const CheckoutPage = () => {
   }, []);
 
   const callCCAvenue = () => {
-    axios.get(VITE_BASE_LINK + "checkout")?.then((response) => {
-      console.log(response);
 
-      window.location.replace(response?.data);
+    let bodyData = new FormData();
+    bodyData.append("amount", checkoutData?.final_price);
+    bodyData.append("name", checkoutData?.personal_info?.first_name);
+    bodyData.append("token", localStorage.getItem("token"));
+
+
+    axios({
+      url: VITE_BASE_LINK_2 + `start_payment`,
+      method: "POST",
+      data: checkoutData,
+    }).then((res) => {
+      window.location.replace(res?.data);
+      console.log(res);
+      return res;
     });
+
+
+
+    // axios.post(VITE_BASE_LINK + "start_payment")?.then((response) => {
+    //   console.log(response);
+
+    // });
   };
 
   return (
